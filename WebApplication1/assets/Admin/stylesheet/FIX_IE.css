@@ -1,0 +1,27 @@
+/**************************************** BEGIN IE6 ****************************************/
+
+*html body{behavior: url(scripts/whateverhover.htc); }
+*html .menu_admin li, *html .frame_info_user ul li, *html .menu_admin li a{display:inline-block;}
+*html .menu_admin li:hover{background:#f7f7f7;}
+*html #num_ad_footer{margin:0;}
+*html .frame_info_user{right:-2px; width:200px;}
+*html .info_user span.arrow_info_user, *html .click_show_hide{display:block; overflow:hidden;}
+
+/**************************************** END IE6 ****************************************/
+
+/**************************************** BEGIN IE7 ****************************************/
+
+*+html .menu_admin li{display:inline-block;}
+*+html #num_ad_footer{padding-bottom:0;}
+*+html .data_gid thead tr td{padding:7px 10px;}
+*+html .filter_search{padding-bottom:0;}
+*+html .menu_admin li a{display:inline-block;}
+*+html .menu_admin li:hover{background:#f7f7f7;}
+
+/**************************************** END IE7 ****************************************/
+
+/**************************************** BEGIN IE8 ****************************************/
+@media \0screen {
+	.add_news_all a{padding:3px 5px 3px 25px;}
+}
+/**************************************** END IE8 ****************************************/

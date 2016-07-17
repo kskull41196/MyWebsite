@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MyWebsite Administrator</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="~/assets/Admin/plugins/oneui-fw/css/bootstrap.min-1.4.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/Admin/plugins/oneui-fw/css/oneui.min-1.5.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/Admin/plugins/fancybox/source/jquery.fancybox.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/Admin/stylesheet/css.css" />
+</head>
+<body>
+    <div id="page-loader"></div>
+    <div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+        <nav id="sidebar">
+            <div id="sidebar-scroll">
+                <div class="sidebar-content">
+                    <div class="side-header side-content bg-white-op">
+                        <button class="btn btn-link text-gray pull-right hidden-md hidden-lg" type="button" data-toggle="layout" data-action="sidebar_close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <a class="h5 text-white" href="">
+                        <img src="" class="img-responsive" style="max-width: 155px; max-height: 36px" />
+                        </a>
+                    </div>
+                    <div class="side-content">
+                        <ul class="nav-main">
+                            <!-- home -->
+                            <li>
+                                <a href="">
+                                <i class="si si-home"></i>
+                                <span class="sidebar-mini-hide">Trang chủ</span>
+                                </a>
+                            </li>
+                            <!-- produtcs -->
+                            <li>
+                                <a href="#" class="nav-submenu" data-toggle="nav-submenu">
+                                    <i class="si si-grid"></i>
+                                    <span class="sidebar-mini-hide">Sản phẩm</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        @Html.ActionLink("Danh mục", "ItemCategory", "Admin")
+                                    </li>
+                                    <li>
+                                        <a href="">Danh sách sản phẩm</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- produtcs -->
+                            <li>
+                                <a href="" class="nav-submenu" data-toggle="nav-submenu">
+                                    <i class="si si-list"></i>
+                                    <span class="sidebar-mini-hide">Tin tức</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="">Danh mục</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Danh sách tin tức</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul><!-- end .nav-main -->
+                    </div><!-- end .side-content -->
+                </div><!-- end .sidebar-content -->
+            </div><!-- end #sidebar-scroll -->
+        </nav><!-- end #sidebar -->
+        <header id="header-navbar" class="content-mini content-mini-full">
+            <ul class="nav-header pull-right">
+                <li>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-image">
+                            <img src="~/assets/Admin/images/no-avatar.png" alt="avatar" />
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-header">Profile</li>
+                            <li>
+                                <a href="" title="">
+                                    <i class="si si-user pull-right"></i>
+                                    Thông tin cá nhân
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Action</li>
+                            <li>
+                                <a href="" title="">
+                                    <i class="si si-lock pull-right"></i>
+                                    Đổi mật khẩu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" title="">
+                                    <i class="si si-logout pull-right"></i>
+                                    Thoát
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav-header pull-left">
+                <li class="hidden-md hidden-lg">
+                    <button class="btn btn-default" data-toggle="layout" data-action="sidebar_toggle" type="button">
+                        <i class="fa fa-navicon"></i>
+                    </button>
+                </li>
+                <li class="hidden-xs hidden-sm">
+                    <button class="btn btn-default" data-toggle="layout" data-action="sidebar_mini_toggle" type="button">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </button>
+                </li>
+                <li class="quick-login-website">
+                    <button class="btn btn-info">
+                        Truy cập nhanh website
+                        <i class="fa fa-external-link"></i>
+                    </button>
+                </li>
+            </ul>
+        </header><!-- end #header-navbar -->
+        <main id="main-container" style="min-height: 663px;">
+            @RenderBody()
+        </main>
+        <footer id="page-footer" class="content-mini content-mini-full font-s12 bg-gray-lighter clearfix">
+            <div class="pull-right">
+
+            </div>
+            <div class="pull-left">
+                Copyright &copy; 2015. Create by <a href="">MyWebsite</a>
+            </div>
+        </footer><!-- end #page-footer -->
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">var root = '<?=$linkroot?>'; </script>
+    <script type="text/javascript" src="~/assets/Admin/plugins/oneui-fw/js/oneui.min-1.4.js"></script>
+    <script type="text/javascript" src="~/assets/Admin/plugins/fancybox/source/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="~/assets/Admin/plugins/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="~/assets/Admin/plugins/tinymce/tinymce.config.js"></script>
+    <script type="text/javascript" src="~/assets/Admin/javascript/jquery.number.min.js"></script>
+    <script type="text/javascript" src="~/assets/Admin/javascript/custom.js"></script>
+    <script type="text/javascript" src="~/assets/Admin/javascript/admin.js"></script>
+</body>
+</html>

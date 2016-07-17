@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/mycss.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/styleweb.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div id="banner" class="col-md-9 col-sm-9 col-xs-9">
+                    <a href="">
+                        <img src="~/assets/images/banner.png" alt="MyWebsite" />
+                    </a>
+                </div>
+                <div id="info-banner" class="col-md-3 col-sm-3 col-xs-3">
+                    <div style="padding:5px;">
+                        <p>
+                            <img alt="" src="http://demo61.thuvienweb.info/images/noidung/images/hotline.png" style="height:20px; width:20px">&nbsp; &nbsp;<span style="font-size:16px">0909 266 986 - 0909 267 986</span>
+                        </p>
+                        <p>
+                            <span style="font-size:16px"><img alt="" src="http://demo61.thuvienweb.info/images/noidung/images/053aef_44636d82dd784e1a9afc43bd83618fc5.png" style="height:20px; width:20px">&nbsp; &nbsp;chinguyen241294@gmail.com</span>
+                        </p>
+                        <p>
+                            <a href="https://www.facebook.com/myphamccwhite" target="_blank"><span style="color:#000000"><span style="font-size:16px"><img alt="" src="http://demo61.thuvienweb.info/images/noidung/images/face.png" style="height:20px; width:20px">&nbsp; &nbsp;Facebook</span></span></a>
+                        </p>
+                        <p>
+                            <a href="http://www.youtube.com/" target="_blank"><span style="color:#000000"><span style="font-size:16px"><img alt="" src="http://demo61.thuvienweb.info/images/noidung/images/you.png" style="height:20px; width:20px">&nbsp; &nbsp;Youtube</span></span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="navbar navbar-inverse" id="main-menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="">Giới thiệu</a>
+                    </li>
+                    <li>
+                        <a href="">Sản phẩm</a>
+                    </li>
+                    <li>
+                        <a href="">Tin tức</a>
+                    </li>
+                    <li>
+                        <a href="">Chính sách</a>
+                    </li>
+                    <li>
+                        <a href="">Liên hệ</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="">
+                            <img src="~/assets/images/en-flag.png" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="~/assets/images/vn-flag.png" />
+                        </a>
+                    </li>
+                </ul>
+                <!--<ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")-->
+            </div>
+        </div>
+  </div>
+    <div id="main-container">
+        <div class="container">
+            <div class="row">
+                <div id="left-container" class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="frame-box">
+                        <div class="title-box">
+                            Danh mục sản phẩm
+                        </div>
+                        <div class="main-box">
+                            <ul class="ul-box">
+                                <li>
+                                    <a href="" title=""><i class="fa fa-angle-right"></i>Kem dưỡng trắng da mặt</a>
+                                </li>
+                                <li>
+                                    <a href="" title=""><i class="fa fa-angle-right"></i>Serum dưỡng và tái tạo da mặt</a>
+                                </li>
+                                <li>
+                                    <a href="" title=""><i class="fa fa-angle-right"></i>Kem trị mụn</a>
+                                </li>
+                                <li>
+                                    <a href="" title=""><i class="fa fa-angle-right"></i>Kem đặc trị thâm, sẹo rỗ</a>
+                                </li>
+                                <li>
+                                    <a href="" title=""><i class="fa fa-angle-right"></i>Kem dưỡng trắng da toàn thân</a>
+                                </li>
+                                <li>
+                                    <a href="" title=""><i class="fa fa-angle-right"></i>Tắm trắng da toàn thân</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="center-container" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div id="footer-left" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <h3 class="title_f"><span> Thông tin</span></h3>
+                    <div class="detail_f">
+                        <h3><img alt="" src="http://myphamccwhite.com/images/noidung/images/logo%20cc(1).png" style="float:left; height:65px; margin-right:10px; width:100px"><span style="font-size:28px"><strong>Công Ty TNHH TM - DV Mỹ Phẩm CC.WHITE</strong></span></h3>
+                        <p>MST: 0313737137</p>
+                        <h3>&nbsp;</h3>
+                        <h3>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Địa chỉ:&nbsp;89/58/12 Phan Huy Ích, P.15, Q.Tân Bình, TP.HCM<br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hotline : 0909 266 986 - 0909 267 986
+                        </h3>
+                        <h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Email: chinguyen241294@gmail.com&nbsp;</h3>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+                <div id="footer-right" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <h3 class="title_f"><span> Thống kê</span></h3>
+                    <div class="detail_f">
+                        <table class="wrap_total">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" class="total">
+                                        <span class="vdigit-6">6</span><span class="vdigit-2">2</span><span class="vdigit-0">0</span><span class="vdigit-8">8</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label online">Số người đang online</td>
+                                    <td class="value">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="label today">Số truy cập hôm nay</td>
+                                    <td class="value">9</td>
+                                </tr>
+                                <tr>
+                                    <td class="label month">Số truy cập tháng này</td>
+                                    <td class="value">506</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="copyright" class="text-center">
+        &copy; @DateTime.Now.Year - Bản quyền thuộc về: <a href="">MyWebsite</a>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

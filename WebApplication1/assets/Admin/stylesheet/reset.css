@@ -1,0 +1,61 @@
+*{margin:0; padding:0;outline:0;}
+html{height:100%;}
+h1{font-size:15px;}
+h2{font-size:14px;} 
+h3{font-size:13px;} 
+h4{font-size:12px;} 
+h5{font-size:11px;} 
+h6{font-size:10px;} 
+a{text-decoration:none;} 
+p{padding:5px 0;}
+img{border:0; border-spacing:0;}
+img, embed{vertical-align:middle;}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, img, embed  {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+}
+/* remember to define focus styles! */
+:focus {
+        outline: 0;
+}
+ol, ul {
+        list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+        border-collapse: collapse;
+        border-spacing: 0;
+		border-color:#e8e8e8;
+}
+table td{border-color:#e8e8e8;}
+caption, th, td {
+        font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+        content: "";
+}
+blockquote, q {
+        quotes: "" "";
+}
+strong {
+	font-weight:bold;
+}
+em {
+	font-style:italic;
+}
+pre {
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
