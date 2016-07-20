@@ -15,6 +15,15 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        private List<tbl_item_category> getItemCategory(int count)
+        {
+            return data.tbl_item_categories.OrderByDescending(a => a.date_added).Take(count).ToList();
+        }
+        private tbl_item_category getOneItemCategory(int id)
+        {
+            var itemCategory = data.tbl_item_categories.First(i => i.id == id);
+            return itemCategory;
+        }
         public ActionResult ItemCategory(String act, String id)
         {
             ActionTypeHelper.ActionType type = ActionTypeHelper.getTypeFromString(act);
@@ -22,20 +31,16 @@ namespace WebApplication1.Controllers
             switch (type)
             {
                 case ActionTypeHelper.ActionType.TYPE_CREATE:
-                    break;
+                    return View("ItemCategory_m",new List<tbl_item_category>());
                 case ActionTypeHelper.ActionType.TYPE_EDIT:
-                    break;
+                    if (id == null || id.Equals("")) return View("ItemCategory_m", new List<tbl_item_category>());
+                    return View("ItemCategory_m",getOneItemCategory(Int32.Parse(id)));
                 case ActionTypeHelper.ActionType.TYPE_DEL:
                     break;
                 case ActionTypeHelper.ActionType.TYPE_VIEW:
-                    return View("ItemCategory_m", data);
-                //return View(All_Loaitin);
+                    var listItemCategory = getItemCategory(10);
+                    return View("ItemCategory",listItemCategory);
             }
-            return View();
-        }
-        public ActionResult ItemCategory_m(DataClassesDataContext data) // edit create
-        {
-            var All_Loaitin = from tt in data.tbl_item_categories select tt;
             return View();
         }
     }
