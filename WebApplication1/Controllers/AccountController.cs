@@ -20,6 +20,7 @@ namespace WebApplication1.Controllers
 
         public AccountController()
         {
+            //Vi du anh viet 1 nui code vo day
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
