@@ -48,24 +48,5 @@ namespace WebApplication1.Controllers.Admin
         {
             return View();
         }
-        public ActionResult ItemCategory(String act, String id)
-        {
-            ActionTypeHelper.ActionType type = ActionTypeHelper.getTypeFromString(act);
-            ViewBag.Alert = ActionTypeHelper.getStringFromType(type);
-            switch (type)
-            {
-                case ActionTypeHelper.ActionType.TYPE_CREATE:
-                    return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, new List<tbl_item_category>());
-                case ActionTypeHelper.ActionType.TYPE_EDIT:
-                    if (id == null || id.Equals("")) return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, null);
-                    return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, getOneItemCategory(Int32.Parse(id)));
-                case ActionTypeHelper.ActionType.TYPE_DEL:
-                    break;
-                case ActionTypeHelper.ActionType.TYPE_VIEW:
-                    var listItemCategory = getItemCategory(10);
-                    return View(URLHelper.URL_ADMIN_ITEM_CATEGORY, listItemCategory);
-            }
-            return View(URLHelper.URL_ADMIN_ITEM_CATEGORY);
-        }
     }
 }
