@@ -1,4 +1,4 @@
-function goBack() {
+﻿function goBack() {
     window.history.back();
 }
 function linkto(act){
@@ -44,4 +44,9 @@ $(document).ready(function() {
             if(result=='1') $this.toggleClass('active');
         });
     });
+    $(".block-content").on("click", ".btn-remove", function () {
+        var name = $(this).closest("tr").find(".name-to-confirm").html(),
+            c = confirm("Bạn thực sự muốn xoá \"" + name.trim() + "\" ?");
+        return c;
+    })
 });

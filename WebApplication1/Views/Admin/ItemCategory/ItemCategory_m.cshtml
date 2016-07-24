@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Models.tbl_item_category
+﻿@model Tuple<WebApplication1.Models.tbl_item_category,List<WebApplication1.Models.tbl_item_category>>
 @{
     ViewBag.Title = "ItemCategory_m";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -16,22 +16,76 @@
     <div class="block">
         <div class="block-content">
             <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
-                <input type="hidden" name="id" value="@Model.id" />
+                <input type="hidden" name="id" value="@Model.Item1.id" />
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">
                         Tên danh mục <font color="red">*</font>
                     </label>
                     <div class="col-sm-6">
-                        <input type="text" name="name" class="form-control" value="@Model.name" />
+                        <input type="text" name="name" class="form-control" value="@Model.Item1.name" />
                     </div>
                 </div>
                 <div class="form-group">
+                    <script language="javascript">
+                        var menus = new Array();
+                    </script>
                     <label class="col-sm-3 control-label">
                         Danh mục
                     </label>
                     <div class="col-sm-6">
-                        <?=comboCategory2('ddCat',"tbl_item_category",getArrayCategory('tbl_item_category'),'form-control',$parent,$lang,$idshop,1)?>
+                        <script language="javascript">
+                            @{
+                                var serializer=new System.Web.Script.Serialization.JavaScriptSerializer();
+                                var jsonListItem=serializer.Serialize(Model.Item2);
+                                var jsonItem = serializer.Serialize(Model.Item1);
+                            }
+                            var models=@Html.Raw(jsonListItem);
+                            var menus = new Array();
+                            models.forEach(function(eachModel){
+                                menus.push({
+                                    menu_id             : eachModel.id,
+                                    menu_name           : eachModel.name,
+                                    menu_parent_id      : eachModel.parent,
+                                });
+                            });
+                        </script>
+                        <select name="parent" class="form-control" id="menu_parent_id_@Model.Item1.id">
+                            <option value="0">Chọn danh mục</option>
+                        </select>
+                        <script language="javascript">
+                            var html = '';
+                            function get_parent(menu, parent_id, current_id, current_parent_id, string) {
+                                // Bước 1
+                                if (string == undefined) string = '===';
+                                var loop = new Array();
+                                var contin = new Array();
+                                for (var i = 0; i < menu.length; i++) {
+                                    // trường hợp current_id == menu[i].menu_id không lấy chính nó làm menu cha trong option
+                                    // trường hợp current_id == menu[i].menu_parent_id
+                                    if (current_id!=0 && (current_id == menu[i].menu_id || current_id == menu[i].menu_parent_id)) {
+                                        // do not thing
+                                    }
+                                    else if (parseInt(menu[i].menu_parent_id) == parseInt(parent_id)) {
+                                        loop.push(menu[i]);
+                                    } else {
+                                        contin.push(menu[i]);
+                                    }
+                                }
+                                // Bước 2
+                                for (var i = 0; i < loop.length; i++) {
+                                    html += '<option ' + ((current_parent_id == loop[i].menu_id) ? 'selected' : '') + ' value="' + loop[i].menu_id + '">' + string + " " + loop[i].menu_name + '</option>';
+                                    get_parent(contin, loop[i].menu_id, current_id, current_parent_id, string + '===');
+                                }
+                            }
+                            $(document).ready(function(){
+                                var modelItem=@Html.Raw(jsonItem);
+                                var id = modelItem.id;
+                                var id_parent = modelItem.parent;
+                                get_parent(menus, 0, id, id_parent, '===');
+                                $('#menu_parent_id_' + id).append(html);
+                            });
+                        </script>
                     </div>
                 </div>
                 @*<div class="form-group">
@@ -52,7 +106,7 @@
                                 <i class="glyphicon glyphicon-folder-open">
                                     Browse ...
                                 </i>
-                                <input name="txtImage" type="file" class="" id="txtImage" onchange="readURL(this);" style="width: 25%" /><br />
+                                <input name="fileupload" type="file" class="" id="txtImage" onchange="readURL(this);" style="width: 25%" /><br />
                             </div>
                             <input type="checkbox" name="chkClearImg" value="on" /> Xóa bỏ hình ảnh
                         </div>
@@ -63,7 +117,7 @@
                         Thứ tự
                     </label>
                     <div class="col-sm-6">
-                        <input type="number" name="sort" class="form-control" value="@Model.sort" />
+                        <input type="number" name="sort" class="form-control" value="@Model.Item1.sort" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -71,7 +125,7 @@
                         Title trang
                     </label>
                     <div class="col-sm-6">
-                        <input type="text" name="title" class="form-control" value="@Model.title" />
+                        <input type="text" name="title" class="form-control" value="@Model.Item1.title" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -79,7 +133,7 @@
                         Description
                     </label>
                     <div class="col-sm-6">
-                        <input type="text" name="description" class="form-control" value="@Model.description" />
+                        <input type="text" name="description" class="form-control" value="@Model.Item1.description" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -87,7 +141,7 @@
                         Keyword
                     </label>
                     <div class="col-sm-6">
-                        <input type="text" name="keyword" class="form-control" value="@Model.keyword" />
+                        <input type="text" name="keyword" class="form-control" value="@Model.Item1.keyword" />
                     </div>
                 </div>
                 <div class="form-group">

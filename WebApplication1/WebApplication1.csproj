@@ -572,6 +572,7 @@
     <Content Include="assets\images\background.jpg" />
     <Content Include="assets\images\banner.png" />
     <Content Include="assets\images\en-flag.png" />
+    <Content Include="assets\images\noimage.png" />
     <Content Include="assets\images\vn-flag.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
