@@ -160,8 +160,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Admin\ItemCategoryController.cs" />
+    <Compile Include="Controllers\URLHelper.cs" />
     <Compile Include="Controllers\ActionTypeHelper.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Admin1Controller.cs" />
+    <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -719,13 +722,15 @@
     <Content Include="Views\HelloWorld\Index.cshtml" />
     <Content Include="Views\HelloWorld\Welcome.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin1\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutWebsite.cshtml" />
-    <Content Include="Views\Admin\ItemCategory.cshtml" />
-    <Content Include="Views\Admin\ItemCategory_m.cshtml" />
+    <Content Include="Views\Admin\ItemCategory\ItemCategory.cshtml" />
+    <Content Include="Views\Admin\ItemCategory\ItemCategory_m.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ItemCategory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

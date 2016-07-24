@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="content bg-image overflow-hidden" style="background-image: url('..//assets/Admin/images/photo3@2x.jpg');">
+    <div class="push-50-t push-15">
+        <h1 class="h2 text-white animated zoomIn">Dashboard</h1>
+        <h2 class="h5 text-white-op animated zoomIn">Welcome Administrator</h2>
+    </div>
+</div>
+<div class="content bg-white border-b">
+    <div class="row items-push text-uppercase">
+        <!--**** add new product ****-->
+        <div class="col-xs-4 col-sm-2 placeholder text-center">
+            <a class="h2 font-w300 text-primary animated flipInX font-s48" href="">
+                <i class="fa fa-archive"></i>
+            </a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Thêm sản phẩm</div>
+        </div>
+
+        <!--**** add new news ****-->
+        <div class="col-xs-4 col-sm-2 placeholder text-center">
+            <a class="h2 font-w300 text-primary animated flipInX font-s48" href="">
+                <i class="fa fa-newspaper-o"></i>
+            </a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Thêm tin tức</div>
+        </div>
+
+        <!--**** manage orders ****-->
+        <div class="col-xs-4 col-sm-2 placeholder text-center">
+            <a class="h2 font-w300 text-primary animated flipInX font-s48" href="">
+                <i class="fa fa-list-ol"></i>
+            </a>
+            <div class="font-w700 text-gray-darker animated fadeIn">DS đơn hàng</div>
+        </div>
+
+        <!--**** add banner/background/logo/favicon ****-->
+        <div class="col-xs-4 col-sm-2 placeholder text-center">
+            <a class="h2 font-w300 text-primary animated flipInX font-s48" href="">
+                <i class="fa fa-image"></i>
+            </a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Logo, Banner ...</div>
+        </div>
+
+        <!--**** module website ****-->
+        <div class="col-xs-4 col-sm-2 placeholder text-center">
+            <a class="h2 font-w300 text-primary animated flipInX font-s48" href="">
+                <i class="fa fa-columns"></i>
+            </a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Module Web</div>
+        </div>
+
+        <!--**** config web information ****-->
+        <div class="col-xs-4 col-sm-2 placeholder text-center">
+            <a class="h2 font-w300 text-primary animated flipInX font-s48" href="">
+                <i class="fa fa-cog"></i>
+            </a>
+            <div class="font-w700 text-gray-darker animated fadeIn">Cấu hình website</div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="row">
+        <!--**** product information ****-->
+        <div class="col-sm-3">
+            <div class="dash-tile dash-tile-leaf animated flipInX">
+                <div class="dash-tile-header">
+                    <div class="dash-tile-options">
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" class="btn btn-default" title=""><i class="fa fa-bar-chart-o"></i></a>
+                        </div>
+                    </div>
+                    Sản phẩm
+                </div>
+                <div class="dash-tile-icon"><i class="fa fa-archive"></i></div>
+                <div class="dash-tile-text">
+                    <div class="w-meta-info">
+                        <span class="w-meta-title">Tổng số danh mục</span>
+                        <span class="w-meta-value number-animate">
+                            0
+                        </span>
+                    </div>
+                    <div class="w-meta-info">
+                        <span class="w-meta-title">Tổng số sản phẩm</span>
+                        <span class="w-meta-value number-animate">
+                            0
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--**** news information ****-->
+        <div class="col-sm-3">
+            <div class="dash-tile dash-tile-ocean animated flipInX">
+                <div class="dash-tile-header">
+                    <div class="dash-tile-options">
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" class="btn btn-default" title=""><i class="fa fa-bar-chart-o"></i></a>
+                        </div>
+                    </div>
+                    Tin tức
+                </div>
+                <div class="dash-tile-icon"><i class="fa fa-newspaper-o"></i></div>
+                <div class="dash-tile-text">
+                    <div class="w-meta-info">
+                        <span class="w-meta-title">Tổng số danh mục</span>
+                        <span class="w-meta-value number-animate">
+                            0
+                        </span>
+                    </div>
+                    <div class="w-meta-info">
+                        <span class="w-meta-title">Tổng số tin tức</span>
+                        <span class="w-meta-value number-animate">
+                            0
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--**** orders information ****-->
+        <div class="col-sm-3">
+            <div class="dash-tile dash-tile-flower animated flipInX">
+                <div class="dash-tile-header">
+                    <div class="dash-tile-options">
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" class="btn btn-default" title=""><i class="fa fa-bar-chart-o"></i></a>
+                        </div>
+                    </div>
+                    Đơn hàng
+                </div>
+                <div class="dash-tile-icon"><i class="fa fa-shopping-cart"></i></div>
+                <div class="dash-tile-text">
+                    <div class="w-meta-info">
+                        <span class="w-meta-title">Tổng đơn hàng</span>
+                        <span class="w-meta-value number-animate">
+                            0
+                        </span>
+                    </div>
+                    <div class="w-meta-info">
+                        <span class="w-meta-title">Hoàn thành</span>
+                        <span class="w-meta-value number-animate">
+                            0
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--**** others information ****-->
+        <div class="col-sm-3">
+            <div class="dash-tile dash-tile-balloon animated flipInX">
+                <div class="dash-tile-header">
+                    <div class="dash-tile-options">
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" class="btn btn-default" title=""><i class="fa fa-bar-chart-o"></i></a>
+                        </div>
+                    </div>
+                    Khác
+                </div>
+                <div class="user">
+                    <div class="dash-tile-icon"><i class="fa fa-users"></i></div>
+                    <div class="dash-tile-text">
+                        <div class="w-meta-info">
+                            <span class="w-meta-title">Thành viên</span>
+                            <span class="w-meta-value number-animate">
+                                0
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="email">
+                    <div class="dash-tile-icon"><i class="fa fa-envelope"></i></div>
+                    <div class="dash-tile-text">
+                        <div class="w-meta-info">
+                            <span class="w-meta-title">Email khuyến mãi</span>
+                            <span class="w-meta-value number-animate">
+                                0
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<WebApplication1.Models.tbl_item_category>
+@{
+    ViewBag.Title = "ItemCategory";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content bg-gray-lighter">
+    <div class="row items-push">
+        <div class="col-sm-7">
+            <h1 class="page-heading">Sản phẩm <small>Danh mục sản phẩm</small></h1>
+        </div>
+        <div class="col-sm-5 text-right hidden-xs">
+            <ol class="breadcrumb push-10-t">
+                <li>
+                    @Html.ActionLink("Quản trị","Index","Admin")
+                </li>
+                <li>Danh mục sản phẩm</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="content" style="min-height: 530px;">
+    <div class="block">
+        <div class="block-header bg-gray-lighter">
+            <span class="block-title">Danh sách</span>
+            <button type="button" onclick="location.href='?act=create'" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Tạo mới</button>
+        </div>
+        <div class="block-content">
+            <div class="block-content-top" style="margin-bottom: 20px;">
+                <form method="POST" action="" name="frmForm" enctype="multipart/form-data">
+                    <div class="dataTable_filter">
+                        <div class="row">
+                            <div class="col-md-3">
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <input name="tukhoa" type="text" class="form-control" id="tukhoa" onfocus="if(this.value=='Tìm kiếm...') this.value='';" onblur="if(this.value=='') this.value='Tìm kiếm...';" value="Tìm kiếm..." style="display: inline-block; width: auto; margin-right: 5px;">
+                                <button type="submit" name="tim" class="btn btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <button type="submit" name="reset" class="btn btn-default">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <form method="POST" action="#" name="frmForm" enctype="multipart/form-data">
+                <input type="hidden" name="page" value="">
+                <input type="hidden" name="act" value="item_category">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover btl-list-bbli bg-white">
+                        <thead>
+                            <tr>
+                                <td style="width: 1px;" class="text-center">
+                                    <input type="checkbox" name="chk[]" class="tai_c" id="chkall" value="">
+                                </td>
+                                <td style="width: 50px;" class="text-center">ID</td>
+                                <td style="width: 150px;" class="text-center">Hình đại diện</td>
+                                <td class="text-left">Tên danh mục</td>
+                                <td style="width: 100px;" class="text-center">Nổi bật</td>
+                                <td style="width: 100px;" class="text-center">Ẩn/Hiện</td>
+                                <td style="width: 100px;" class="text-right">Tùy chọn</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var itemCategory in Model) {
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" name="chk[]" class="tai_c" value="@itemCategory.id">
+                                </td>
+                                <td class="text-center">
+                                    @itemCategory.id
+                                </td>
+                                <td class="text-center">
+                                    <img src="../uploads/others/default.png" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                </td>
+                                <td class="text-left">
+                                    @itemCategory.name
+                                </td>
+                                <td class="text-center">
+                                    <div class="star tool @itemCategory.hot==1?'active':''" data-action="toggleStatus" data-field="hot" data-table="tbl_item_category" title="Nổi bật" value="@itemCategory.id"></div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="check tool @itemCategory.status==1?'active':''" data-action="toggleStatus" data-field="status" data-table="tbl_item_category" title="Ẩn hiện" value="@itemCategory.id"></div>
+                                </td>
+                                <td class="text-right">
+                                    <a href='@Url.Action("itemCategoryEdit", "ItemCategory", new { id = @itemCategory.id})' class="btn btn-xs btn-pencil btn-primary" title="Sửa">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="./?act=item_category&amp;action=del&amp;page=&amp;id=8" class="btn btn-xs btn-remove btn-danger" title="Xóa" onclick="return confirm('Bạn có muốn xoá luôn không ?');">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-center">
+                                    <button type="submit" name="btnDel" class="btn btn-danger btn-xs" onclick="return confirm('Bạn có chắc chắn muốn xóa ?');">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                                <td colspan="7"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <nav class="text-center">
+            <ul class="pagination"></ul>
+        </nav><!-- End pagination -->
+    </div>
+</div>
+
