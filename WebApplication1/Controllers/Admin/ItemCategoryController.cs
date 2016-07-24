@@ -36,13 +36,97 @@ namespace WebApplication1.Controllers.Admin
             var listItemCategory = getItemCategory(10);
             return View(URLHelper.URL_ADMIN_ITEM_CATEGORY, listItemCategory);
         }
+        [HttpGet]
         public ActionResult itemCategoryCreate()
         {
             return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M,new tbl_item_category());
         }
+        [HttpPost]
+        public ActionResult itemCategoryCreate(FormCollection form)
+        {
+            tbl_item_category tic = new tbl_item_category();
+            var name = form["name"];
+            var sort = form["sort"];
+            var title = form["title"];
+            var description = form["description"];
+            var keyword = form["keyword"];
+            bool err = false;
+            if (String.IsNullOrEmpty(name))
+            {
+                err = true;
+                ViewData["Error"] += "Vui lòng nhập tên danh mục!\n";
+            }
+            tic.name = name;
+            if (!String.IsNullOrEmpty(sort))
+                tic.sort = Int32.Parse(sort);
+            else
+                tic.sort = 0;
+            tic.title = title;
+            tic.description = description;
+            tic.keyword = keyword;
+            tic.status = 1;
+            tic.date_added = DateTime.Now;
+            tic.last_modified = DateTime.Now;
+            if (err == false)
+            {
+                data.tbl_item_categories.InsertOnSubmit(tic);
+                data.SubmitChanges();
+                return RedirectToAction("itemCategoryView");
+            }
+            else
+            {
+                return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, tic);
+            }
+        }
+        [HttpGet]
         public ActionResult itemCategoryEdit(String id)
         {
             return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, getOneItemCategory(Int32.Parse(id)));
+        }
+        [HttpPost]
+        public ActionResult itemCategoryEdit(FormCollection form)
+        {
+            var id = form["id"];
+            if (id == null)
+            {
+                return itemCategoryCreate(form);
+            }
+            else
+            {
+                tbl_item_category tic = getOneItemCategory(Int32.Parse(id));
+                var name = form["name"];
+                var sort = form["sort"];
+                var title = form["title"];
+                var description = form["description"];
+                var keyword = form["keyword"];
+                bool err = false;
+                if (String.IsNullOrEmpty(name))
+                {
+                    err = true;
+                    ViewData["Error"] += "Vui lòng nhập tên danh mục!\n";
+                }
+                tic.name = name;
+                if (!String.IsNullOrEmpty(sort))
+                    tic.sort = Int32.Parse(sort);
+                else
+                    tic.sort = 0;
+                tic.title = title;
+                tic.description = description;
+                tic.keyword = keyword;
+                tic.status = 1;
+                tic.date_added = DateTime.Now;
+                tic.last_modified = DateTime.Now;
+                if (err == false)
+                {
+                    UpdateModel(tic);
+                    data.SubmitChanges();
+                    return RedirectToAction("itemCategoryView");
+                }
+                else
+                {
+                    return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, tic);
+                }
+            }
         }
         public ActionResult itemCategoryDelete(String id)
         {
