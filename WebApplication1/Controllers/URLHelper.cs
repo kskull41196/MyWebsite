@@ -11,5 +11,7 @@ namespace WebApplication1.Controllers
 
         public const String URL_ADMIN_ITEM_CATEGORY = "~/Views/Admin/ItemCategory/ItemCategory.cshtml";
         public const String URL_ADMIN_ITEM_CATEGORY_M = "~/Views/Admin/ItemCategory/ItemCategory_m.cshtml";
+        public const String URL_ADMIN_NEWS_CATEGORY = "~/Views/Admin/NewsCategory/NewsCategory.cshtml";
+        public const String URL_ADMIN_NEWS_CATEGORY_M = "~/Views/Admin/NewsCategory/NewsCategory_m.cshtml";
     }
 }

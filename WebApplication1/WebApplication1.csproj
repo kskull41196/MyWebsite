@@ -161,7 +161,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Admin\NewsCategoryController.cs" />
     <Compile Include="Controllers\Admin\ItemCategoryController.cs" />
+    <Compile Include="Controllers\Admin\ModuleController.cs" />
     <Compile Include="Controllers\URLHelper.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
@@ -726,10 +728,13 @@
     <Content Include="Views\Admin\ItemCategory\ItemCategory.cshtml" />
     <Content Include="Views\Admin\ItemCategory\ItemCategory_m.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\NewsCategory\NewsCategory.cshtml" />
+    <Content Include="Views\Admin\NewsCategory\NewsCategory_m.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ItemCategory\" />
+    <Folder Include="Views\Module\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,16 +1,18 @@
-﻿@model Tuple<WebApplication1.Models.tbl_item_category,List<WebApplication1.Models.tbl_item_category>>
+﻿@model Tuple<WebApplication1.Models.tbl_news_category, List<WebApplication1.Models.tbl_news_category>>
 @{
     ViewBag.Title = "ItemCategory_m";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <div class="content" style="min-height: 530px;">
-    <h3>Tùy chỉnh Danh mục sản phẩm</h3>
+    <h3>Tùy chỉnh Danh mục tin tức</h3>
     <div class="bs-example bs-example-bg-classes">
-        @if (ViewData["Error"]!=null) {
-        <p class="bg-warning">@ViewData["Error"]</p>
+        @if (ViewData["Error"] != null)
+        {
+            <p class="bg-warning">@ViewData["Error"]</p>
         }
-        else {
-        <p class="bg-warning">Lưu ý: Những ô có dấu (<font color="red">*</font>) là bắt buộc</p>
+        else
+        {
+            <p class="bg-warning">Lưu ý: Những ô có dấu (<font color="red">*</font>) là bắt buộc</p>
         }
     </div>
     <div class="block">
@@ -89,13 +91,13 @@
                     </div>
                 </div>
                 @*<div class="form-group">
-                    <label class="col-sm-3 control-label">
-                        Link khác
-                    </label>
-                    <div class="col-sm-6">
-                        <input type="text" name="link" class="form-control" value="" />
-                    </div>
-                </div>*@
+                        <label class="col-sm-3 control-label">
+                            Link khác
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" name="link" class="form-control" value="" />
+                        </div>
+                    </div>*@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">
                         Chọn file
@@ -111,9 +113,8 @@
                             <input type="checkbox" name="chkClearImg" value="on" /> Xóa bỏ hình ảnh
                         </div>
                         <!--<div class="img-demo" style="line-height: 0; font-size: 0; margin-top: 10px;">
-                            @if (!String.IsNullOrEmpty(Model.Item1.image))
-                            {
-                                <img class="img-responsive" id="blah" src="../../../assets/images/@Model.Item1.image" />
+                            @if (String.IsNullOrEmpty(Model.Item1.image))
+                                <img class="img-responsive" id="blah" src="../../../assets/images/@Model.Item1.image"/>
                             }
                             else
                             {

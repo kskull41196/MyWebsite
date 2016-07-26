@@ -17,6 +17,9 @@ function readURL(input) {
             $('#blah').attr('src', e.target.result);
         }            
         reader.readAsDataURL(input.files[0]);
+        console.log("b");
+    } else {
+        console.log("a");
     }
 }
 $(document).ready(function() {
