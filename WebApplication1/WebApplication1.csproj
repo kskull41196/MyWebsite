@@ -161,6 +161,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Admin\ItemController.cs" />
+    <Compile Include="Controllers\Admin\NewsController.cs" />
     <Compile Include="Controllers\Admin\NewsCategoryController.cs" />
     <Compile Include="Controllers\Admin\ItemCategoryController.cs" />
     <Compile Include="Controllers\Admin\ModuleController.cs" />
@@ -730,6 +732,10 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\NewsCategory\NewsCategory.cshtml" />
     <Content Include="Views\Admin\NewsCategory\NewsCategory_m.cshtml" />
+    <Content Include="Views\Admin\Item\Item.cshtml" />
+    <Content Include="Views\Admin\Item\Item_m.cshtml" />
+    <Content Include="Views\Admin\News\News.cshtml" />
+    <Content Include="Views\Admin\News\News_m.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
