@@ -3,8 +3,9 @@
     ViewBag.Title = "News_m";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <div class="content" style="min-height: 530px;">
-    <h3>Tùy chỉnh Danh mục tin tức</h3>
+    <h3>Tùy chỉnh tin tức</h3>
     <div class="bs-example bs-example-bg-classes">
         @if (ViewData["Error"] != null)
         {
@@ -19,7 +20,6 @@
         <div class="block-content">
             <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
                 <input type="hidden" name="id" value="@Model.Item1.id" />
-
                 <div class="form-group">
                     <label class="col-sm-3 control-label">
                         Tên tin tức <font color="red">*</font>
@@ -37,56 +37,83 @@
                     </label>
                     <div class="col-sm-6">
                         <script language="javascript">
-                            @{
-                                var serializer=new System.Web.Script.Serialization.JavaScriptSerializer();
-                                var jsonListItem=serializer.Serialize(Model.Item2);
-                                var jsonItem = serializer.Serialize(Model.Item1);
-                            }
-                            var models=@Html.Raw(jsonListItem);
-                            var menus = new Array();
-                            models.forEach(function(eachModel){
-                                menus.push({
+                                @functions{
+                                    public class ComboboxModel
+                                    {
+                                        public int id;
+                                        public string name;
+                                        public int parent;
+
+                                        public ComboboxModel(int id, string name, int parent)
+                                        {
+                                            this.id = id;
+                                            this.name = name;
+                                            this.parent = parent;
+                                        }
+
+                                        public static List<ComboboxModel> getListComboboxModelsFromListNewsCategories(List<WebApplication1.Models.tbl_news_category> listCategories)
+                                        {
+                                            List<ComboboxModel> result = new List<ComboboxModel>();
+                                            foreach (WebApplication1.Models.tbl_news_category category in listCategories)
+                                            {
+                                                result.Add(new ComboboxModel(category.id, category.name, category.parent.Value));
+                                            }
+                                            return result;
+                                        }
+
+                                        public static ComboboxModel getComboboxModelFromNews(WebApplication1.Models.tbl_new news)
+                                        {
+                                            return new ComboboxModel(news.id, news.name, news.parent == null ? 0 : news.parent.Value);
+                                        }
+                                    }
+                                }
+                                @{
+                                    var serializer =new System.Web.Script.Serialization.JavaScriptSerializer();
+                                    var jsonListItem=serializer.Serialize(ComboboxModel.getListComboboxModelsFromListNewsCategories(Model.Item2));
+                                    var jsonItem = serializer.Serialize(ComboboxModel.getComboboxModelFromNews(Model.Item1));
+                                }
+                                var models=@Html.Raw(jsonListItem);
+                                var menus = new Array();
+                                models.forEach(function(eachModel){
+                                    menus.push({
                                     menu_id             : eachModel.id,
                                     menu_name           : eachModel.name,
                                     menu_parent_id      : eachModel.parent,
                                 });
-                            });
+                                });
                         </script>
                         <select name="parent" class="form-control" id="menu_parent_id_@Model.Item1.id">
                             <option value="0">Chọn danh mục</option>
                         </select>
                         <script language="javascript">
                             var html = '';
-                            function get_parent(menu, parent_id, current_id, current_parent_id, string) {
-                                // Bước 1
-                                if (string == undefined) string = '===';
-                                var loop = new Array();
-                                var contin = new Array();
-                                for (var i = 0; i < menu.length; i++) {
-                                    // trường hợp current_id == menu[i].menu_id không lấy chính nó làm menu cha trong option
-                                    // trường hợp current_id == menu[i].menu_parent_id
-                                    if (current_id!=0 && (current_id == menu[i].menu_id || current_id == menu[i].menu_parent_id)) {
-                                        // do not thing
+                                function get_parent(menu, parent_id, current_id, current_parent_id, string) {
+                                    // Bước 1
+                                    if (string == undefined) string = '===';
+                                    var loop = new Array();
+                                    var contin = new Array();
+                                    for (var i = 0; i < menu.length; i++) {
+                                        // trường hợp current_id == menu[i].menu_id không lấy chính nó làm menu cha trong option
+                                        // trường hợp current_id == menu[i].menu_parent_id
+                                        if (parseInt(menu[i].menu_parent_id) == parseInt(parent_id)) {
+                                            loop.push(menu[i]);
+                                        } else {
+                                            contin.push(menu[i]);
+                                        }
                                     }
-                                    else if (parseInt(menu[i].menu_parent_id) == parseInt(parent_id)) {
-                                        loop.push(menu[i]);
-                                    } else {
-                                        contin.push(menu[i]);
+                                    // Bước 2       
+                                    for (var i = 0; i < loop.length; i++) {
+                                        html += '<option ' + ((current_parent_id == loop[i].menu_id) ? 'selected' : '') + ' value="' + loop[i].menu_id + '">' + string + " " + loop[i].menu_name + '</option>';
+                                        get_parent(contin, loop[i].menu_id, current_id, current_parent_id, string + '===');
                                     }
                                 }
-                                // Bước 2
-                                for (var i = 0; i < loop.length; i++) {
-                                    html += '<option ' + ((current_parent_id == loop[i].menu_id) ? 'selected' : '') + ' value="' + loop[i].menu_id + '">' + string + " " + loop[i].menu_name + '</option>';
-                                    get_parent(contin, loop[i].menu_id, current_id, current_parent_id, string + '===');
-                                }
-                            }
                             $(document).ready(function(){
-                                var modelItem=@Html.Raw(jsonItem);
-                                var id = modelItem.id;
-                                var id_parent = modelItem.parent;
-                                get_parent(menus, 0, id, id_parent, '===');
+                                    var modelItem=@Html.Raw(jsonItem);
+                                    var id = modelItem.id;
+                                    var id_parent = modelItem.parent;
+                                    get_parent(menus, 0, id, id_parent, '===');
                                 $('#menu_parent_id_' + id).append(html);
-                            });
+                                });
                         </script>
                     </div>
                 </div>
@@ -94,7 +121,7 @@
                         <label class="col-sm-3 control-label">
                             Link khác
                         </label>
-                        <div class="col-sm-6">  
+                        <div class="col-sm-6">
                             <input type="text" name="link" class="form-control" value="" />
                         </div>
                     </div>*@
@@ -112,7 +139,7 @@
                             </div>
                             <input type="checkbox" name="chkClearImg" value="on" /> Xóa bỏ hình ảnh
                         </div>
-                       
+
                     </div>
                 </div>
                 <div class="form-group">
