@@ -11,6 +11,24 @@ namespace WebApplication1.Controllers.Admin
     public class ItemController : Controller
     {
         DataClassesDataContext data = new DataClassesDataContext();
+        // GET: ItemCategories
+        private List<tbl_item_category> getItemCategories(int count)
+        {
+            return getItemCategories(count, "");
+        }
+        private List<tbl_item_category> getAllItemCategories()
+        {
+            return getItemCategories(-1, "");
+        }
+        private List<tbl_item_category> getItemCategories(int count, String keyword)
+        {
+            var result = data.tbl_item_categories.OrderByDescending(a => a.date_added);
+            if (!String.IsNullOrEmpty(keyword))
+                result.Where(a => a.name.Contains(keyword));
+            if (count != -1)
+                result.Take(count);
+            return result.ToList();
+        }
         // GET: Item
         private List<tbl_item> getItem(int count)
         {
@@ -75,7 +93,7 @@ namespace WebApplication1.Controllers.Admin
         [HttpGet]
         public ActionResult itemCreate()
         {
-            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item,List<tbl_item>>(new tbl_item(),getAllItem()));
+            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item,List<tbl_item_category>>(new tbl_item(),getAllItemCategories()));
         }
         [HttpPost]
         public ActionResult itemCreate(FormCollection form,HttpPostedFileBase fileUpload)
@@ -130,7 +148,7 @@ namespace WebApplication1.Controllers.Admin
             }
             else
             {
-                return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item>>(tic, getAllItem()));
+                return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item_category>>(tic, getAllItemCategories()));
             }
         }
         /*
@@ -141,7 +159,7 @@ namespace WebApplication1.Controllers.Admin
         [HttpGet]
         public ActionResult itemEdit(String id)
         {
-            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item>>(getOneItem(Int32.Parse(id)), getAllItem()));
+            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item_category>>(getOneItem(Int32.Parse(id)), getAllItemCategories()));
         }
         [HttpPost]
         public ActionResult itemEdit(FormCollection form,HttpPostedFileBase fileUpload)
@@ -208,7 +226,7 @@ namespace WebApplication1.Controllers.Admin
                 }
                 else
                 {
-                    return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item>>(tic, getAllItem()));
+                    return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item_category>>(tic, getAllItemCategories()));
                 }
             }
         }
