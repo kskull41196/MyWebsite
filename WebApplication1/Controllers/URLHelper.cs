@@ -17,8 +17,9 @@ namespace WebApplication1.Controllers
         public const String URL_ADMIN_NEWS_CATEGORY_M = "~/Views/Admin/NewsCategory/NewsCategory_m.cshtml";
         public const String URL_ADMIN_NEWS = "~/Views/Admin/News/News.cshtml";
         public const String URL_ADMIN_NEWS_M = "~/Views/Admin/News/News_m.cshtml";
-        public const String URL_ADMIN_MODULE = "~/Views/Admin/Module/Module.cshtml";
-        public const String URL_ADMIN_MODULE_M = "~/Views/Admin/Module/Module_m.cshtml";
         public const String URL_ADMIN_CONFIGSHOP = "~/Views/Admin/ShopConfig/ShopConfig.cshtml";
+
+        //Partial Views' URLs
+        public const String URL_HOME_PARTIAL_SUPPORT_ONLINE = "~/Views/PartialViews/PartialOnlineSupport.cshtml";
     }
 }

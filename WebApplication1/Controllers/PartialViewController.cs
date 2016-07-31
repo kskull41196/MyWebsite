@@ -87,5 +87,10 @@ namespace WebApplication1.Controllers
             if (listProductHot == null) listProductHot = new List<tbl_item>();
             return PartialView(listProductHot);
         }
+
+        public ActionResult SupportOnline()
+        {
+            return PartialView(URLHelper.URL_HOME_PARTIAL_SUPPORT_ONLINE);
+        }
     }
 }

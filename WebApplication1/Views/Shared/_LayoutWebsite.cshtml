@@ -85,16 +85,15 @@
                 @Html.Partial("_LoginPartial")-->
             </div>
         </div>
-  </div>
+    </div>
     <div id="main-container">
         <div class="container">
             <div class="row">
                 <div id="left-container" class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     @*Start of a partial view*@
-                    @for (int i = 0; i < 2; i++)
+                    @for (var i = 1; i < 2; i++)
                     {
-                        //goi partialview
-
+                        @Html.Action("SupportOnline", "PartialView");
                     }
                     @*End of a partial view*@
                 </div>
