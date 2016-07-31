@@ -10,6 +10,15 @@ namespace WebApplication1.Controllers
     public class PartialViewController : Controller
     {
         DataClassesDataContext data = new DataClassesDataContext();
+
+        private List<tbl_item> getProductHot()
+        {
+            var result = data.tbl_items.Where(a => a.hot == 1).OrderByDescending(a => a.date_added);
+            if (result.Count() < 1)
+                return new List<tbl_item>();
+            return result.ToList();
+        }
+
         // method menuMain() get menu all menu main
         public ActionResult menuMain()
         {
@@ -64,6 +73,23 @@ namespace WebApplication1.Controllers
             }
             return menuMain;
         }
+
+        /*
+         * 
+         * Partial View show module home
+         * 
+         */
+        public ActionResult listProductHot()
+        {
+            var listProductHot = from ti in data.tbl_items where ti.status == 1 && ti.hot == 1 select ti;
+            return PartialView(URLHelper.URL_HOME_PARTIAL_PRODUCT_HOT, listProductHot);
+        }
+
+        /*
+         * 
+         * Partial View show module left/right
+         * 
+         */
         public ActionResult menuItemCategories(){
             var menuItemCategories = from tic in data.tbl_item_categories where tic.status == 1 && tic.parent == 0 select tic;
             return PartialView(URLHelper.URL_HOME_PARTIAL_ITEM_CATEGORIES,menuItemCategories);
@@ -79,13 +105,6 @@ namespace WebApplication1.Controllers
             List<tbl_item> listProductView = topProductView.ToList();
             if (listProductView == null) listProductView = new List<tbl_item>();
             return PartialView(topProductView);
-        }
-        public ActionResult listProductHot()
-        {
-            var productHot = from ti in data.tbl_items where ti.status == 1 && ti.hot == 1 select ti;
-            List<tbl_item> listProductHot = productHot.ToList();
-            if (listProductHot == null) listProductHot = new List<tbl_item>();
-            return PartialView(listProductHot);
         }
 
         public ActionResult SupportOnline()

@@ -92,10 +92,10 @@
                                         @item.name
                                     </td>
                                     <td class="text-center">
-                                        <div class="star tool @item.hot==1?'active':''" data-action="toggleStatus" data-field="hot" data-table="tbl_item" title="Nổi bật" value="@item.id"></div>
+                                        <div class="star tool @(item.hot==1?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_item" title="Nổi bật" value="@item.id"></div>
                                     </td>
                                     <td class="text-center">
-                                        <div class="check tool @item.status==1?'active':''" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@item.id"></div>
+                                        <div class="check tool @(item.status==1?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@item.id"></div>
                                     </td>
                                     <td class="text-right">
                                         <a href='@Url.Action("itemEdit", "Item", new { id = @item.id})' class="btn btn-xs btn-pencil btn-primary" title="Sửa">

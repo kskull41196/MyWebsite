@@ -22,7 +22,8 @@ namespace WebApplication1.Controllers
         public const String URL_ADMIN_MODULE_M = "~/Views/Admin/Module/Module_m.cshtml";
 
         //Partial Views' URLs
-        public const String URL_HOME_PARTIAL_SUPPORT_ONLINE = "~/Views/PartialViews/PartialOnlineSupport.cshtml";
-        public const String URL_HOME_PARTIAL_ITEM_CATEGORIES = "~/Views/PartialViews/PartialItemCategories.cshtml";
+        public const String URL_HOME_PARTIAL_SUPPORT_ONLINE = "~/Views/PartialViews/Module/PartialOnlineSupport.cshtml";
+        public const String URL_HOME_PARTIAL_ITEM_CATEGORIES = "~/Views/PartialViews/Module/PartialItemCategories.cshtml";
+        public const String URL_HOME_PARTIAL_PRODUCT_HOT = "~/Views/PartialViews/Home/PartialHotProduct.cshtml";
     }
 }

@@ -38,12 +38,12 @@ $(document).ready(function() {
         var $this = $(this);
         var data = {'action': action, 'item': id, 'field': field, 'table': table};
         $.ajax({
-            url: 'ajax.php',
+            url: '/Admin/Ajax/ToolAjax/',
             type: 'POST',
-            dataType: 'html',
+            dataType: 'json',
             data: {'data': data, 'cmd': 'BTN_ACTIVE_STAT'},
         })
-        .done(function(result) {
+        .done(function (result) {
             if(result=='1') $this.toggleClass('active');
         });
     });

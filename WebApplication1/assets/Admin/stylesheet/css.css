@@ -116,10 +116,10 @@ body {
     display: inline-block;
     width: 100%;
 }
-.star {width:24px;height:24px;background:url('../../images/icon/noibat_0.png');background-size:contain; display: inline-block;}
-.star.active{background:url('../../images/icon/noibat_1.png');}
-.check {width:24px;height:24px;background:url('../../images/icon/anhien_0.png');background-size:contain; display: inline-block;}
-.check.active{background:url('../../images/icon/anhien_1.png');}
+.star {width:24px;height:24px;background:url('../../../assets/Admin/images/noibat_0.png');background-size:contain; display: inline-block;}
+.star.active{background:url('../../../assets/Admin/images/noibat_1.png');}
+.check {width:24px;height:24px;background:url('../../../assets/Admin/images/anhien_0.png');background-size:contain; display: inline-block;}
+.check.active{background:url('../../../assets/Admin/images/anhien_1.png');}
 .dash-tile {
     min-height: 190px;
     background-color: #E9E9E9;

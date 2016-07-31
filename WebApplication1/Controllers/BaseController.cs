@@ -9,7 +9,7 @@ namespace WebApplication1.Controllers
 {
     public abstract class BaseController : Controller
     {
-        DataClassesDataContext data = new DataClassesDataContext();
+        public DataClassesDataContext data = new DataClassesDataContext();
       
         public BaseController()
         {
@@ -18,7 +18,7 @@ namespace WebApplication1.Controllers
 
         private List<tbl_module> getAllSupportedModules()
         {
-            var result = data.tbl_modules.OrderByDescending(a => a.date_added);
+            var result = data.tbl_modules.Where(a => a.type == 1).OrderByDescending(a => a.date_added);
             return result.ToList();
         }
     }

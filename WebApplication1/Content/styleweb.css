@@ -59,3 +59,172 @@ body {
     line-height: 34px;
     padding-left: 15px;
 }
+.title_f_p_m_gh_pro {
+    color: #fff;
+    font-size: 16px;
+    height: 45px;
+    line-height: 45px;
+    background: #000;
+    text-indent: 15px;
+    margin-top: 6px;
+    border-radius: 10px;
+}
+
+/* css module show product */
+.title_f_p_m_gh_pro span {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.main_f_p_m_gh {
+    background: #fff;
+    padding: 10px 0;
+}
+.category-item {
+    margin-top: 30px;
+}
+.category {
+    position: relative;
+    margin-bottom: 10px;
+}
+.category-s {
+    -background: url("http://2code.info/demo/themes/sexyfood/wp-content/themes/sexyfood/images/testimonial.png") no-repeat;
+    height: 22px;
+    width: 16px;
+    position: absolute;
+    z-index: 10;
+    top: -7px;
+    right: 10px;
+}
+.category-outer-1, .category-outer-2, .category-outer-3, .category-outer-4 {
+    content: '';
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #FFF;
+    border: 1px solid #d9d9d9;
+    width: 99%;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    z-index: 3;
+    margin-left: 0.5%;
+}
+.category-outer-1 {
+    top: -3px;
+}
+.category-outer-1, .category-outer-2, .category-outer-3, .category-outer-4 {
+    content: '';
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #FFF;
+    border: 1px solid #d9d9d9;
+    width: 99%;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    z-index: 3;
+    margin-left: 0.5%;
+}
+.category-outer-2 {
+    top: -6px;
+}
+.category-outer-2, .category-outer-4 {
+    z-index: 2;
+    width: 98%;
+    margin-left: 0.6%;
+}
+.category-inner {
+    background-color: #FFF;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    padding: 20px;
+    position: relative;
+    z-index: 8;
+    height: 495px;
+}
+.category-img {
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
+.category-img img {
+    width: 100%;
+    height: 255px;
+    -webkit-transition: all 300ms linear;
+    -moz-transition: all 300ms linear;
+    -o-transition: all 300ms linear;
+    -ms-transition: all 300ms linear;
+    transition: all 300ms linear;
+}
+.category-inner:hover img {
+    -moz-transform: scale(1.5) rotate(25deg) translate(0px);
+    -webkit-transform: scale(1.5) rotate(25deg) translate(0px);
+    -o-transform: scale(1.5) rotate(25deg) translate(0px);
+    transform: scale(1.5) rotate(25deg) translate(0px);
+}
+.category-name {
+    margin: 1em 0 0em;
+    line-height: inherit;
+    text-align: center;
+    min-height: 50px;
+}
+.category-name a {
+    font-weight: 700;
+    font-size: 18px;
+    color: #444444;
+    text-transform: uppercase;
+}
+.price_prod_mau_gh {
+    color: #f00;
+    font-size: 12px;
+    margin-bottom: 4px;
+    min-height: 30px;
+    text-align: center;
+}
+.price_prod_mau_gh p {
+    margin-bottom: 4px;
+}
+.detail_short {
+    height: 64px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.btnChiTiet {
+    width: 49%;
+    margin: 0 auto;
+    text-align: center;
+    background: #AD0000;
+    height: 35px;
+    line-height: 35px;
+}
+.btnChiTiet a, .btnMuaHang span {
+    color: #fff;
+}
+.btnMuaHang {
+    cursor: pointer;
+    width: 49%;
+    float: left;
+    text-align: center;
+    background: #ff0000;
+    height: 26px;
+    line-height: 26px;
+    margin-left: 1px;
+    display: none;
+}
+.category-outer-3 {
+    bottom: -3px;
+}
+.category-outer-4 {
+    bottom: -6px;
+}
+ol, ul {
+    list-style: none;
+}
+.main_pro_all ul {
+    padding: 0;
+}
