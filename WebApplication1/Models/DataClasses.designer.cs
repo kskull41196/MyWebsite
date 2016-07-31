@@ -78,6 +78,9 @@ namespace WebApplication1.Models
     partial void Inserttbl_shop_config(tbl_shop_config instance);
     partial void Updatetbl_shop_config(tbl_shop_config instance);
     partial void Deletetbl_shop_config(tbl_shop_config instance);
+    partial void Inserttbl_module(tbl_module instance);
+    partial void Updatetbl_module(tbl_module instance);
+    partial void Deletetbl_module(tbl_module instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -235,6 +238,14 @@ namespace WebApplication1.Models
 			get
 			{
 				return this.GetTable<tbl_shop_config>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_module> tbl_modules
+		{
+			get
+			{
+				return this.GetTable<tbl_module>();
 			}
 		}
 	}
@@ -5187,6 +5198,212 @@ namespace WebApplication1.Models
 					this._keyword = value;
 					this.SendPropertyChanged("keyword");
 					this.OnkeywordChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_module")]
+	public partial class tbl_module : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name_visible;
+		
+		private string _name_partial;
+		
+		private System.Nullable<int> _type;
+		
+		private System.Nullable<int> _status;
+		
+		private System.Nullable<System.DateTime> _date_added;
+		
+		private System.Nullable<System.DateTime> _last_modified;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onname_visibleChanging(string value);
+    partial void Onname_visibleChanged();
+    partial void Onname_partialChanging(string value);
+    partial void Onname_partialChanged();
+    partial void OntypeChanging(System.Nullable<int> value);
+    partial void OntypeChanged();
+    partial void OnstatusChanging(System.Nullable<int> value);
+    partial void OnstatusChanged();
+    partial void Ondate_addedChanging(System.Nullable<System.DateTime> value);
+    partial void Ondate_addedChanged();
+    partial void Onlast_modifiedChanging(System.Nullable<System.DateTime> value);
+    partial void Onlast_modifiedChanged();
+    #endregion
+		
+		public tbl_module()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_visible", DbType="NVarChar(255)")]
+		public string name_visible
+		{
+			get
+			{
+				return this._name_visible;
+			}
+			set
+			{
+				if ((this._name_visible != value))
+				{
+					this.Onname_visibleChanging(value);
+					this.SendPropertyChanging();
+					this._name_visible = value;
+					this.SendPropertyChanged("name_visible");
+					this.Onname_visibleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_partial", DbType="VarChar(255)")]
+		public string name_partial
+		{
+			get
+			{
+				return this._name_partial;
+			}
+			set
+			{
+				if ((this._name_partial != value))
+				{
+					this.Onname_partialChanging(value);
+					this.SendPropertyChanging();
+					this._name_partial = value;
+					this.SendPropertyChanged("name_partial");
+					this.Onname_partialChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_type", DbType="Int")]
+		public System.Nullable<int> type
+		{
+			get
+			{
+				return this._type;
+			}
+			set
+			{
+				if ((this._type != value))
+				{
+					this.OntypeChanging(value);
+					this.SendPropertyChanging();
+					this._type = value;
+					this.SendPropertyChanged("type");
+					this.OntypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Int")]
+		public System.Nullable<int> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_added", DbType="DateTime")]
+		public System.Nullable<System.DateTime> date_added
+		{
+			get
+			{
+				return this._date_added;
+			}
+			set
+			{
+				if ((this._date_added != value))
+				{
+					this.Ondate_addedChanging(value);
+					this.SendPropertyChanging();
+					this._date_added = value;
+					this.SendPropertyChanged("date_added");
+					this.Ondate_addedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_modified", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_modified
+		{
+			get
+			{
+				return this._last_modified;
+			}
+			set
+			{
+				if ((this._last_modified != value))
+				{
+					this.Onlast_modifiedChanging(value);
+					this.SendPropertyChanging();
+					this._last_modified = value;
+					this.SendPropertyChanged("last_modified");
+					this.Onlast_modifiedChanged();
 				}
 			}
 		}

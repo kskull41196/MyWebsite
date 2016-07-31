@@ -238,4 +238,15 @@
       <Column Name="keyword" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tbl_module" Member="tbl_modules">
+    <Type Name="tbl_module">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name_visible" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="name_partial" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>
