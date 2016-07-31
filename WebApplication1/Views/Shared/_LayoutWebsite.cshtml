@@ -90,34 +90,15 @@
         <div class="container">
             <div class="row">
                 <div id="left-container" class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="frame-box">
-                        <div class="title-box">
-                            Danh mục sản phẩm
-                        </div>
-                        <div class="main-box">
-                            <ul class="ul-box">
-                                <li>
-                                    <a href="" title=""><i class="fa fa-angle-right"></i>Kem dưỡng trắng da mặt</a>
-                                </li>
-                                <li>
-                                    <a href="" title=""><i class="fa fa-angle-right"></i>Serum dưỡng và tái tạo da mặt</a>
-                                </li>
-                                <li>
-                                    <a href="" title=""><i class="fa fa-angle-right"></i>Kem trị mụn</a>
-                                </li>
-                                <li>
-                                    <a href="" title=""><i class="fa fa-angle-right"></i>Kem đặc trị thâm, sẹo rỗ</a>
-                                </li>
-                                <li>
-                                    <a href="" title=""><i class="fa fa-angle-right"></i>Kem dưỡng trắng da toàn thân</a>
-                                </li>
-                                <li>
-                                    <a href="" title=""><i class="fa fa-angle-right"></i>Tắm trắng da toàn thân</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    @*Start of a partial view*@
+                    @for (int i = 0; i < 2; i++)
+                    {
+                        //goi partialview
+
+                    }
+                    @*End of a partial view*@
                 </div>
+
                 <div id="center-container" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     @RenderBody()
                 </div>
