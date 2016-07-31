@@ -248,4 +248,14 @@
       <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tbl_support" Member="tbl_supports">
+    <Type Name="tbl_support">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="yahoo" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="skype" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

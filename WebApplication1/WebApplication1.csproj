@@ -754,12 +754,12 @@
     <Content Include="Views\Admin\ShopConfig\ShopConfig.cshtml" />
     <Content Include="Views\PartialViews\PartialItemCategories.cshtml" />
     <Content Include="Views\PartialViews\PartialOnlineSupport.cshtml" />
-	<Content Include="Views\Admin\Module\Module.cshtml" />
+    <Content Include="Views\Admin\Module\Module.cshtml" />
     <Content Include="Views\Admin\Module\Module_m.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\support\" />
     <Folder Include="Views\ItemCategory\" />
     <Folder Include="Views\Module\" />
     <Folder Include="Views\ShopConfig\" />
