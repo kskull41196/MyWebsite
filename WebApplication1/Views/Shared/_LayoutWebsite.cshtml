@@ -90,12 +90,16 @@
         <div class="container">
             <div class="row">
                 <div id="left-container" class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    @*Start of a partial view*@
-                    @for (var i = 1; i < 2; i++)
-                    {
-                        @Html.Action("SupportOnline", "PartialView");
+                    @{
+                        var listModules = (List<WebApplication1.Models.tbl_module>)ViewData["ListModules"];
+                        
+                        @*Start of a partial view*@
+                        foreach(WebApplication1.Models.tbl_module module in listModules)
+                        {
+                            Html.Action(module.name_partial, "PartialView");
+                        }
+                        @*End of a partial view*@
                     }
-                    @*End of a partial view*@
                 </div>
 
                 <div id="center-container" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">

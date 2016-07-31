@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index(string id,string id2)
         {
@@ -15,15 +15,11 @@ namespace WebApplication1.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message2 = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

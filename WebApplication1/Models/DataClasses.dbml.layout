@@ -119,7 +119,7 @@
         <classShapeMoniker Id="f6a4fa19-0a5e-4e01-9b41-dbe3c39dcf0d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.625 : 2.28125); (10.375 : 2.28125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.625 : 2.28125); (10.375 : 2.28125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/tbl_item/tbl_item_tbl_item_size" />
       <nodes>
         <classShapeMoniker Id="dbcb5bc2-6e42-4f28-a622-bed569c8da59" />
@@ -133,7 +133,7 @@
         <classShapeMoniker Id="cd8821bb-3913-4e9a-8655-a98ecbf8d732" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(15.125 : 3.75080485026042); (16 : 3.75080485026042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(15.125 : 3.75080485026042); (16 : 3.75080485026042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/tbl_news_category/tbl_news_category_tbl_new" />
       <nodes>
         <classShapeMoniker Id="95dd184c-392d-4e62-a95e-533c5952b8e9" />
@@ -161,10 +161,10 @@
         <classShapeMoniker Id="8c6958a5-b76f-42a7-af37-1fe50fe6b37c" />
       </nodes>
     </associationConnector>
-    <classShape Id="e4ce1917-539e-48a0-b669-bb8225a44663" absoluteBounds="7.5, 12.25, 2, 2.1554996744791666">
+    <classShape Id="876f075f-d448-4c39-b669-fab602545f01" absoluteBounds="8.75, 13, 2, 1.9631982421875">
       <DataClassMoniker Name="/DataClassesDataContext/tbl_module" />
       <nestedChildShapes>
-        <elementListCompartment Id="6884305f-1a3a-4226-826a-f696ecf122e5" absoluteBounds="7.5150000000000006, 12.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3e22b93c-2625-41b6-b2c0-94eb1e1fc8bc" absoluteBounds="8.765, 13.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
