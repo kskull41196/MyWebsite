@@ -7,7 +7,7 @@
 <div class="content bg-gray-lighter">
     <div class="row items-push">
         <div class="col-sm-7">
-            <h1 class="page-heading">Tin tức <small>Danh mục module</small></h1>
+            <h1 class="page-heading">Module <small>Danh mục module</small></h1>
         </div>
         <div class="col-sm-5 text-right hidden-xs">
             <ol class="breadcrumb push-10-t">
@@ -63,7 +63,7 @@
                                 <td style="width: 50px;" class="text-center">ID</td>
                                 <td class="text-left">Tên module</td>
                                 <td class="text-left">Tên Partial</td>
-                                <td style="width: 100px;" class="text-center">Ẩn/Hiện</td>
+                                <td style="width: 100px;" class="text-center">Loại</td>
                                 <td style="width: 100px;" class="text-right">Tùy chọn</td>
                             </tr>
                         </thead>
@@ -83,17 +83,24 @@
                                     <td class="text-left name-to-confirm">
                                         @module.name_partial
                                     </td>
-                                    <td class="text-center">
-                                        <div class="star tool @newsCategory.hot==1?'active':''" data-action="toggleStatus" data-field="hot" data-table="tbl_news_category" title="Nổi bật" value="@newsCategory.id"></div>
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="check tool @newsCategory.status==1?'active':''" data-action="toggleStatus" data-field="status" data-table="tbl_news_category" title="Ẩn hiện" value="@newsCategory.id"></div>
+                                    <td class="text-left">
+                                        @if (module.type == 1)
+                                        {
+                                            <span>Module trái/phải</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Module trang chủ</span>
+                                        }
+
                                     </td>
                                     <td class="text-right">
-                                        <a href='@Url.Action("newsCategoryEdit", "NewsCategory", new { id = @newsCategory.id })' class="btn btn-xs btn-pencil btn-primary" title="Sửa">
+                                        <a href='@Url.Action("moduleEdit", "Module", new { id = @module.id })' class="btn btn-xs btn-pencil btn-primary" title="Sửa">
+
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                        <a href='@Url.Action("newsCategoryDelete", "NewsCategory", new { id = @newsCategory.id })' class="btn btn-xs btn-remove btn-danger" title="Xóa">
+                                        <a href='@Url.Action("moduleDelete", "Module", new { id = @module.id })' class="btn btn-xs btn-remove btn-danger" title="Xóa">
+
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

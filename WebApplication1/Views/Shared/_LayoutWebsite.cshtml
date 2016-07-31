@@ -96,7 +96,7 @@
                         @*Start of a partial view*@
                         foreach(WebApplication1.Models.tbl_module module in listModules)
                         {
-                            Html.Action(module.name_partial, "PartialView");
+                            @Html.Action(module.name_partial, "PartialView");
                         }
                         @*End of a partial view*@
                     }

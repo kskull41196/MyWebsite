@@ -25,7 +25,7 @@
                             <i class="fa fa-times"></i>
                         </button>
                         <a class="h5 text-white" href="">
-                        <img src="" class="img-responsive" style="max-width: 155px; max-height: 36px" />
+                            <img src="" class="img-responsive" style="max-width: 155px; max-height: 36px" />
                         </a>
                     </div>
                     <div class="side-content">
@@ -33,8 +33,8 @@
                             <!-- home -->
                             <li>
                                 <a href="">
-                                <i class="si si-home"></i>
-                                <span class="sidebar-mini-hide">Trang chủ</span>
+                                    <i class="si si-home"></i>
+                                    <span class="sidebar-mini-hide">Trang chủ</span>
                                 </a>
                             </li>
                             <!-- produtcs category -->
@@ -67,6 +67,22 @@
                                     </li>
                                 </ul>
                             </li>
+                            <!-- module -->
+                            <li>
+                                <a href="" class="nav-submenu" data-toggle="nav-submenu">
+                                    <i class="si si-magic-wand"></i>
+                                    <span class="sidebar-mini-hide">Module</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        @Html.ActionLink("Danh sách module", "moduleView", "Module")
+                                    </li>
+                                    <!--<li>
+                                        @*Html.ActionLink("Cấu hình module", "newsView", "News")*@
+                                    </li>-->
+                                </ul>
+                            </li>
+
                             <!-- shopcon fig -->
                             <li>
                                 <a href="">

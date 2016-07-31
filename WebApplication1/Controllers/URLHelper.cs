@@ -23,5 +23,6 @@ namespace WebApplication1.Controllers
 
         //Partial Views' URLs
         public const String URL_HOME_PARTIAL_SUPPORT_ONLINE = "~/Views/PartialViews/PartialOnlineSupport.cshtml";
+        public const String URL_HOME_PARTIAL_ITEM_CATEGORIES = "~/Views/PartialViews/PartialItemCategories.cshtml";
     }
 }

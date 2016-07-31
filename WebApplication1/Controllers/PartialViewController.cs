@@ -66,7 +66,7 @@ namespace WebApplication1.Controllers
         }
         public ActionResult menuItemCategories(){
             var menuItemCategories = from tic in data.tbl_item_categories where tic.status == 1 && tic.parent == 0 select tic;
-            return PartialView(menuItemCategories);
+            return PartialView(URLHelper.URL_HOME_PARTIAL_ITEM_CATEGORIES,menuItemCategories);
         }
         public ActionResult menuNewsCategories()
         {
