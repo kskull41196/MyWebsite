@@ -1,8 +1,44 @@
-﻿<div class="frame-box">
+
+﻿@model IEnumerable<WebApplication1.Models.tbl_support>
+<div class="frame-box">
     <div class="title-box">
         Hỗ trợ trực tuyến
     </div>
     <div class="main-box">
-       xin chao day la ho tro truc tuyen
+        <div class="content-widget support-widget">
+            @foreach (WebApplication1.Models.tbl_support supportModel in Model)
+            {
+                <br/>
+                <div class="agent-small">
+                    <div class="h4 agent-small-title">@supportModel.name</div>
+                    <div class="agent-small-inner">
+                        <div class="agent-small-image">
+                            <a class="agent-small-image-inner">
+                                <img src= @WebApplication1.Controllers.URLHelper.URL_IMAGE_PATH + @supportModel.image alt="@supportModel.name">
+                            </a>
+                        </div>
+                        <!-- agent-small-image -->
+                        <div class="agent-small-content">
+                            <div class="agent-small-yahoo">
+                                <a href="ymsgr:sendIM?@supportModel.yahoo" title=@supportModel.yahoo>
+                                    @supportModel.yahoo
+                                </a>
+                            </div>
+                            <div class="agent-small-skype">
+                                <a href="skype:@supportModel.skype?call">
+                                    @supportModel.skype
+                                </a>
+                            </div>
+                            <div class="agent-small-tel">
+                                <a href="tel:@supportModel.phone">
+                                    @supportModel.phone
+                                </a>
+                            </div>
+                        </div>
+                        <!-- agent-small-content -->
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>

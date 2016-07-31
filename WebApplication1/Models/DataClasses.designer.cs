@@ -248,6 +248,14 @@ namespace WebApplication1.Models
 				return this.GetTable<tbl_module>();
 			}
 		}
+		
+		public System.Data.Linq.Table<tbl_support> tbl_supports
+		{
+			get
+			{
+				return this.GetTable<tbl_support>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_admin")]
@@ -5401,6 +5409,123 @@ namespace WebApplication1.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_support")]
+	public partial class tbl_support
+	{
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _yahoo;
+		
+		private string _skype;
+		
+		private string _phone;
+		
+		private string _image;
+		
+		public tbl_support()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_yahoo", DbType="VarChar(255)")]
+		public string yahoo
+		{
+			get
+			{
+				return this._yahoo;
+			}
+			set
+			{
+				if ((this._yahoo != value))
+				{
+					this._yahoo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skype", DbType="VarChar(255)")]
+		public string skype
+		{
+			get
+			{
+				return this._skype;
+			}
+			set
+			{
+				if ((this._skype != value))
+				{
+					this._skype = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone", DbType="VarChar(13)")]
+		public string phone
+		{
+			get
+			{
+				return this._phone;
+			}
+			set
+			{
+				if ((this._phone != value))
+				{
+					this._phone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarChar(255)")]
+		public string image
+		{
+			get
+			{
+				return this._image;
+			}
+			set
+			{
+				if ((this._image != value))
+				{
+					this._image = value;
+				}
 			}
 		}
 	}

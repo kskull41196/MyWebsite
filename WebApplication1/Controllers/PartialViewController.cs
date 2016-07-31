@@ -17,6 +17,10 @@ namespace WebApplication1.Controllers
             if (result.Count() < 1)
                 return new List<tbl_item>();
             return result.ToList();
+		}
+        private List<tbl_support> getAllSupporters()
+        {
+            return data.tbl_supports.ToList();
         }
 
         // method menuMain() get menu all menu main
@@ -109,7 +113,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult SupportOnline()
         {
-            return PartialView(URLHelper.URL_HOME_PARTIAL_SUPPORT_ONLINE);
+            return PartialView(URLHelper.URL_HOME_PARTIAL_SUPPORT_ONLINE, getAllSupporters());
         }
     }
 }

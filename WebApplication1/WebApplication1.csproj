@@ -767,6 +767,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Ajax\" />
+    <Folder Include="assets\support\"/>
     <Folder Include="Views\ItemCategory\" />
     <Folder Include="Views\Module\" />
     <Folder Include="Views\ShopConfig\" />

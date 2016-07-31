@@ -7,6 +7,7 @@ namespace WebApplication1.Controllers
 {
     public class URLHelper
     {
+        //Image paths
         public const String URL_IMAGE_PATH = "~/assets/images/";
 
         public const String URL_ADMIN_ITEM_CATEGORY = "~/Views/Admin/ItemCategory/ItemCategory.cshtml";
