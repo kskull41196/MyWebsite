@@ -180,6 +180,7 @@
     <Compile Include="Controllers\Admin\ItemCategoryController.cs" />
     <Compile Include="Controllers\Admin\ModuleController.cs" />
     <Compile Include="Controllers\Admin\ShopConfigController.cs" />
+    <Compile Include="Controllers\Admin\SupportController.cs" />	
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\PartialViewController.cs" />
     <Compile Include="Controllers\URLHelper.cs" />
@@ -758,6 +759,8 @@
     <Content Include="Views\Admin\News\News.cshtml" />
     <Content Include="Views\Admin\News\News_m.cshtml" />
     <Content Include="Views\Admin\ShopConfig\ShopConfig.cshtml" />
+    <Content Include="Views\Admin\Support\Support.cshtml" />
+    <Content Include="Views\Admin\Support\Support_m.cshtml" />
     <Content Include="Views\PartialViews\Module\PartialItemCategories.cshtml" />
     <Content Include="Views\PartialViews\Module\PartialOnlineSupport.cshtml" />
     <Content Include="Views\Admin\Module\Module.cshtml" />

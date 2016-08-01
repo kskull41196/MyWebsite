@@ -81,6 +81,9 @@ namespace WebApplication1.Models
     partial void Inserttbl_module(tbl_module instance);
     partial void Updatetbl_module(tbl_module instance);
     partial void Deletetbl_module(tbl_module instance);
+    partial void Inserttbl_support(tbl_support instance);
+    partial void Updatetbl_support(tbl_support instance);
+    partial void Deletetbl_support(tbl_support instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -5414,8 +5417,10 @@ namespace WebApplication1.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_support")]
-	public partial class tbl_support
+	public partial class tbl_support : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _id;
 		
@@ -5429,11 +5434,30 @@ namespace WebApplication1.Models
 		
 		private string _image;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnyahooChanging(string value);
+    partial void OnyahooChanged();
+    partial void OnskypeChanging(string value);
+    partial void OnskypeChanged();
+    partial void OnphoneChanging(string value);
+    partial void OnphoneChanged();
+    partial void OnimageChanging(string value);
+    partial void OnimageChanged();
+    #endregion
+		
 		public tbl_support()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
@@ -5444,7 +5468,11 @@ namespace WebApplication1.Models
 			{
 				if ((this._id != value))
 				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
 					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
 				}
 			}
 		}
@@ -5460,7 +5488,11 @@ namespace WebApplication1.Models
 			{
 				if ((this._name != value))
 				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
 					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
 				}
 			}
 		}
@@ -5476,7 +5508,11 @@ namespace WebApplication1.Models
 			{
 				if ((this._yahoo != value))
 				{
+					this.OnyahooChanging(value);
+					this.SendPropertyChanging();
 					this._yahoo = value;
+					this.SendPropertyChanged("yahoo");
+					this.OnyahooChanged();
 				}
 			}
 		}
@@ -5492,7 +5528,11 @@ namespace WebApplication1.Models
 			{
 				if ((this._skype != value))
 				{
+					this.OnskypeChanging(value);
+					this.SendPropertyChanging();
 					this._skype = value;
+					this.SendPropertyChanged("skype");
+					this.OnskypeChanged();
 				}
 			}
 		}
@@ -5508,7 +5548,11 @@ namespace WebApplication1.Models
 			{
 				if ((this._phone != value))
 				{
+					this.OnphoneChanging(value);
+					this.SendPropertyChanging();
 					this._phone = value;
+					this.SendPropertyChanged("phone");
+					this.OnphoneChanged();
 				}
 			}
 		}
@@ -5524,8 +5568,32 @@ namespace WebApplication1.Models
 			{
 				if ((this._image != value))
 				{
+					this.OnimageChanging(value);
+					this.SendPropertyChanging();
 					this._image = value;
+					this.SendPropertyChanged("image");
+					this.OnimageChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

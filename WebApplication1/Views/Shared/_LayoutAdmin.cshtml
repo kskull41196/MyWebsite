@@ -85,10 +85,17 @@
 
                             <!-- support online -->
                             <li>
-                                <a href="">
-                                    <i class="si si-settings"></i>
-                                    <span class="sidebar-mini-hide">Hỗ trợ viên</span>
+
+                            <li>
+                                <a href="" class="nav-submenu" data-toggle="nav-submenu">
+                                    <i class="si si-magic-wand"></i>
+                                    <span class="sidebar-mini-hide">Hỗ trợ</span>
                                 </a>
+                                <ul>
+                                    <li>
+                                        @Html.ActionLink("Hỗ trợ viên", "supportView", "Support")
+                                    </li>
+                                </ul>
 
                             </li>
                             <!-- shopcon fig -->
