@@ -10,6 +10,10 @@ namespace WebApplication1.Controllers
         //Image paths
         public const String URL_IMAGE_PATH = "~/assets/images/";
 
+        //Home URL
+        public const String URL_HOME_ALL_PRODUCTS = "~/Views/Home/AllProducts.cshtml";
+
+        //Admin URL
         public const String URL_ADMIN_ITEM_CATEGORY = "~/Views/Admin/ItemCategory/ItemCategory.cshtml";
         public const String URL_ADMIN_ITEM_CATEGORY_M = "~/Views/Admin/ItemCategory/ItemCategory_m.cshtml";
         public const String URL_ADMIN_ITEM = "~/Views/Admin/Item/Item.cshtml";

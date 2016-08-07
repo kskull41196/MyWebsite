@@ -15,6 +15,11 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult Items()
+        {
+            return View(URLHelper.URL_HOME_ALL_PRODUCTS, getListAllProducts());
+        }
+
         public ActionResult About()
         {
             return View();
@@ -24,6 +29,13 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+
+        private List<tbl_item> getListAllProducts()
+        {
+            return data.tbl_items.OrderByDescending(a => a.date_added).ToList();
+        } 
+
         private List<tbl_module> getHomeModule()
         {
             var result = data.tbl_modules.Where(a => a.type == 2).OrderByDescending(a => a.date_added);
