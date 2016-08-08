@@ -1,0 +1,83 @@
+﻿@model Tuple<WebApplication1.Models.tbl_new, List<WebApplication1.Models.tbl_new>>
+@{
+    ViewBag.Title = "NewsDetail";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+<div class="product_all">
+
+    <!-- Show detail of chosen product -->
+    <h2 class="title_f_p_m_gh_pro">
+        <span>Chi Tiết Tin Tức</span>
+    </h2>
+
+
+    <br />
+    <br />
+    <label>Tên tin tức: @Model.Item1.name</label>
+    <br />
+    <label>Chi tiết tin tức: @Model.Item1.detail_short</label>
+    <br />
+    <label>Hình tin tức: @Model.Item1.image</label>
+    <br />
+    <label>Số lượng xem: @Model.Item1.view_amount</label>
+    <br />
+    <br />
+   
+
+    <br />
+    <br /><br />
+    <br />
+    <br />
+
+
+
+
+    <!-- Show the others products which have the same category -->
+    <h2 class="title_f_p_m_gh_pro">
+        <span>Tin Tức Liên Quan</span>
+    </h2>
+
+    <div class="main_f_p_m_gh">
+        <div class="main_pro_all">
+            <ul class="clearfix">
+                @{
+                    foreach (var item in Model.Item2)
+                    {
+                        <li class="li_pro_all_ col-md-4 col-sm-3 col-xs-2 clearfix">
+                            <div class="category-item">
+                                <div class="category">
+                                    <div class="category-s"></div>
+                                    <div class="category-outer-1"></div>
+                                    <div class="category-outer-2"></div>
+                                    <div class="category-inner">
+                                        <div class="category-img">
+                                            <a href="">
+                                                <img src="images/item/13570287_1781799642052478_608269088_o-146.jpg" alt="Kem dưỡng trắng da mặt">
+                                            </a>
+                                        </div>
+                                        <div class="category-name">
+                                            <a href="">
+                                                @item.name
+                                            </a>
+                                        </div>
+                                        <div class="detail_short">
+                                            <p>@item.detail_short</p>
+                                        </div>
+                                        <div class="view_amount">
+                                            <p>Số lượng xem: @item.view_amount</p>
+                                        </div>
+                                        <div class="btnChiTiet"><a href=""><span>Chi tiết</span></a></div>
+                                         <div class="clearfix"></div>
+                                    </div>
+                                    <div class="category-outer-3"></div>
+                                    <div class="category-outer-4"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,9 @@ namespace WebApplication1.Controllers
         //Home URL
         public const String URL_HOME_ALL_PRODUCTS = "~/Views/Home/AllProducts.cshtml";
         public const String URL_HOME_PRODUCT_DETAIL = "~/Views/Home/ProductDetail.cshtml";
+        public const String URL_HOME_NEWS_DETAIL = "~/Views/Home/NewsDetail.cshtml";
+        public const String URL_HOME_NEWS = "~/Views/Home/News.cshtml";
+        public const String URL_HOME_POLICY = "~/Views/Home/News.cshtml";
 
         //Admin URL
         public const String URL_ADMIN_ITEM_CATEGORY = "~/Views/Admin/ItemCategory/ItemCategory.cshtml";

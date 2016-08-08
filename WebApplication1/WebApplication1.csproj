@@ -182,6 +182,7 @@
     <Compile Include="Controllers\Admin\SupportController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\PartialViewController.cs" />
+    <Compile Include="Controllers\Constants.cs" />
     <Compile Include="Controllers\URLHelper.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -743,6 +744,8 @@
     <Content Include="Views\Home\AllProducts.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\NewsDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

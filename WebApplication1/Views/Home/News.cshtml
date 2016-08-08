@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebApplication1.Models.tbl_new>
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+<div class="product_all">
+    <h2 class="title_f_p_m_gh_pro">
+        <span>Tất Cả @ViewBag.Message</span>
+    </h2><!-- End .title_f_p_m_gh -->
+
+    <div class="main_f_p_m_gh">
+        <div class="main_pro_all">
+            <ul class="clearfix">
+                @{
+                    foreach (var item in Model)
+                    {
+                        <li class="li_pro_all_ col-md-4 col-sm-3 col-xs-2 clearfix">
+                            <div class="category-item">
+                                <div class="category">
+                                    <div class="category-s"></div>
+                                    <div class="category-outer-1"></div>
+                                    <div class="category-outer-2"></div>
+                                    <div class="category-inner">
+                                        <div class="category-img">
+                                            <a href="">
+                                                <img src="images/item/13570287_1781799642052478_608269088_o-146.jpg" alt="Kem dưỡng trắng da mặt">
+                                            </a>
+                                        </div>
+                                        <div class="category-name">
+                                            <a href="">
+                                                @item.name
+                                            </a>
+                                        </div>
+                                        <div class="detail_short">
+                                            <p>@item.detail_short</p>
+                                        </div>
+                                        <div class="view_amount">
+                                            <p>Số lượng xem: @item.view_amount</p>
+                                        </div>
+                                            <div class="btnChiTiet"><a href="@Url.Action("NewsDetail", "Home", new { id=@item.id})"><span>Chi tiết</span></a></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    <div class="category-outer-3"></div>
+                                    <div class="category-outer-4"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

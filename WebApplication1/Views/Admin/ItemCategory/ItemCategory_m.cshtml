@@ -35,10 +35,40 @@
                     </label>
                     <div class="col-sm-6">
                         <script language="javascript">
+                              @functions{
+                                  public class ComboboxModel
+                                  {
+                                      public int id;
+                                      public string name;
+                                      public int parent;
+
+                                      public ComboboxModel(int id, string name, int parent)
+                                          {
+                                              this.id = id;
+                                              this.name = name;
+                                              this.parent = parent;
+                                          }
+
+                                      public static List<ComboboxModel> getListComboboxModelsFromListItemCategories(List<WebApplication1.Models.tbl_item_category> listCategories)
+                                          {
+                                              List<ComboboxModel> result = new List<ComboboxModel>();
+                                              foreach (WebApplication1.Models.tbl_item_category category in listCategories)
+                                          {
+                                                  result.Add(new ComboboxModel(category.id, category.name, category.parent.Value));
+                                          }
+                                          return result;
+                                      }
+
+                                      public static ComboboxModel getComboboxModelFromItem(WebApplication1.Models.tbl_item_category item)
+                                          {
+                                              return new ComboboxModel(item.id, item.name, item.parent == null ? 0 : item.parent.Value);
+                                          }
+                                      }
+                                  }
                             @{
                                 var serializer=new System.Web.Script.Serialization.JavaScriptSerializer();
-                                var jsonListItem=serializer.Serialize(Model.Item2);
-                                var jsonItem = serializer.Serialize(Model.Item1);
+                                var jsonListItem=serializer.Serialize(ComboboxModel.getListComboboxModelsFromListItemCategories(Model.Item2));
+                                var jsonItem = serializer.Serialize(ComboboxModel.getComboboxModelFromItem(Model.Item1));
                             }
                             var models=@Html.Raw(jsonListItem);
                             var menus = new Array();

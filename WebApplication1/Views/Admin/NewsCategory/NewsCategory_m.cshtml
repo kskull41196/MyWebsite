@@ -19,11 +19,22 @@
         <div class="block-content">
             <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
                 <input type="hidden" name="id" value="@Model.Item1.id" />
-
                 <div class="form-group">
                     <label class="col-sm-3 control-label">
                         Tên danh mục <font color="red">*</font>
                     </label>
+                    <label class="col-sm-3 control-label">
+                        Đặt là: "@WebApplication1.Controllers.Constants.NEWS_CATEGORY_NAME_NEWS" nếu muốn hiện trong trang tin tức
+                        <br />
+                        Đặt là: "@WebApplication1.Controllers.Constants.NEWS_CATEGORY_NAME_POLICY" nếu muốn hiện trong trang chính sách
+                    </label>
+                    <br/>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <label class="col-sm-3 control-label">
+                        </label>
                     <div class="col-sm-6">
                         <input type="text" name="name" class="form-control" value="@Model.Item1.name" />
                     </div>
@@ -37,10 +48,40 @@
                     </label>
                     <div class="col-sm-6">
                         <script language="javascript">
+                            @functions{
+                                  public class ComboboxModel
+                                  {
+                                      public int id;
+                                      public string name;
+                                      public int parent;
+
+                                      public ComboboxModel(int id, string name, int parent)
+                                          {
+                                              this.id = id;
+                                              this.name = name;
+                                              this.parent = parent;
+                                          }
+
+                                      public static List<ComboboxModel> getListComboboxModelsFromListItemCategories(List<WebApplication1.Models.tbl_news_category> listCategories)
+                                          {
+                                              List<ComboboxModel> result = new List<ComboboxModel>();
+                                              foreach (WebApplication1.Models.tbl_news_category category in listCategories)
+                                          {
+                                                  result.Add(new ComboboxModel(category.id, category.name, category.parent.Value));
+                                          }
+                                          return result;
+                                      }
+
+                                      public static ComboboxModel getComboboxModelFromItem(WebApplication1.Models.tbl_news_category item)
+                                          {
+                                              return new ComboboxModel(item.id, item.name, item.parent == null ? 0 : item.parent.Value);
+                                          }
+                                      }
+                                  }
                             @{
                                 var serializer=new System.Web.Script.Serialization.JavaScriptSerializer();
-                                var jsonListItem=serializer.Serialize(Model.Item2);
-                                var jsonItem = serializer.Serialize(Model.Item1);
+                                var jsonListItem=serializer.Serialize(ComboboxModel.getListComboboxModelsFromListItemCategories(Model.Item2));
+                                var jsonItem = serializer.Serialize(ComboboxModel.getComboboxModelFromItem(Model.Item1));
                             }
                             var models=@Html.Raw(jsonListItem);
                             var menus = new Array();
@@ -112,7 +153,7 @@
                             </div>
                             <input type="checkbox" name="chkClearImg" value="on" /> Xóa bỏ hình ảnh
                         </div>
-                   
+
                     </div>
                 </div>
                 <div class="form-group">
