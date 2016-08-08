@@ -39,10 +39,10 @@
                                         <div class="detail_short">
                                             <p>@item.detail_short</p>
                                         </div>
-                                        <div class="btnChiTiet"><a href=""><span>Chi tiết</span></a></div>
-                                        <div class="btnMuaHang" idsp="@item.id"><span>Đặt hàng</span></div>
-                                        <div class="clearfix"></div>
-                                    </div>
+                                            <div class="btnChiTiet"><a href="@Url.Action("ProductDetail", "Home", new { id=@item.id})"><span>Chi tiết</span></a></div>
+                                            <div class="btnMuaHang" idsp="@item.id"><span>Đặt hàng</span></div>
+                                            <div class="clearfix"></div>
+</div>
                                     <div class="category-outer-3"></div>
                                     <div class="category-outer-4"></div>
                                     <div class="clearfix"></div>

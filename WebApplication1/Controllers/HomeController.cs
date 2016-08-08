@@ -9,7 +9,7 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index(string id,string id2)
+        public ActionResult Index(string id, string id2)
         {
             ViewData["ListModulesHome"] = getHomeModule();
             return View();
@@ -18,6 +18,17 @@ namespace WebApplication1.Controllers
         public ActionResult Items()
         {
             return View(URLHelper.URL_HOME_ALL_PRODUCTS, getListAllProducts());
+        }
+
+        public ActionResult ProductDetail(int id)
+        {
+            tbl_item itemToShowDetail = getProductById(id);
+            List<tbl_item> listItemWithTheSameCategory = null;
+            if (itemToShowDetail != null && itemToShowDetail.parent.HasValue)
+            {
+                listItemWithTheSameCategory = getListOtherProductsByCategory(itemToShowDetail.id, itemToShowDetail.parent.Value);
+            }
+            return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
 
         public ActionResult About()
@@ -31,10 +42,23 @@ namespace WebApplication1.Controllers
         }
 
 
+
+        //Getting data from models
+        private tbl_item getProductById(int id)
+        {
+            tbl_item result = data.tbl_items.Where(n => n.id == id).Single();
+            return result;
+        }
+
         private List<tbl_item> getListAllProducts()
         {
             return data.tbl_items.OrderByDescending(a => a.date_added).ToList();
-        } 
+        }
+
+        private List<tbl_item> getListOtherProductsByCategory(int id, int parent)
+        {
+            return data.tbl_items.OrderByDescending(a => a.date_added).Where(n => n.parent == parent && n.id != id).ToList();
+        }
 
         private List<tbl_module> getHomeModule()
         {

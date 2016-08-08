@@ -172,7 +172,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AjaxController.cs" />
     <Compile Include="Controllers\Admin\ItemController.cs" />
     <Compile Include="Controllers\Admin\NewsController.cs" />
@@ -180,14 +179,12 @@
     <Compile Include="Controllers\Admin\ItemCategoryController.cs" />
     <Compile Include="Controllers\Admin\ModuleController.cs" />
     <Compile Include="Controllers\Admin\ShopConfigController.cs" />
-    <Compile Include="Controllers\Admin\SupportController.cs" />	
+    <Compile Include="Controllers\Admin\SupportController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\PartialViewController.cs" />
     <Compile Include="Controllers\URLHelper.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
-    <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -721,32 +718,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\HelloWorld\Index.cshtml" />
-    <Content Include="Views\HelloWorld\Welcome.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutWebsite.cshtml" />
     <Content Include="Views\Admin\ItemCategory\ItemCategory.cshtml" />
@@ -766,13 +740,15 @@
     <Content Include="Views\Admin\Module\Module.cshtml" />
     <Content Include="Views\Admin\Module\Module_m.cshtml" />
     <Content Include="Views\PartialViews\Home\PartialHotProduct.cshtml" />
+    <Content Include="Views\Home\AllProducts.cshtml" />
+    <Content Include="Views\Home\ProductDetail.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\support\" />
     <Folder Include="Views\Ajax\" />
-    <Folder Include="assets\support\"/>
     <Folder Include="Views\ItemCategory\" />
-    <Folder Include="Views\Module\" />
     <Folder Include="Views\ShopConfig\" />
   </ItemGroup>
   <ItemGroup>
