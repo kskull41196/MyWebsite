@@ -92,10 +92,10 @@
                                         @newsCategory.name
                                     </td>
                                     <td class="text-center">
-                                        <div class="star tool @newsCategory.hot==1?'active':''" data-action="toggleStatus" data-field="hot" data-table="tbl_news_category" title="Nổi bật" value="@newsCategory.id"></div>
+                                        <div class="star tool @((newsCategory.hot==1)?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_news_category" title="Nổi bật" value="@newsCategory.id"></div>
                                     </td>
                                     <td class="text-center">
-                                        <div class="check tool @newsCategory.status==1?'active':''" data-action="toggleStatus" data-field="status" data-table="tbl_news_category" title="Ẩn hiện" value="@newsCategory.id"></div>
+                                        <div class="check tool @((newsCategory.status==1)?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_news_category" title="Ẩn hiện" value="@newsCategory.id"></div>
                                     </td>
                                     <td class="text-right">
                                         <a href='@Url.Action("newsCategoryEdit", "NewsCategory", new { id = @newsCategory.id })' class="btn btn-xs btn-pencil btn-primary" title="Sửa">

@@ -92,10 +92,10 @@
                                         @itemCategory.name
                                     </td>
                                     <td class="text-center">
-                                        <div class="star tool @itemCategory.hot==1?'active':''" data-action="toggleStatus" data-field="hot" data-table="tbl_item_category" title="Nổi bật" value="@itemCategory.id"></div>
+                                        <div class="star tool @((itemCategory.hot==1)?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_item_category" title="Nổi bật" value="@itemCategory.id"></div>
                                     </td>
                                     <td class="text-center">
-                                        <div class="check tool @itemCategory.status==1?'active':''" data-action="toggleStatus" data-field="status" data-table="tbl_item_category" title="Ẩn hiện" value="@itemCategory.id"></div>
+                                        <div class="check tool @((itemCategory.status==1)?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item_category" title="Ẩn hiện" value="@itemCategory.id"></div>
                                     </td>
                                     <td class="text-right">
                                         <a href='@Url.Action("itemCategoryEdit", "ItemCategory", new { id = @itemCategory.id})' class="btn btn-xs btn-pencil btn-primary" title="Sửa">
