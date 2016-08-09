@@ -133,7 +133,7 @@ namespace WebApplication1.Controllers.Admin
             if (fileUpload != null)
             {
                 var fileName =  Path.GetFileName(DateTime.Now.Millisecond+fileUpload.FileName);
-                var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH), fileName);
+                var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "item/"), fileName);
                 if (!System.IO.File.Exists(path))
                 {
                     fileUpload.SaveAs(path);
@@ -206,7 +206,7 @@ namespace WebApplication1.Controllers.Admin
                 if (fileUpload != null)
                 {
                     var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
-                    var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH), fileName);
+                    var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "item/"), fileName);
                     if (!System.IO.File.Exists(path))
                     {
                         fileUpload.SaveAs(path);

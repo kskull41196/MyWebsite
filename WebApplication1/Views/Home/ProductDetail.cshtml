@@ -3,52 +3,200 @@
     ViewBag.Title = "ProductDetail";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
-<div class="product_all">
+<link rel="stylesheet" type="text/css" href="~/Content/Zoom/jquery.fancybox.css">
+<script src="~/Scripts/Zoom/jquery.elevatezoom.js"></script>
+<script src="~/Scripts/Zoom/jquery.fancybox.js"></script>
+<script type="text/javascript">
+    var loadIcon = "//cdn.shopify.com/s/files/1/0928/4804/t/2/assets/loading.gif?2264549637723899300";
+    function productZoom(status) {
+        if (status == 'enable') {
+            $("#proimage").elevateZoom({
 
-    <!-- Show detail of chosen product -->
-    <h2 class="title_f_p_m_gh_pro">
-        <span>Chi Tiết Sản Phẩm</span>
-    </h2>
+                // zoomType: "inner",
+                // cursor: 'crosshair',
 
+                gallery: 'thumbs_list',
+                galleryActiveClass: 'active',
+                imageCrossfade: true,
+                scrollZoom: true,
+                onImageSwapComplete: function () {
+                    $(".zoomWrapper div").hide()
+                },
+                loadingIcon: loadIcon
+            });
+            $("#proimage").bind("click", function (e) {
+                var ez = $('#proimage').data('elevateZoom');
+                $.fancybox(ez.getGalleryList());
+                return false;
+            });
+        }
+        else {
+            $(document).on('click', '#thumblist .thumb_item a', function () {
+                if ($(this).attr('href')) {
+                    var new_src = $(this).data('image');
+                    var new_title = $(this).attr('title');
+                    var new_href = $(this).attr('href');
+                    if ($('#proimage').attr('src') != new_src) {
+                        $('#proimage').attr({
+                            'src': new_src,
+                            'alt': new_title,
+                            'title': new_title
+                        });
+                    }
+                }
+            });
+        }
 
-    <br />
-    <br />
-    <label>Tên sản phẩm: @Model.Item1.name</label>
-    <br />
-    <label>Chi tiết sản phẩm: @Model.Item1.detail_short</label>
-    <br />
-    <label>Hình sản phẩm: @Model.Item1.image</label>
-    <br />
-    <label>Giá sản phẩm: @Model.Item1.price</label>
-    <br />
-    <label>Số lượng xem: @Model.Item1.view_amount</label>
-    <br />
-    <br />
-    <div class="btnGioHang"><a href=""><span>Thêm vào giỏ hàng</span></a></div>
-    <br />
-    <label>Số lượng</label>
-    <br />
-    <input type="number" min="0" maxlength="3" />
+    }
+    function productImage() {
+        $('#thumblist').owlCarousel({
+            navigation: true,
+            items: 4,
+            itemsDesktop: [1199, 4],
+            itemsDesktopSmall: [979, 4],
+            itemsTablet: [768, 4],
+            itemsTabletSmall: [540, 4],
+            itemsMobile: [360, 4]
+        });
+    }
+    function responsiveProductZoom() {
+        if (($(window).width()) >= 992) {
+            productZoom('enable');
+        }
+        else if (($(window).width()) <= 991) {
+            productZoom('disable');
+        }
+    }
+    $(document).ready(function () {
+        productImage();
+        responsiveProductZoom();
+        $('.control-minus').click(function () {
+            var quantity = $('input[name="quantity"]').val();
+            if (quantity > 0) {
+                $('input[name="quantity"]').val(quantity - 1);
+                $('input[name="name"]').trigger("change");
+            }
+        });
+        $('.control-add').click(function () {
+            var quantity = $('input[name="quantity"]').val();
+            var new_quant = parseInt(quantity) + 1;
+            $('input[name="quantity"]').val(new_quant);
+            $('input[name="name"]').trigger("change");
+        });
 
-
-    <br />
-    <br /><br />
-    <br />
-    <br />
-
-
-
-
-    <!-- Show the others products which have the same category -->
-    <h2 class="title_f_p_m_gh_pro">
-        <span>Sản Phẩm Liên Quan</span>
-    </h2>
-
+    });
+</script>
+<script>
+    $("#img_01").elevateZoom({ gallery: 'gallery_01', cursor: 'pointer', galleryActiveClass: 'active' });
+    //pass the images to Fancybox
+    $("#img_01").bind("click", function (e) {
+        var ez = $('#img_01').data('elevateZoom');
+        $.fancybox(ez.getGalleryList());
+        return false;
+    });
+</script>
+<div class="frame_product_mau_gh">
+    <div class="main_f_p_m_gh product_top primary_block clearfix">
+        <div class="main-img-prod product-column product-left-column col-md-4 col-sm-6 col-xs-12">
+            <div class="fullpic">
+                @if (String.IsNullOrEmpty(Model.Item1.image))
+                {
+                    <img id="img_01" src="~/assets/images/noimage.png" alt="@Model.Item1.name">
+                }
+                else
+                {
+                    <img id="img_01" src="~/assets/images/item/@Model.Item1.image" data-zoom-image="~/assets/images/item/@Model.Item1.image" alt="@Model.Item1.name">
+                }
+            </div>
+            <div id="gallery_01" class="thumbnailListContainer">
+                <h3>Xem hình ảnh khác</h3>
+                @if (!String.IsNullOrEmpty(Model.Item1.image))
+                {
+                    <a href="#" class="active" data-image="~/assets/images/item/@Model.Item1.image" data-zoom-image="~/assets/images/item/@Model.Item1.image">
+                        <img id="img_01" src="~/assets/images/item/@Model.Item1.image">
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="product-column product-center-column col-md-8 col-sm-6 col-xs-12">
+            <h1 itemprop="name">@Model.Item1.name</h1>
+            @if (Model.Item1.parent != 0)
+            {
+                <div class="category" itemprop="category">
+                    <span>Category: </span>
+                    <a href="@Url.Action("Items", "Home", new { id = Model.Item1.parent })">Category</a>
+                </div>
+            }
+            <div class="product-description rte" itemprop="description">
+                @Model.Item1.description
+            </div>
+            <div class="clearfix">
+                <div class="price">@Model.Item1.price VND</div>
+            </div>
+            <div class="quantity_wanted_p clearfix">
+                <div class="js-qty">
+                    <button type="button" class="control-quantity control-minus">−</button>
+                    <input name="idtin" id="idtin" type="hidden" value="@Model.Item1.id">
+                    <input type="text" name="quantity" size="5" id="qty" class="slsp" style="text-align:center" value="1">
+                    <button type="button" class="control-quantity control-add">+</button>
+                </div>
+                <button type="button" name="addcart" idtin="149" id="addcart" class="btn adtocart">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span id="AddToCartText">Thêm vào giỏ</span>
+                </button>
+            </div>
+            <div class="socialsharing_product no-print">
+                <ul class="social-sharing list-unstyled">
+                    <li>
+                        <a class="btn btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://myphamccwhite.com/kem-dac-tri-tham-seo-ro-149.html" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+                            <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-google-plus" target="_blank" href="https://plus.google.com/share?url=http://myphamccwhite.com/kem-dac-tri-tham-seo-ro-149.html" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+                            <i class="fa fa-google-plus"></i> Google+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Kem đặc trị thâm, sẹo rỗ&amp;url=http://myphamccwhite.com/kem-dac-tri-tham-seo-ro-149.html&amp;" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+                            <i class="fa fa-twitter"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-pinterest" target="_blank" href="http://pinterest.com/pin/create/button/?url=http://myphamccwhite.com/kem-dac-tri-tham-seo-ro-149.html&amp;description=Kem đặc trị thâm do mụn, sẹo nhỏ, tàn nhang.&amp;media=http://myphamccwhite.com/images/item/13556073_1781799645385811_699637460_o-149.jpg" title="" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+                            <i class="fa fa-pinterest-p"></i> Pinterest
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="product__info_block">
+        <p>Chi tiết</p>
+        <div class="canh_css_frame">
+            @Model.Item1.detail
+        </div>
+    </div>
+</div>
+<div class="frame_product_mau_gh">
+    <div class="title_f_p_m_gh_pro">
+        Comment facebook
+    </div>
     <div class="main_f_p_m_gh">
-        <div class="main_pro_all">
-            <ul class="clearfix">
-                @{
-                    foreach (var item in Model.Item2)
+
+    </div>
+</div>
+@if (Model.Item2.Count > 0)
+{
+<div class="frame_product_mau_gh">
+    <div id="productlist04" class="product_related" style="margin-top: 20px;">
+        <h2 class="title_f_p_m_gh_pro">
+            <span>Sản Phẩm Liên Quan</span>
+        </h2>
+        <div class="main_f_p_m_gh">
+            <div class="main_pro_all">
+                <ul class="clearfix">
+                    @foreach (var item in Model.Item2)
                     {
                         <li class="li_pro_all_ col-md-4 col-sm-3 col-xs-2 clearfix">
                             <div class="category-item">
@@ -58,8 +206,15 @@
                                     <div class="category-outer-2"></div>
                                     <div class="category-inner">
                                         <div class="category-img">
-                                            <a href="">
-                                                <img src="images/item/13570287_1781799642052478_608269088_o-146.jpg" alt="Kem dưỡng trắng da mặt">
+                                            <a href="@Url.Action("ProductDetail", "Home", new { id = item.id })">
+                                                @if (String.IsNullOrEmpty(item.image))
+                                                {
+                                                    <img src="~/assets/images/noimage.png" alt="@item.name">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/assets/images/item/@item.image" alt="@item.name">
+                                                }
                                             </a>
                                         </div>
                                         <div class="category-name">
@@ -75,7 +230,7 @@
                                         <div class="detail_short">
                                             <p>@item.detail_short</p>
                                         </div>
-                                        <div class="btnChiTiet"><a href=""><span>Chi tiết</span></a></div>
+                                        <div class="btnChiTiet"><a href="@Url.Action("ProductDetail", "Home", new { id=item.id})"><span>Chi tiết</span></a></div>
                                         <div class="btnMuaHang" idsp="@item.id"><span>Đặt hàng</span></div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -86,8 +241,9 @@
                             </div>
                         </li>
                     }
-                }
-            </ul>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+}

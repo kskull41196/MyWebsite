@@ -7,7 +7,16 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/mycss.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/styleweb.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/styleweb.css" rel="stylesheet" type="text/css" 
+    
+    <!-- Owl Carousel Assets -->
+    <link href="~/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="~/assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="~/assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript" language="javascript" src="~/assets/plugins/owl-carousel/owl.carousel.js"></script>
 </head>
 <body>
     <header>
@@ -157,7 +166,6 @@
     <div id="copyright" class="text-center">
         &copy; @DateTime.Now.Year - Bản quyền thuộc về: <a href="">MyWebsite</a>
     </div>
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

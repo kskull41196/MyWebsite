@@ -602,10 +602,22 @@
     <Content Include="assets\images\skype.png" />
     <Content Include="assets\images\vn-flag.png" />
     <Content Include="assets\images\yahoo2.png" />
+    <Content Include="assets\plugins\owl-carousel\AjaxLoader.gif" />
+    <Content Include="assets\plugins\owl-carousel\grabbing.png" />
+    <Content Include="assets\plugins\owl-carousel\owl.carousel.css" />
+    <Content Include="assets\plugins\owl-carousel\owl.carousel.js" />
+    <Content Include="assets\plugins\owl-carousel\owl.carousel.min.js" />
+    <Content Include="assets\plugins\owl-carousel\owl.theme.css" />
+    <Content Include="assets\plugins\owl-carousel\owl.transitions.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\mycss.css" />
     <Content Include="Content\styleweb.css" />
+    <Content Include="Content\Zoom\images\blank.gif" />
+    <Content Include="Content\Zoom\images\fancybox_loading.gif" />
+    <Content Include="Content\Zoom\images\fancybox_overlay.png" />
+    <Content Include="Content\Zoom\images\fancybox_sprite.png" />
+    <Content Include="Content\Zoom\jquery.fancybox.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -700,6 +712,8 @@
       <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\Zoom\jquery.fancybox.cssbk" />
+    <Content Include="assets\plugins\owl-carousel\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -711,6 +725,13 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Zoom\images\blank.gif" />
+    <Content Include="Scripts\Zoom\images\fancybox_loading.gif" />
+    <Content Include="Scripts\Zoom\images\fancybox_overlay.png" />
+    <Content Include="Scripts\Zoom\images\fancybox_sprite.png" />
+    <Content Include="Scripts\Zoom\jquery.elevatezoom.js" />
+    <Content Include="Scripts\Zoom\jquery.fancybox.css" />
+    <Content Include="Scripts\Zoom\jquery.fancybox.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -751,13 +772,16 @@
     <Content Include="Views\Home\NewsDetail.cshtml" />
     <Content Include="Views\PartialViews\Module\PartialTopProductView.cshtml" />
     <Content Include="Views\PartialViews\Module\PartialOnlineSupport.cshtml" />
+    <Content Include="Scripts\Zoom\jquery.elevateZoom-2.5.3.min.jsbk" />
+    <Content Include="Scripts\Zoom\jquery.fancybox.cssbk" />
+    <Content Include="Scripts\Zoom\jquery.fancybox.jsbk" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\item\" />
     <Folder Include="assets\images\item_category\" />
-    <Folder Include="assets\images\new\" />
-    <Folder Include="assets\images\new_category\" />
+    <Folder Include="assets\images\news\" />
+    <Folder Include="assets\images\news_category\" />
     <Folder Include="assets\images\support\" />
     <Folder Include="assets\support\" />
     <Folder Include="Views\Ajax\" />
