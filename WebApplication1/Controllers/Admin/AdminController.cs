@@ -13,5 +13,10 @@ namespace WebApplication1.Controllers.Admin
         {
             return View();
         }
+        
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }

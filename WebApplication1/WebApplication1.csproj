@@ -776,6 +776,7 @@
     <Content Include="Scripts\Zoom\jquery.elevateZoom-2.5.3.min.jsbk" />
     <Content Include="Scripts\Zoom\jquery.fancybox.cssbk" />
     <Content Include="Scripts\Zoom\jquery.fancybox.jsbk" />
+    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
