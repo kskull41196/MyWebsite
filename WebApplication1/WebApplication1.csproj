@@ -598,7 +598,10 @@
     <Content Include="assets\images\banner.png" />
     <Content Include="assets\images\en-flag.png" />
     <Content Include="assets\images\noimage.png" />
+    <Content Include="assets\images\Phone.png" />
+    <Content Include="assets\images\skype.png" />
     <Content Include="assets\images\vn-flag.png" />
+    <Content Include="assets\images\yahoo2.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\mycss.css" />
@@ -751,6 +754,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\images\item\" />
+    <Folder Include="assets\images\item_category\" />
+    <Folder Include="assets\images\new\" />
+    <Folder Include="assets\images\new_category\" />
+    <Folder Include="assets\images\support\" />
     <Folder Include="assets\support\" />
     <Folder Include="Views\Ajax\" />
     <Folder Include="Views\ItemCategory\" />

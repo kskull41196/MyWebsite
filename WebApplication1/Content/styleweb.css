@@ -228,3 +228,61 @@ ol, ul {
 .main_pro_all ul {
     padding: 0;
 }
+.content-widget.support-widget {
+    padding: 10px 20px;
+}
+.agent-small {
+    margin: 0px 0px 15px;
+}
+.agent-small-title {
+    margin-bottom: 5px;
+}
+.agent-small-inner {
+    display: table;
+    width: 100%;
+}
+.agent-small-image {
+    display: table-cell;
+    width: 76px;
+}
+.agent-small-image-inner {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    height: 50px;
+    float: left;
+    margin: 0px 16px 0px 0px;
+    position: relative;
+    width: 50px;
+    transition: color 0.15s linear 0s;
+}
+.agent-small-image img {
+    border-radius: 50%;
+    height: auto;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    z-index: 2;
+}
+.agent-small-content {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    display: table-cell;
+    padding-bottom: 12px;
+    vertical-align: top;
+}
+.agent-small-yahoo, .agent-small-skype, .agent-small-tel {
+    font-size: 12px;
+    line-height: 22px;
+    padding-left: 25px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px;
+}
+.agent-small-yahoo {
+    background-image: url("../../assets/images/yahoo2.png");
+}
+.agent-small-skype {
+    background-image: url("../../assets/images/skype.png");
+}
+.agent-small-tel {
+    background-image: url("../../assets/images/Phone.png");
+}

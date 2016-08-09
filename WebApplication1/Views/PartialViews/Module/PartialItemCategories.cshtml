@@ -1,27 +1,16 @@
-﻿<div class="frame-box">
+﻿@model IEnumerable<WebApplication1.Models.tbl_item_category>
+<div class="frame-box">
     <div class="title-box">
         Danh mục sản phẩm
     </div>
     <div class="main-box">
         <ul class="ul-box">
-            <li>
-                <a href="" title=""><i class="fa fa-angle-right"></i>Kem dưỡng trắng da mặt</a>
-            </li>
-            <li>
-                <a href="" title=""><i class="fa fa-angle-right"></i>Serum dưỡng và tái tạo da mặt</a>
-            </li>
-            <li>
-                <a href="" title=""><i class="fa fa-angle-right"></i>Kem trị mụn</a>
-            </li>
-            <li>
-                <a href="" title=""><i class="fa fa-angle-right"></i>Kem đặc trị thâm, sẹo rỗ</a>
-            </li>
-            <li>
-                <a href="" title=""><i class="fa fa-angle-right"></i>Kem dưỡng trắng da toàn thân</a>
-            </li>
-            <li>
-                <a href="" title=""><i class="fa fa-angle-right"></i>Tắm trắng da toàn thân</a>
-            </li>
+            @foreach (var itemCategory in Model)
+            {
+                <li>
+                    <a href="@Url.Action("Home","Items",new{id=itemCategory.id})" title=""><i class="fa fa-angle-right"></i>@itemCategory.name</a>
+                </li>
+            }
         </ul>
     </div>
 </div>

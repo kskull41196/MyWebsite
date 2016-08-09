@@ -5,15 +5,14 @@
     </div>
     <div class="main-box">
         <div class="content-widget support-widget">
-            @foreach (WebApplication1.Models.tbl_support supportModel in Model)
+            @foreach (var supportModel in Model)
             {
-                <br />
                 <div class="agent-small">
                     <div class="h4 agent-small-title">@supportModel.name</div>
                     <div class="agent-small-inner">
                         <div class="agent-small-image">
                             <a class="agent-small-image-inner">
-                                <img src=@WebApplication1.Controllers.URLHelper.URL_IMAGE_PATH + @supportModel.image alt="@supportModel.name">
+                                <img src="~/assets/images/support/@supportModel.image" alt="@supportModel.name">
                             </a>
                         </div>
                         <!-- agent-small-image -->
