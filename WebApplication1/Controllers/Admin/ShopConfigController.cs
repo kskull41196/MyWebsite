@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers.Admin
 {
-    public class ShopConfigController : Controller
+    public class ShopConfigController : BaseAdminController
     {
         // GET: ShopConfig
         public ActionResult Index()

@@ -7,9 +7,8 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers.Admin
 {
-    public class ModuleController : Controller
+    public class ModuleController : BaseAdminController
     {
-        DataClassesDataContext data = new DataClassesDataContext();
         // GET: NewsCategory
         private List<tbl_module> getModule(int count)
         {

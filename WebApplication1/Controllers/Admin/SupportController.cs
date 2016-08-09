@@ -8,9 +8,8 @@ using System.IO;
 
 namespace WebApplication1.Controllers.Admin
 {
-    public class SupportController : Controller
+    public class SupportController : BaseAdminController
     {
-        DataClassesDataContext data = new DataClassesDataContext();
         // GET: Supporters
         private List<tbl_support> getSupport(int count)
         {

@@ -8,10 +8,8 @@ using System.IO;
 
 namespace WebApplication1.Controllers.Admin
 {
-    public class NewsController : Controller
+    public class NewsController : BaseAdminController
     {
-        DataClassesDataContext data = new DataClassesDataContext();
-
         //GET: News categories
         private List<tbl_news_category> getNewsCategories(int count)
         {

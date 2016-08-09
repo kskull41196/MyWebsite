@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers.Admin
 {
-    public class AdminController : Controller
+    public class AdminController : BaseAdminController
     {
         // GET: Admin
         public ActionResult Index()

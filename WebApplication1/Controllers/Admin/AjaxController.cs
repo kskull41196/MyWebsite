@@ -8,9 +8,8 @@ using System.IO;
 
 namespace WebApplication1.Controllers.Admin
 {
-    public class AjaxController : Controller
+    public class AjaxController : BaseAdminController
     {
-        DataClassesDataContext data = new DataClassesDataContext();
         public Object ToolAjax() {
             return true;
         }
