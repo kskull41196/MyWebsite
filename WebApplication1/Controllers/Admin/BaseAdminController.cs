@@ -16,11 +16,17 @@ namespace WebApplication1.Controllers
 
     public class ActionExcutedAttribute : ActionFilterAttribute
     {
+        bool hasAdminLoginSession = false;
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            hasAdminLoginSession = checkAdminLoginSession(context);
+            base.OnActionExecuting(context);
+        }
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);
             bool isCurrentLyInLoginPage = filterContext.ActionDescriptor.ActionName.Equals("Login");
-            if (!hasAdminLoginSession() && !isCurrentLyInLoginPage)
+            if (!hasAdminLoginSession && !isCurrentLyInLoginPage)
             {
                 //Redirect to page Login Admin
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
@@ -31,9 +37,14 @@ namespace WebApplication1.Controllers
             }
         }
 
-        private bool hasAdminLoginSession()
+        private bool checkAdminLoginSession(ActionExecutingContext context)
         {
-            return true;
+            Object session = context.HttpContext.Session[Constants.KEY_ADMIN_USERNAME];
+            if (session != null && !String.IsNullOrEmpty(session.ToString()))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

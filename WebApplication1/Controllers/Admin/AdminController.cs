@@ -13,7 +13,27 @@ namespace WebApplication1.Controllers.Admin
         {
             return View();
         }
-        
+
+        [HttpPost]
+        public ActionResult Login(FormCollection form)
+        {
+            var username = form["username"];
+            var password = form["password"];
+            if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password) &&
+                DataHelper.getInstance().login(data, username, password))
+            {
+                //TODO, save session here
+                Session[Constants.KEY_ADMIN_USERNAME] = username;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Vui lòng kiểm tra tên truy cập hoặc mật khẩu.";
+                return View();
+            }
+        }
+
+        [HttpGet]
         public ActionResult Login()
         {
             return View();

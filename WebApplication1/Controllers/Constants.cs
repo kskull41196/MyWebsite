@@ -9,5 +9,6 @@ namespace WebApplication1.Controllers
     {
         public const String NEWS_CATEGORY_NAME_NEWS = "CategoryNews";
         public const String NEWS_CATEGORY_NAME_POLICY = "CategoryPolicy";
+        public const String KEY_ADMIN_USERNAME = "keyadminusername";
     }
 }

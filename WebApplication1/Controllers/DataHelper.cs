@@ -10,7 +10,7 @@ namespace WebApplication1.Controllers
         private static DataHelper instance;
         public static DataHelper getInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new DataHelper();
             }
@@ -82,6 +82,20 @@ namespace WebApplication1.Controllers
         public List<Models.tbl_support> getAllSupporters(Models.DataClassesDataContext data)
         {
             return data.tbl_supports.ToList();
+        }
+
+        public bool checkThisAccountExist(Models.DataClassesDataContext data, string username, string password)
+        {
+            var result = data.tbl_admins.Where(a => a.username.Equals(username) && a.password == password);
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool login(Models.DataClassesDataContext data, string username, string password)
+        {
+            return checkThisAccountExist(data, username, password);
         }
     }
 }
