@@ -63,7 +63,32 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        
+
+        [HttpPost]
+        public ActionResult Login(FormCollection form)
+        {
+            var email = form["email"];
+            var password = form["password"];
+            if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password) &&
+                DataHelper.getInstance().loginMember(data, email, password))
+            {
+                //TODO, save session here
+                Session[Constants.KEY_SESSION_MEMBER_USERNAME] = email;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Vui lòng kiểm tra email hoặc mật khẩu.";
+                return View(URLHelper.URL_HOME_LOGIN);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View(URLHelper.URL_HOME_LOGIN);
+        }
+
         //Get home module
         private List<tbl_module> getHomeModule()
         {

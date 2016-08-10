@@ -39,7 +39,7 @@ namespace WebApplication1.Controllers
 
         private bool checkAdminLoginSession(ActionExecutingContext context)
         {
-            Object session = context.HttpContext.Session[Constants.KEY_ADMIN_USERNAME];
+            Object session = context.HttpContext.Session[Constants.KEY_SESSION_ADMIN_USERNAME];
             if (session != null && !String.IsNullOrEmpty(session.ToString()))
             {
                 return true;

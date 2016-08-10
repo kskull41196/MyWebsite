@@ -20,10 +20,10 @@ namespace WebApplication1.Controllers.Admin
             var username = form["username"];
             var password = form["password"];
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password) &&
-                DataHelper.getInstance().login(data, username, password))
+                DataHelper.getInstance().loginAdmin(data, username, password))
             {
                 //TODO, save session here
-                Session[Constants.KEY_ADMIN_USERNAME] = username;
+                Session[Constants.KEY_SESSION_ADMIN_USERNAME] = username;
                 return RedirectToAction("Index");
             }
             else

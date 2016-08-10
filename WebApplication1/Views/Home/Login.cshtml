@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+
+
+<h2> Đây là trang Login Member </h2>
+
+
+
+<h3 style="color:red">@ViewBag.ErrorMessage</h3>
+
+
+<form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+            Email
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="text" name="email" class="form-control" value="" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <label class="col-sm-3 control-label">
+            Mật khẩu
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="password" name="password" class="form-control" value="" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <button type="submit" name="btnLogin" class="btn btn-default">Đăng nhập</button>
+    </div>
+</form>

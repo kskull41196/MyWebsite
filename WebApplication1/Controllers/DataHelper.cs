@@ -84,7 +84,7 @@ namespace WebApplication1.Controllers
             return data.tbl_supports.ToList();
         }
 
-        public bool checkThisAccountExist(Models.DataClassesDataContext data, string username, string password)
+        public bool checkThisAdminAccountExist(Models.DataClassesDataContext data, string username, string password)
         {
             var result = data.tbl_admins.Where(a => a.username.Equals(username) && a.password == password);
             if (result.Count() > 0)
@@ -93,9 +93,22 @@ namespace WebApplication1.Controllers
             }
             return false;
         }
-        public bool login(Models.DataClassesDataContext data, string username, string password)
+        public bool checkThisMemberAccountExist(Models.DataClassesDataContext data, string email, string password)
         {
-            return checkThisAccountExist(data, username, password);
+            var result = data.tbl_members.Where(a => a.email.Equals(email) && a.password == password);
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool loginAdmin(Models.DataClassesDataContext data, string username, string password)
+        {
+            return checkThisAdminAccountExist(data, username, password);
+        }
+        public bool loginMember(Models.DataClassesDataContext data, string email, string password)
+        {
+            return checkThisMemberAccountExist(data, email, password);
         }
     }
 }
