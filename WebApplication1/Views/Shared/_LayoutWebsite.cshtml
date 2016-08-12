@@ -7,8 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/mycss.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/styleweb.css" rel="stylesheet" type="text/css" 
-    
+    <link href="~/Content/styleweb.css" rel="stylesheet" type="text/css"
+
     <!-- Owl Carousel Assets -->
     <link href="~/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="~/assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
@@ -76,6 +76,9 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        @Html.ActionLink("Giỏ hàng: " + @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT], "ShoppingCard", "Home")
+                    </li>
+                    <li>
                         <a href="">
                             <img src="~/assets/images/en-flag.png" />
                         </a>
@@ -100,14 +103,14 @@
             <div class="row">
                 <div id="left-container" class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     @{
-                        var listModules = (List<WebApplication1.Models.tbl_module>)ViewData["ListModules"];
-                        
+                        var listModules = (List<WebApplication1.Models.tbl_module>)ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_LIST_MODULE];
+
                         @*Start of a partial view*@
-                        foreach(WebApplication1.Models.tbl_module module in listModules)
-                        {
-                            @Html.Action(module.name_partial, "PartialView");
-                        }
-                        @*End of a partial view*@
+                    foreach (WebApplication1.Models.tbl_module module in listModules)
+                    {
+                        @Html.Action(module.name_partial, "PartialView");
+                    }
+                    @*End of a partial view*@
                     }
                 </div>
 

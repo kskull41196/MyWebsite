@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
         {
             return View(URLHelper.URL_HOME_ALL_PRODUCTS, DataHelper.getInstance().getListAllProducts(data));
         }
-        
+
         public ActionResult News()
         {
             ViewBag.Message = "Tin Tức";
@@ -41,6 +41,25 @@ namespace WebApplication1.Controllers
                 listNewsWithTheSameCategory = DataHelper.getInstance().getListOtherNewsByCategory(data, newsToShowDetail.id, newsToShowDetail.parent.Value);
             }
             return View(URLHelper.URL_HOME_NEWS_DETAIL, new Tuple<tbl_new, List<tbl_new>>(newsToShowDetail, listNewsWithTheSameCategory));
+        }
+
+        public ActionResult AddItemToShoppingCard(int id, long? price, int? quantity)
+        {
+            //Save this item to shopping card
+            long mPrice = 0;
+            int mAmount = 0;
+            if (price.HasValue)
+            {
+                mPrice = price.Value;
+            }
+            if (quantity.HasValue)
+            {
+                mAmount = quantity.Value;
+            }
+            DataHelper.getInstance().addItemsToShoppingCard(this, id, mPrice, mAmount);
+
+            //Reload the current page.
+            return RedirectToAction("ProductDetail", new { id = id });
         }
 
         public ActionResult ProductDetail(int id)

@@ -110,5 +110,53 @@ namespace WebApplication1.Controllers
         {
             return checkThisMemberAccountExist(data, email, password);
         }
+        
+        public void clearShoppingCard(BaseController context)
+        {
+            context.Session[Constants.KEY_SESSION_SHOPPING_CARD] = new List<Models.tbl_order_detail>();
+        }
+
+        public void addItemsToShoppingCard(BaseController context, int itemId, long price, int amount)
+        {
+            List<Models.tbl_order_detail> shoppingCard = getShoppingCardInSession(context);
+            bool doesItemToAddExistInShoppingCard = false;
+            foreach (Models.tbl_order_detail record in shoppingCard)
+            {
+                if(record.id_product == itemId)
+                {
+                    record.quantity = record.quantity + amount;
+                    doesItemToAddExistInShoppingCard = true;
+                }
+            }
+            if(!doesItemToAddExistInShoppingCard)
+            {
+                Models.tbl_order_detail recordInShoppingCard = new Models.tbl_order_detail();
+                recordInShoppingCard.id_product = itemId;
+                recordInShoppingCard.price = price;
+                recordInShoppingCard.quantity = amount;
+                shoppingCard.Add(recordInShoppingCard);
+            }
+        }
+        public List<Models.tbl_order_detail> getShoppingCardInSession(BaseController context)
+        {
+            return getShoppingCardInSessionByHttpContext(context.HttpContext);
+        }
+
+        public List<Models.tbl_order_detail> getShoppingCardInSessionByHttpContext(HttpContextBase context)
+        {
+            List<Models.tbl_order_detail> shoppingCard;
+            Object objShoppingCard = context.Session[Constants.KEY_SESSION_SHOPPING_CARD];
+            if (objShoppingCard != null)
+            {
+                shoppingCard = (List<Models.tbl_order_detail>)objShoppingCard;
+            }
+            else
+            {
+                shoppingCard = new List<Models.tbl_order_detail>();
+                context.Session[Constants.KEY_SESSION_SHOPPING_CARD] = shoppingCard;
+            }
+
+            return shoppingCard;
+        }
     }
 }
