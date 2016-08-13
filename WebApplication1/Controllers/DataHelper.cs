@@ -46,7 +46,7 @@ namespace WebApplication1.Controllers
             }
             return itemCategory.Single();
         }
-        
+
         //This method gets all records in tbl_news which has parent name == Constants.NEWS_CATEGORY_NAME_NEWS
         public List<Models.tbl_new> getListAllNews(Models.DataClassesDataContext data)
         {
@@ -110,12 +110,38 @@ namespace WebApplication1.Controllers
         {
             return checkThisMemberAccountExist(data, email, password);
         }
-        
+
+        public bool signUp(Models.DataClassesDataContext data, string email, string password
+            , string fullname, string phone, string address
+            , string username, DateTime birthday, Constants.Gender gender)
+        {
+            bool doesAccountToAddExist = false;
+            if (!doesAccountToAddExist)
+            {
+                Models.tbl_member account = new Models.tbl_member();
+                account.email = email;
+                account.address = address;
+                account.date_added = DateTime.Now;
+                account.last_modified = DateTime.Now;
+                account.name = fullname;
+                account.password = password;
+                account.status = (byte)Constants.AccountStatus.INACTIVE;
+                account.username = username;
+                account.birthday = birthday;
+                account.gender = (byte)gender;
+                
+                data.tbl_members.InsertOnSubmit(account);
+                data.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
+
         public void clearShoppingCard(BaseController context)
         {
             context.Session[Constants.KEY_SESSION_SHOPPING_CARD] = new List<Models.tbl_order_detail>();
         }
-        
+
         public void DeleteItemsFromShoppingCard(BaseController context, int itemId)
         {
             List<Models.tbl_order_detail> shoppingCard = getShoppingCardInSession(context);
@@ -139,13 +165,13 @@ namespace WebApplication1.Controllers
             bool doesItemToAddExistInShoppingCard = false;
             foreach (Models.tbl_order_detail record in shoppingCard)
             {
-                if(record.id_product == itemId)
+                if (record.id_product == itemId)
                 {
                     record.quantity = record.quantity + amount;
                     doesItemToAddExistInShoppingCard = true;
                 }
             }
-            if(!doesItemToAddExistInShoppingCard)
+            if (!doesItemToAddExistInShoppingCard)
             {
                 Models.tbl_order_detail recordInShoppingCard = new Models.tbl_order_detail();
                 recordInShoppingCard.id_product = itemId;

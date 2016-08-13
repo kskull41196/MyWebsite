@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+
+
+<h2> Đây là trang đăng ký</h2>
+
+
+
+<h3 style="color:red">@ViewBag.ErrorMessage</h3>
+
+
+<form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">
+            Họ tên khách hàng
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="text" name="fullname" class="form-control" value="@ViewData["fullname"]" />
+        </div>
+        <br />
+        <br />
+        <br />
+
+        <label class="col-sm-3 control-label">
+            Username
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="text" name="username" class="form-control" value="@ViewData["username"]" />
+        </div>
+        <br />
+        <br />
+        <br />
+
+        <label class="col-sm-3 control-label">
+            Email
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="text" name="email" class="form-control" value="@ViewData["email"]" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <label class="col-sm-3 control-label">
+            Địa chỉ
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="text" name="address" class="form-control" value="@ViewData["address"]" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <label class="col-sm-3 control-label">
+            Điện thọai
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="text" name="phone" class="form-control" value="@ViewData["phone"]" />
+        </div>
+        <br />
+        <br />
+        <br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <label class="col-sm-3 control-label">
+            Giới tính
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            @if(ViewData["gender"] != null && !String.IsNullOrEmpty(ViewData["gender"].ToString()))
+            {
+                @Html.DropDownList("Gender",
+                EnumHelper.GetSelectList(typeof(WebApplication1.Controllers.Constants.Gender), (WebApplication1.Controllers.Constants.Gender)ViewData["gender"]),
+                "Chọn giới tính",
+                new { @class = "form-control" })
+            }
+            else
+            {
+                @Html.DropDownList("Gender",
+                EnumHelper.GetSelectList(typeof(WebApplication1.Controllers.Constants.Gender)),
+                "Chọn giới tính",
+                new { @class = "form-control" })
+            }
+        </div>
+        <br />
+        <br />
+        <br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <label class="col-sm-3 control-label">
+            Mật khẩu
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="password" name="password" class="form-control" value="@ViewData["password"]" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <label class="col-sm-3 control-label">
+            Nhập lại mật khẩu
+        </label>
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <input type="password" name="passwordconfirm" class="form-control" value="@ViewData["passwordconfirm"]" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <button type="submit" name="btnsignup" class="btn btn-default">Đăng ký</button>
+    </div>
+</form>

@@ -779,6 +779,9 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\ShoppingCard.cshtml" />
+    <Content Include="Views\Home\PayShoppingCard.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Home\CompleteSignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

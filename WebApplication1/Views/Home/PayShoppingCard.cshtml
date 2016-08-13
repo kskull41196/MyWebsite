@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication1.Models.tbl_order_detail>
+@{
+    ViewBag.Title = "ShoppingCard";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+<div class="product_all">
+    <h2 class="title_f_p_m_gh_pro">
+        <span>Thanh Toán</span>
+    </h2><!-- End .title_f_p_m_gh -->
+
+    <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">
+                Email
+            </label>
+            <br />
+            <br />
+            <br />
+            <div class="col-sm-6">
+                <input type="text" name="email" class="form-control" value="" />
+            </div>
+            <br />
+            <br />
+            <br />
+            <label class="col-sm-3 control-label">
+                Mật khẩu
+            </label>
+            <br />
+            <br />
+            <br />
+            <div class="col-sm-6">
+                <input type="password" name="password" class="form-control" value="" />
+            </div>
+            <br />
+            <br />
+            <br />
+            <button type="submit" name="btnLogin" class="btn btn-default">Đăng nhập</button>
+        </div>
+    </form>

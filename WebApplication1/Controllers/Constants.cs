@@ -17,5 +17,14 @@ namespace WebApplication1.Controllers
         public const String KEY_SESSION_SHOPPING_CARD = "keysessionshoppingcard";
         public const String KEY_SESSION_ADMIN_USERNAME = "keyadminusername";
         public const String KEY_SESSION_MEMBER_USERNAME = "keymemberusername";
+
+        public enum Gender
+        {
+            MALE, FEMALE, BOTH
+        }
+        public enum AccountStatus
+        {
+            ACTIVE, INACTIVE
+        }
     }
 }

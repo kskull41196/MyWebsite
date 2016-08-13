@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
@@ -169,6 +170,82 @@ namespace WebApplication1.Controllers
         public ActionResult Login()
         {
             return View(URLHelper.URL_HOME_LOGIN);
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(FormCollection form, String Gender)
+        {
+            bool isError = true;
+            var email = form["email"];
+            var password = form["password"];
+            var fullname = form["fullname"];
+            var phone = form["phone"];
+            var passwordconfirm = form["passwordconfirm"];
+            var address = form["address"];
+            var username = form["username"];
+            var birthday = form["birthday"];
+            ViewData["email"] = email;
+            ViewData["password"] = password;
+            ViewData["fullname"] = fullname;
+            ViewData["phone"] = phone;
+            ViewData["passwordconfirm"] = passwordconfirm;
+            ViewData["address"] = address;
+            ViewData["username"] = username;
+            ViewData["birthday"] = birthday;
+            ViewData["gender"] = Gender;
+
+
+            if (String.IsNullOrEmpty(phone.ToString()) || !Regex.IsMatch(phone.ToString(), "^[0-9]*$"))
+            {
+                ViewBag.ErrorMessage = "Điện thoại không đúng định dạng";
+            }
+            else if (password.ToString().Length < 6)
+            {
+                ViewBag.ErrorMessage = "Mật khẩu phải nhiều hơn 6 ký tự";
+            }
+            else if (!password.ToString().Equals(passwordconfirm.ToString()))
+            {
+                ViewBag.ErrorMessage = "Mật khẩu xác nhận không trùng khớp";
+            }
+            else if (String.IsNullOrEmpty(email.ToString()) || !Regex.IsMatch(email.ToString(), @"^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
+            {
+                ViewBag.ErrorMessage = "Email không đúng định dạng";
+            }
+            else if (String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password)
+               && String.IsNullOrEmpty(fullname) && !String.IsNullOrEmpty(phone)
+               && String.IsNullOrEmpty(passwordconfirm) && !String.IsNullOrEmpty(address)
+               && String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(birthday)
+               && String.IsNullOrEmpty(Gender))
+            {
+                ViewBag.ErrorMessage = "Vui lòng nhập tất cả thông tin";
+            }
+            else
+            {
+                isError = false;
+            }
+
+            if (!isError)
+            {
+                DateTime dtBirthDay = DateTime.Parse(birthday);
+                Constants.Gender enumGender = (Constants.Gender)Int16.Parse(Gender);
+                DataHelper.getInstance().signUp(data, email, password, fullname, phone, address, username, dtBirthDay, enumGender);
+                return RedirectToAction("CompleteSignUp");
+            }
+            else
+            {
+                return View(URLHelper.URL_HOME_SIGNUP);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult SignUp()
+        {
+            return View(URLHelper.URL_HOME_SIGNUP);
+        }
+
+        public ActionResult CompleteSignUp()
+        {
+            return View(URLHelper.URL_HOME_SIGNUP);
         }
 
         //Get home module
