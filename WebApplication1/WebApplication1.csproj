@@ -778,6 +778,7 @@
     <Content Include="Scripts\Zoom\jquery.fancybox.jsbk" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\ShoppingCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

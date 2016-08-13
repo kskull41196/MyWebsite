@@ -46,7 +46,7 @@ namespace WebApplication1.Controllers
             }
             return itemCategory.Single();
         }
-
+        
         //This method gets all records in tbl_news which has parent name == Constants.NEWS_CATEGORY_NAME_NEWS
         public List<Models.tbl_new> getListAllNews(Models.DataClassesDataContext data)
         {
@@ -114,6 +114,23 @@ namespace WebApplication1.Controllers
         public void clearShoppingCard(BaseController context)
         {
             context.Session[Constants.KEY_SESSION_SHOPPING_CARD] = new List<Models.tbl_order_detail>();
+        }
+        
+        public void DeleteItemsFromShoppingCard(BaseController context, int itemId)
+        {
+            List<Models.tbl_order_detail> shoppingCard = getShoppingCardInSession(context);
+            foreach (Models.tbl_order_detail record in shoppingCard.ToList())
+            {
+                if (record.id_product == itemId)
+                {
+                    shoppingCard.Remove(record);
+                }
+            }
+        }
+
+        public void updateShoppingCard(BaseController context, List<Models.tbl_order_detail> shoppingCard)
+        {
+            context.Session[Constants.KEY_SESSION_SHOPPING_CARD] = shoppingCard;
         }
 
         public void addItemsToShoppingCard(BaseController context, int itemId, long price, int amount)

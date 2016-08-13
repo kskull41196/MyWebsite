@@ -10,6 +10,7 @@ namespace WebApplication1.Controllers
         public const String NEWS_CATEGORY_NAME_NEWS = "CategoryNews";
         public const String NEWS_CATEGORY_NAME_POLICY = "CategoryPolicy";
 
+        public const String KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST = "keyviewdatashoppingcardallitemscost";
         public const String KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT = "keyviewdatashoppingcarditemsamount";
         public const String KEY_VIEWDATA_LIST_MODULE = "keyviewdatalistmodule";
 

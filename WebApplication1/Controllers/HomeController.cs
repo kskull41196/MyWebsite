@@ -73,14 +73,77 @@ namespace WebApplication1.Controllers
             return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
 
-        public ActionResult About()
+        public ActionResult PayShoppingCard()
         {
-            return View();
+            return View(URLHelper.URL_HOME_PAY_SHOPPING_CARD);
         }
 
         public ActionResult Contact()
         {
             return View();
+        }
+
+        public ActionResult ShoppingCard()
+        {
+            long totalCost = 0;
+            List<tbl_order_detail> shoppingCard = DataHelper.getInstance().getShoppingCardInSession(this);
+            foreach (tbl_order_detail record in shoppingCard.ToList())
+            {
+                if (record.price.HasValue && record.quantity.HasValue)
+                {
+                    totalCost += record.price.Value * record.quantity.Value;
+                }
+            }
+
+            ViewData[Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST] = totalCost;
+            return View(URLHelper.URL_HOME_SHOPPING_CARD, shoppingCard);
+        }
+
+        public ActionResult DeleteFromShoppingCard(int id)
+        {
+            DataHelper.getInstance().DeleteItemsFromShoppingCard(this, id);
+            if (DataHelper.getInstance().getShoppingCardInSession(this).Count() > 0)
+            {
+                return RedirectToAction("ShoppingCard");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteAllFromShoppingCard()
+        {
+            DataHelper.getInstance().clearShoppingCard(this);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ShoppingCard(FormCollection form)
+        {
+            return UpdateShoppingCard(form);
+        }
+
+        public ActionResult UpdateShoppingCard(FormCollection form)
+        {
+            List<tbl_order_detail> shoppingCard = DataHelper.getInstance().getShoppingCardInSession(this);
+            bool shoppingCardHasBeenChanged = false;
+            foreach (tbl_order_detail itemInShoppingCard in shoppingCard.ToList())
+            {
+                foreach (var key in form.Keys)
+                {
+                    if (key.ToString().Equals("itemAmount_" + itemInShoppingCard.id_product))
+                    {
+                        var value = form[key.ToString()];
+                        itemInShoppingCard.quantity = Int32.Parse(value);
+                        shoppingCardHasBeenChanged = true;
+                    }
+                }
+
+            }
+
+            if (shoppingCardHasBeenChanged)
+            {
+                DataHelper.getInstance().updateShoppingCard(this, shoppingCard);
+            }
+            return RedirectToAction("ShoppingCard");
         }
 
         [HttpPost]

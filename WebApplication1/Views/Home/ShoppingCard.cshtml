@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication1.Models.tbl_order_detail>
+@{
+    ViewBag.Title = "ShoppingCard";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+<div class="product_all">
+    <h2 class="title_f_p_m_gh_pro">
+        <span>Giỏ Hàng</span>
+    </h2><!-- End .title_f_p_m_gh -->
+
+    <div class="main_f_p_m_gh">
+        <div class="main_pro_all">
+            <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
+                <table class="table table-bordered table-hover btl-list-bbli bg-white">
+                    <thead>
+                        <tr>
+                            <td style="width: 50px;" class="text-center">Mã SP</td>
+                            <td style="width: 100px;" class="text-center">Đơn giá</td>
+                            <td style="width: 100px;" class="text-center">Số lượng</td>
+                            <td style="width: 100px;" class="text-center">Tùy chọn</td>
+                        </tr>
+                    </thead>
+                    @foreach (WebApplication1.Models.tbl_order_detail item in Model)
+                    {
+                             <tr>
+                                <td class="text-center">@item.id_product</td>
+                                <td class="text-center">@item.price</td>
+                                <td class="text-center">
+                                    <input type="number" min="1" name="itemAmount_@item.id_product" value="@item.quantity" />
+                                </td>
+                                <td class="text-center">
+                                    <a href='@Url.Action("ProductDetail", "Home", new { @id = @item.id_product})' class="btn btn-xs btn-pencil btn-primary" title="Xem">
+                                        Xem
+                                    </a>
+                                    <a href='@Url.Action("DeleteFromShoppingCard", "Home", new { @id=@item.id_product})' class="btn btn-xs btn-remove btn-danger" title="Xóa">
+                                        Xóa
+                                    </a>
+                                </td>
+                            </tr>
+                    }
+
+                    <h3 style="color:red">Tổng tiền: @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST]</h3>
+                    <button type="button" onclick="location.href='@Url.Action("DeleteAllFromShoppingCard", "Home")'" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i>Xóa tất cả</button>
+                    <button type="submit" onclick="location.href='@Url.Action("UpdateShoppingCard", "Home")'" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i>Cập nhật</button>
+                </table>
+            </form>
+
+            <button type="button" onclick="location.href='@Url.Action("PayShoppingCard", "Home")'" class="btn btn-primary btn-sm pull-left"><i class="fa fa-plus-circle"></i>Thanh toán</button>
+        </div>
+    </div>
+</div>

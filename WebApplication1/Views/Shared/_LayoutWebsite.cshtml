@@ -76,7 +76,14 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        @Html.ActionLink("Giỏ hàng: " + @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT], "ShoppingCard", "Home")
+                        @if (ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT].ToString().Equals("0"))
+                        {
+                            <a href="">Giỏ hàng: 0</a>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Giỏ hàng: " + @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT], "ShoppingCard", "Home")
+                        }
                     </li>
                     <li>
                         <a href="">
