@@ -213,9 +213,10 @@ namespace WebApplication1.Controllers
             {
                 ViewBag.ErrorMessage = "Email không đúng định dạng";
             }
-            else if (String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password)
-               && String.IsNullOrEmpty(fullname) && !String.IsNullOrEmpty(phone)
-               && String.IsNullOrEmpty(passwordconfirm) && !String.IsNullOrEmpty(address) && String.IsNullOrEmpty(Gender))
+            else if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password)
+               || String.IsNullOrEmpty(fullname) || String.IsNullOrEmpty(phone)
+               || String.IsNullOrEmpty(passwordconfirm) || String.IsNullOrEmpty(address) 
+               || String.IsNullOrEmpty(Gender))
             {
                 ViewBag.ErrorMessage = "Vui lòng nhập tất cả thông tin";
             }
