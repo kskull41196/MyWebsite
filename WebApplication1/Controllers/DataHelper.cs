@@ -113,7 +113,7 @@ namespace WebApplication1.Controllers
 
         public bool signUp(Models.DataClassesDataContext data, string email, string password
             , string fullname, string phone, string address
-            , string username, DateTime birthday, Constants.Gender gender)
+            , DateTime birthday, Constants.Gender gender)
         {
             bool doesAccountToAddExist = false;
             if (!doesAccountToAddExist)
@@ -126,7 +126,6 @@ namespace WebApplication1.Controllers
                 account.name = fullname;
                 account.password = password;
                 account.status = (byte)Constants.AccountStatus.INACTIVE;
-                account.username = username;
                 account.birthday = birthday;
                 account.gender = (byte)gender;
                 
