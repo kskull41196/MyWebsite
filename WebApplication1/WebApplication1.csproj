@@ -182,6 +182,7 @@
     <Compile Include="Controllers\Admin\ShopConfigController.cs" />
     <Compile Include="Controllers\Admin\SupportController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EmailHelper.cs" />
     <Compile Include="Controllers\PartialViewController.cs" />
     <Compile Include="Controllers\Constants.cs" />
     <Compile Include="Controllers\DataHelper.cs" />
@@ -946,6 +947,7 @@
     <Content Include="Views\Home\PayShoppingCard.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\CompleteSignUp.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

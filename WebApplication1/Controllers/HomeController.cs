@@ -213,7 +213,7 @@ namespace WebApplication1.Controllers
             }
             else if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password)
                || String.IsNullOrEmpty(fullname) || String.IsNullOrEmpty(phone)
-               || String.IsNullOrEmpty(passwordconfirm) || String.IsNullOrEmpty(address) 
+               || String.IsNullOrEmpty(passwordconfirm) || String.IsNullOrEmpty(address)
                || String.IsNullOrEmpty(Gender))
             {
                 ViewBag.ErrorMessage = "Vui lòng nhập tất cả thông tin";
@@ -251,6 +251,30 @@ namespace WebApplication1.Controllers
         public ActionResult CompleteSignUp()
         {
             return View(URLHelper.URL_HOME_COMPLETE_SIGNUP);
+        }
+
+
+        [HttpPost]
+        public ActionResult ForgotPassword(FormCollection form)
+        {
+            var email = form["email"];
+            if (email != null && !String.IsNullOrEmpty(email.ToString()) && Regex.IsMatch(email.ToString(), "^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
+            {
+                ViewBag.Message = "Chúng tôi đã gửi mật khẩu vào email của ban.";
+                EmailHelper.getInstance().sendPasswordRecoveryMail(data, email);
+            }
+            else
+            {
+                ViewBag.Message = "Vui lòng nhập email đúng định dạng";
+            }
+
+            return View(URLHelper.URL_HOME_FORGOT_PASSWORD);
+        }
+
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View(URLHelper.URL_HOME_FORGOT_PASSWORD);
         }
 
         //Get home module

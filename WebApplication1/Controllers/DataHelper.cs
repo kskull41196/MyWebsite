@@ -102,6 +102,15 @@ namespace WebApplication1.Controllers
             }
             return false;
         }
+        public string getPasswordOfMemberAccount(Models.DataClassesDataContext data, string email)
+        {
+            var result = data.tbl_members.Where(a => a.email.Equals(email));
+            if (result.Count() > 0)
+            {
+                return result.Single().password;
+            }
+            return "";
+        }
         public bool loginAdmin(Models.DataClassesDataContext data, string username, string password)
         {
             return checkThisAdminAccountExist(data, username, password);

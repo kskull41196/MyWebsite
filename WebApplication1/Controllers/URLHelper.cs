@@ -21,6 +21,7 @@ namespace WebApplication1.Controllers
         public const String URL_HOME_LOGIN = "~/Views/Home/Login.cshtml";
         public const String URL_HOME_SIGNUP = "~/Views/Home/SignUp.cshtml";
         public const String URL_HOME_COMPLETE_SIGNUP = "~/Views/Home/CompleteSignUp.cshtml";
+        public const String URL_HOME_FORGOT_PASSWORD = "~/Views/Home/ForgotPassword.cshtml";
 
         //Admin URL
         public const String URL_ADMIN_ITEM_CATEGORY = "~/Views/Admin/ItemCategory/ItemCategory.cshtml";
