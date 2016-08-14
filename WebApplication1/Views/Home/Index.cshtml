@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
 @{
-    var listModulesHome = (List<WebApplication1.Models.tbl_module>)ViewData["ListModulesHome"];
+    var listModulesHome = (List<WebApplication1.Models.tbl_module>)ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_LIST_MODULE_INDEX_PAGE];
 
     @*Start of a partial view home*@
     foreach (WebApplication1.Models.tbl_module moduleHome in listModulesHome)

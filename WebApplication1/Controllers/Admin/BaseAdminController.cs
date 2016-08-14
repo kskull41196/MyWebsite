@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
         bool hasAdminLoginSession = false;
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            hasAdminLoginSession = DataHelper.getInstance().checkIsAdminLoggingIn(context.HttpContext);
+            hasAdminLoginSession = DataHelper.AccountHelper.getInstance().checkIsAdminLoggingIn(context.HttpContext);
             base.OnActionExecuting(context);
         }
         public override void OnActionExecuted(ActionExecutedContext filterContext)

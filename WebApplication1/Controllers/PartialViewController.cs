@@ -99,7 +99,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult SupportOnline()
         {
-            return PartialView(URLHelper.URL_HOME_PARTIAL_SUPPORT_ONLINE, DataHelper.getInstance().getAllSupporters(data));
+            return PartialView(URLHelper.URL_HOME_PARTIAL_SUPPORT_ONLINE, DataHelper.GeneralHelper.getInstance().getAllSupporters(data));
         }
     }
 }

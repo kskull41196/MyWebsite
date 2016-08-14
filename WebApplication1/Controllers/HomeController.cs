@@ -10,36 +10,36 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index(string id, string id2)
+        public ActionResult Index()
         {
-            ViewData["ListModulesHome"] = getHomeModule();
+            ViewData[Constants.KEY_VIEWDATA_LIST_MODULE_INDEX_PAGE] = DataHelper.GeneralHelper.getInstance().getHomeModule(data);
             return View();
         }
 
         public ActionResult Items()
         {
-            return View(URLHelper.URL_HOME_ALL_PRODUCTS, DataHelper.getInstance().getListAllProducts(data));
+            return View(URLHelper.URL_HOME_ALL_PRODUCTS, DataHelper.ProductHelper.getInstance().getListAllProducts(data));
         }
 
         public ActionResult News()
         {
             ViewBag.Message = "Tin Tức";
-            return View(URLHelper.URL_HOME_NEWS, DataHelper.getInstance().getListAllNews(data));
+            return View(URLHelper.URL_HOME_NEWS, DataHelper.NewsHelper.getInstance().getListAllNews(data));
         }
 
         public ActionResult Policy()
         {
             ViewBag.Message = "Chính Sách";
-            return View(URLHelper.URL_HOME_POLICY, DataHelper.getInstance().getListAllPolicy(data));
+            return View(URLHelper.URL_HOME_POLICY, DataHelper.NewsHelper.getInstance().getListAllPolicy(data));
         }
 
         public ActionResult NewsDetail(int id)
         {
-            tbl_new newsToShowDetail = DataHelper.getInstance().getNewsById(data, id);
+            tbl_new newsToShowDetail = DataHelper.NewsHelper.getInstance().getNewsById(data, id);
             List<tbl_new> listNewsWithTheSameCategory = null;
             if (newsToShowDetail != null && newsToShowDetail.parent.HasValue)
             {
-                listNewsWithTheSameCategory = DataHelper.getInstance().getListOtherNewsByCategory(data, newsToShowDetail.id, newsToShowDetail.parent.Value);
+                listNewsWithTheSameCategory = DataHelper.NewsHelper.getInstance().getListOtherNewsByCategory(data, newsToShowDetail.id, newsToShowDetail.parent.Value);
             }
             return View(URLHelper.URL_HOME_NEWS_DETAIL, new Tuple<tbl_new, List<tbl_new>>(newsToShowDetail, listNewsWithTheSameCategory));
         }
@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
             {
                 mAmount = quantity.Value;
             }
-            DataHelper.getInstance().addItemsToShoppingCard(this, id, mPrice, mAmount);
+            DataHelper.ShoppingCardHelper.getInstance().addItemsToShoppingCard(this, id, mPrice, mAmount);
 
             //Reload the current page.
             return RedirectToAction("ProductDetail", new { id = id });
@@ -65,11 +65,11 @@ namespace WebApplication1.Controllers
 
         public ActionResult ProductDetail(int id)
         {
-            tbl_item itemToShowDetail = DataHelper.getInstance().getProductById(data, id);
+            tbl_item itemToShowDetail = DataHelper.ProductHelper.getInstance().getProductById(data, id);
             List<tbl_item> listItemWithTheSameCategory = null;
             if (itemToShowDetail != null && itemToShowDetail.parent.HasValue)
             {
-                listItemWithTheSameCategory = DataHelper.getInstance().getListOtherProductsByCategory(data, itemToShowDetail.id, itemToShowDetail.parent.Value);
+                listItemWithTheSameCategory = DataHelper.ProductHelper.getInstance().getListOtherProductsByCategory(data, itemToShowDetail.id, itemToShowDetail.parent.Value);
             }
             return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
@@ -78,7 +78,7 @@ namespace WebApplication1.Controllers
         public ActionResult PayShoppingCard()
         {
             //If is logging in = false -> redirect to login page
-            if (!DataHelper.getInstance().checkIsMemberLoggingIn(HttpContext))
+            if (!DataHelper.AccountHelper.getInstance().checkIsMemberLoggingIn(HttpContext))
             {
                 return RedirectToAction("Login");
             }
@@ -94,7 +94,7 @@ namespace WebApplication1.Controllers
         public ActionResult ShoppingCard()
         {
             long totalCost = 0;
-            List<DataHelper.ShoppingCardItemModel> shoppingCard = DataHelper.getInstance().getShoppingCardItemModelsInSession(this);
+            List<DataHelper.ShoppingCardItemModel> shoppingCard = DataHelper.ShoppingCardHelper.getInstance().getShoppingCardItemModelsInSession(this);
             foreach (DataHelper.ShoppingCardItemModel record in shoppingCard.ToList())
             {
                 totalCost += record.total;
@@ -106,8 +106,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult DeleteFromShoppingCard(int id)
         {
-            DataHelper.getInstance().DeleteItemsFromShoppingCard(this, id);
-            if (DataHelper.getInstance().getShoppingCardInSession(this).Count() > 0)
+            DataHelper.ShoppingCardHelper.getInstance().DeleteItemsFromShoppingCard(this, id);
+            if (DataHelper.ShoppingCardHelper.getInstance().getShoppingCardInSession(this).Count() > 0)
             {
                 return RedirectToAction("ShoppingCard");
             }
@@ -116,13 +116,13 @@ namespace WebApplication1.Controllers
 
         public ActionResult DeleteAllFromShoppingCard()
         {
-            DataHelper.getInstance().clearShoppingCard(this);
+            DataHelper.ShoppingCardHelper.getInstance().clearShoppingCard(this);
             return RedirectToAction("Index");
         }
 
         public ActionResult ActivateMemberAccount(string email)
         {
-            if (DataHelper.getInstance().activateMemberAccount(this, email))
+            if (DataHelper.AccountHelper.getInstance().activateMemberAccount(this, email))
             {
                 ViewBag.Message = "Kích hoạt tài khoản thành công!";
             }
@@ -141,7 +141,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult UpdateShoppingCard(FormCollection form)
         {
-            List<tbl_order_detail> shoppingCard = DataHelper.getInstance().getShoppingCardInSession(this);
+            List<tbl_order_detail> shoppingCard = DataHelper.ShoppingCardHelper.getInstance().getShoppingCardInSession(this);
             bool shoppingCardHasBeenChanged = false;
             foreach (tbl_order_detail itemInShoppingCard in shoppingCard.ToList())
             {
@@ -159,7 +159,7 @@ namespace WebApplication1.Controllers
 
             if (shoppingCardHasBeenChanged)
             {
-                DataHelper.getInstance().updateShoppingCard(this, shoppingCard);
+                DataHelper.ShoppingCardHelper.getInstance().updateShoppingCard(this, shoppingCard);
             }
             return RedirectToAction("ShoppingCard");
         }
@@ -170,7 +170,7 @@ namespace WebApplication1.Controllers
             var email = form["email"];
             var password = form["password"];
             if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password) &&
-                DataHelper.getInstance().loginMember(data, email, password))
+                DataHelper.AccountHelper.getInstance().loginMember(data, email, password))
             {
                 //TODO, save session here
                 Session[Constants.KEY_SESSION_MEMBER_USERNAME] = email;
@@ -241,9 +241,9 @@ namespace WebApplication1.Controllers
                 DateTime dtBirthDay = DateTime.Now;
                 Constants.Gender enumGender = (Constants.Gender)Int16.Parse(Gender);
 
-                if (DataHelper.getInstance().signUp(data, email, password, fullname, phone, address, dtBirthDay, enumGender))
+                if (DataHelper.AccountHelper.getInstance().signUp(data, email, password, fullname, phone, address, dtBirthDay, enumGender))
                 {
-                    DataHelper.getInstance().loginMember(data, email, password);
+                    DataHelper.AccountHelper.getInstance().loginMember(data, email, password);
                     return RedirectToAction("CompleteSignUp");
                 }
                 else
@@ -265,8 +265,7 @@ namespace WebApplication1.Controllers
         {
             return View(URLHelper.URL_HOME_COMPLETE_SIGNUP);
         }
-
-
+        
         [HttpPost]
         public ActionResult ForgotPassword(FormCollection form)
         {
@@ -288,13 +287,6 @@ namespace WebApplication1.Controllers
         public ActionResult ForgotPassword()
         {
             return View(URLHelper.URL_HOME_FORGOT_PASSWORD);
-        }
-
-        //Get home module
-        private List<tbl_module> getHomeModule()
-        {
-            var result = data.tbl_modules.Where(a => a.type == 2).OrderByDescending(a => a.date_added);
-            return result.ToList();
         }
     }
 }

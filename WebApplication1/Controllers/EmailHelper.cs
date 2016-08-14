@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
 
         public void sendPasswordRecoveryMail(Models.DataClassesDataContext data, string sendToEmail)
         {
-            string password = DataHelper.getInstance().getPasswordOfMemberAccount(data, sendToEmail);
+            string password = DataHelper.AccountHelper.getInstance().getPasswordOfMemberAccount(data, sendToEmail);
             if (!password.Equals(""))
             {
                 sendMail(data, ADMIN_GMAIL_EMAIL, ADMIN_GMAIL_EMAIL_PASSWORD, sendToEmail, "Password recovery",

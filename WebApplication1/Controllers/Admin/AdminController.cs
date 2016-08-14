@@ -20,7 +20,7 @@ namespace WebApplication1.Controllers.Admin
             var username = form["username"];
             var password = form["password"];
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password) &&
-                DataHelper.getInstance().loginAdmin(data, username, password))
+                DataHelper.AccountHelper.getInstance().loginAdmin(data, username, password))
             {
                 //TODO, save session here
                 Session[Constants.KEY_SESSION_ADMIN_USERNAME] = username;
@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers.Admin
 
         public ActionResult Logout()
         {
-            DataHelper.getInstance().logoutAdmin(this);
+            DataHelper.AccountHelper.getInstance().logoutAdmin(this);
             return RedirectToAction("Index");
         }
     }
