@@ -160,22 +160,22 @@
             <div class="socialsharing_product no-print">
                 <ul class="social-sharing list-unstyled">
                     <li>
-                        <a class="btn btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://myphamccwhite.com/kem-dac-tri-tham-seo-ro-149.html" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+                        <a class="btn btn-facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=@Request.Url.ToString()" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
                             <i class="fa fa-facebook"></i> Facebook
                         </a>
                     </li>
                     <li>
-                        <a class="btn btn-google-plus" target="_blank" href="https://plus.google.com/share?url=http://myphamccwhite.com/kem-dac-tri-tham-seo-ro-149.html" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+                        <a class="btn btn-google-plus" target="_blank" href="https://plus.google.com/share?url=@Request.Url.ToString()" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
                             <i class="fa fa-google-plus"></i> Google+
                         </a>
                     </li>
                     <li>
-                        <a class="btn btn-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Kem đặc trị thâm, sẹo rỗ&amp;url=http://myphamccwhite.com/kem-dac-tri-tham-seo-ro-149.html&amp;" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+                        <a class="btn btn-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Kem đặc trị thâm, sẹo rỗ&amp;url=@Request.Url.ToString()&amp;" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
                             <i class="fa fa-twitter"></i> Twitter
                         </a>
                     </li>
                     <li>
-                        <a class="btn btn-pinterest" target="_blank" href="http://pinterest.com/pin/create/button/?url=http://myphamccwhite.com/kem-dac-tri-tham-seo-ro-149.html&amp;description=Kem đặc trị thâm do mụn, sẹo nhỏ, tàn nhang.&amp;media=http://myphamccwhite.com/images/item/13556073_1781799645385811_699637460_o-149.jpg" title="" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+                        <a class="btn btn-pinterest" target="_blank" href="http://pinterest.com/pin/create/button/?url=@Request.Url.ToString()&amp;description=Kem đặc trị thâm do mụn, sẹo nhỏ, tàn nhang.&amp;media=http://myphamccwhite.com/images/item/13556073_1781799645385811_699637460_o-149.jpg" title="" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
                             <i class="fa fa-pinterest-p"></i> Pinterest
                         </a>
                     </li>
@@ -210,7 +210,7 @@
                     <ul class="clearfix">
                         @foreach (var item in Model.Item2)
                         {
-                            <li class="li_pro_all_ col-md-4 col-sm-3 col-xs-2 clearfix">
+                            <li class="li_pro_all_ col-md-4 col-sm-6 col-xs-12 clearfix">
                                 <div class="category-item">
                                     <div class="category">
                                         <div class="category-s"></div>
@@ -219,14 +219,7 @@
                                         <div class="category-inner">
                                             <div class="category-img">
                                                 <a href="@Url.Action("ProductDetail", "Home", new { id = item.id })">
-                                                    @if (String.IsNullOrEmpty(item.image))
-                                                    {
-                                                        <img src="~/assets/images/noimage.png" alt="@item.name">
-                                                    }
-                                                    else
-                                                    {
-                                                        <img src="~/assets/images/item/@item.image" alt="@item.name">
-                                                    }
+                                                    <img class="img-responsive margin-auto" src="~/assets/images/@(String.IsNullOrEmpty(item.image)?"noimage.png":item.image)" alt="@item.name">
                                                 </a>
                                             </div>
                                             <div class="category-name">

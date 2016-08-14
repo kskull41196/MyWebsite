@@ -144,7 +144,6 @@ body {
     padding: 20px;
     position: relative;
     z-index: 8;
-    height: 495px;
 }
 .category-img {
     overflow: hidden;
@@ -152,8 +151,6 @@ body {
     position: relative;
 }
 .category-img img {
-    width: 100%;
-    height: 255px;
     -webkit-transition: all 300ms linear;
     -moz-transition: all 300ms linear;
     -o-transition: all 300ms linear;
@@ -189,7 +186,6 @@ body {
     margin-bottom: 4px;
 }
 .detail_short {
-    height: 64px;
     overflow: hidden;
     margin-bottom: 10px;
     font-size: 14px;

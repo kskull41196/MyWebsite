@@ -12,7 +12,7 @@
                     <div class="agent-small-inner">
                         <div class="agent-small-image">
                             <a class="agent-small-image-inner">
-                                <img src="~/assets/images/support/@supportModel.image" alt="@supportModel.name">
+                                <img src="~/assets/images/support/@(String.IsNullOrEmpty(supportModel.image) ? "icon-support-default.png" : supportModel.image)" alt="@supportModel.name">
                             </a>
                         </div>
                         <!-- agent-small-image -->

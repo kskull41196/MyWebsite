@@ -14,7 +14,7 @@
                 @{
                     foreach (var item in Model)
                     {
-                        <li class="li_pro_all_ col-md-4 col-sm-3 col-xs-2 clearfix">
+                        <li class="li_pro_all_ col-md-4 col-sm-6 col-xs-12 clearfix">
                             <div class="category-item">
                                 <div class="category">
                                     <div class="category-s"></div>
@@ -23,14 +23,7 @@
                                     <div class="category-inner">
                                         <div class="category-img">
                                             <a href="@Url.Action("ProductDetail", "Home", new { id = item.id })">
-                                            @if (String.IsNullOrEmpty(item.image))
-                                            {
-                                                <img src="~/assets/images/noimage.png" alt="@item.name">
-                                            }
-                                            else
-                                            {
-                                                <img src="~/assets/images/item/@item.image" alt="@item.name">
-                                            }
+                                                <img class="img-responsive margin-auto" src="~/assets/images/@(String.IsNullOrEmpty(item.image)?"noimage.png":item.image)" alt="@item.name">
                                             </a>
                                         </div>
                                         <div class="category-name">
@@ -46,10 +39,10 @@
                                         <div class="detail_short">
                                             <p>@item.detail_short</p>
                                         </div>
-                                            <div class="btnChiTiet"><a href="@Url.Action("ProductDetail", "Home", new { id=item.id})"><span>Chi tiết</span></a></div>
-                                            <div class="btnMuaHang" idsp="@item.id"><span>Đặt hàng</span></div>
-                                            <div class="clearfix"></div>
-                                        </div>
+                                        <div class="btnChiTiet"><a href="@Url.Action("ProductDetail", "Home", new { id=item.id})"><span>Chi tiết</span></a></div>
+                                        <div class="btnMuaHang" idsp="@item.id"><span>Đặt hàng</span></div>
+                                        <div class="clearfix"></div>
+                                    </div>
                                     <div class="category-outer-3"></div>
                                     <div class="category-outer-4"></div>
                                     <div class="clearfix"></div>
