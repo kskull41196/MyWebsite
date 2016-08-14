@@ -139,7 +139,7 @@ namespace WebApplication1.Controllers
                     data.SubmitChanges();
 
                     //Send email to activate account
-                    EmailHelper.getInstance().sendActivatingMail(data, email);
+                    EmailHelper.getInstance().sendActivatingMail(email);
                     return true;
                 }
                 return false;

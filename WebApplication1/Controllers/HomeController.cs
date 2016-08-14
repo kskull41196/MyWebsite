@@ -273,7 +273,9 @@ namespace WebApplication1.Controllers
             if (email != null && !String.IsNullOrEmpty(email.ToString()) && Regex.IsMatch(email.ToString(), "^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
             {
                 ViewBag.Message = "Chúng tôi đã gửi mật khẩu vào email của ban.";
-                EmailHelper.getInstance().sendPasswordRecoveryMail(data, email);
+
+                string password = DataHelper.AccountHelper.getInstance().getPasswordOfMemberAccount(data, email);
+                EmailHelper.getInstance().sendPasswordRecoveryMail(email, password);
             }
             else
             {

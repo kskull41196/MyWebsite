@@ -21,17 +21,7 @@ namespace WebApplication1.Controllers
             }
             return instance;
         }
-
-        public void sendPasswordRecoveryMail(Models.DataClassesDataContext data, string sendToEmail)
-        {
-            string password = DataHelper.AccountHelper.getInstance().getPasswordOfMemberAccount(data, sendToEmail);
-            if (!password.Equals(""))
-            {
-                sendMail(data, ADMIN_GMAIL_EMAIL, ADMIN_GMAIL_EMAIL_PASSWORD, sendToEmail, "Password recovery",
-                    "Recovering the password: " + password);
-            }
-        }
-
+        
         private string getBaseUrl()
         {
             var request = HttpContext.Current.Request;
@@ -45,14 +35,23 @@ namespace WebApplication1.Controllers
             return baseUrl;
         }
 
-        public void sendActivatingMail(Models.DataClassesDataContext data, string sendToEmail)
+        public void sendPasswordRecoveryMail(string sendToEmail, string password)
         {
-            sendMail(data, ADMIN_GMAIL_EMAIL, ADMIN_GMAIL_EMAIL_PASSWORD, sendToEmail, "Activate Account",
+            if (!password.Equals(""))
+            {
+                sendMail(ADMIN_GMAIL_EMAIL, ADMIN_GMAIL_EMAIL_PASSWORD, sendToEmail, "Password recovery",
+                    "Recovering the password: " + password);
+            }
+        }
+
+        public void sendActivatingMail(string sendToEmail)
+        {
+            sendMail(ADMIN_GMAIL_EMAIL, ADMIN_GMAIL_EMAIL_PASSWORD, sendToEmail, "Activate Account",
                  "Click this URL to activate your account: " +
                 getBaseUrl() + "Home/ActivateMemberAccount?email=" + sendToEmail);
         }
 
-        public void sendMail(Models.DataClassesDataContext data, string sendFromEmail, string sendFromPassword, string sendToEmail, string subject, string messageBody)
+        public void sendMail(string sendFromEmail, string sendFromPassword, string sendToEmail, string subject, string messageBody)
         {
             MailMessage mail = new MailMessage();
             SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
