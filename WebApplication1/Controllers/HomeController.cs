@@ -76,6 +76,12 @@ namespace WebApplication1.Controllers
 
         public ActionResult PayShoppingCard()
         {
+            //If is logging in = false -> redirect to login page
+            if (!DataHelper.getInstance().checkIsMemberLoggingIn(HttpContext))
+            {
+                return RedirectToAction("Login");
+            }
+
             return View(URLHelper.URL_HOME_PAY_SHOPPING_CARD);
         }
 
@@ -228,13 +234,19 @@ namespace WebApplication1.Controllers
             {
                 DateTime dtBirthDay = DateTime.Parse(birthday);
                 Constants.Gender enumGender = (Constants.Gender)Int16.Parse(Gender);
-                DataHelper.getInstance().signUp(data, email, password, fullname, phone, address, username, dtBirthDay, enumGender);
-                return RedirectToAction("CompleteSignUp");
+                if (DataHelper.getInstance().signUp(data, email, password, fullname, phone, address, username, dtBirthDay, enumGender))
+                {
+                    DataHelper.getInstance().loginMember(data, email, password);
+                    return RedirectToAction("CompleteSignUp");
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Tài khoản đã tồn tại";
+                }
+
             }
-            else
-            {
-                return View(URLHelper.URL_HOME_SIGNUP);
-            }
+            
+            return View(URLHelper.URL_HOME_SIGNUP);
         }
 
         [HttpGet]
@@ -245,7 +257,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult CompleteSignUp()
         {
-            return View(URLHelper.URL_HOME_SIGNUP);
+            return View(URLHelper.URL_HOME_COMPLETE_SIGNUP);
         }
 
         //Get home module

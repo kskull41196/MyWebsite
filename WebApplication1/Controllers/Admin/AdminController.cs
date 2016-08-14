@@ -38,5 +38,11 @@ namespace WebApplication1.Controllers.Admin
         {
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            DataHelper.getInstance().logoutAdmin(this);
+            return RedirectToAction("Index");
+        }
     }
 }

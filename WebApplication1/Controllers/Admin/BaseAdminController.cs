@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
         bool hasAdminLoginSession = false;
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            hasAdminLoginSession = checkAdminLoginSession(context);
+            hasAdminLoginSession = DataHelper.getInstance().checkIsAdminLoggingIn(context.HttpContext);
             base.OnActionExecuting(context);
         }
         public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -35,16 +35,6 @@ namespace WebApplication1.Controllers
                     action = "Login"
                 }));
             }
-        }
-
-        private bool checkAdminLoginSession(ActionExecutingContext context)
-        {
-            Object session = context.HttpContext.Session[Constants.KEY_SESSION_ADMIN_USERNAME];
-            if (session != null && !String.IsNullOrEmpty(session.ToString()))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

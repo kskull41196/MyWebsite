@@ -137,6 +137,37 @@ namespace WebApplication1.Controllers
             return false;
         }
 
+        public bool checkIsAdminLoggingIn(HttpContextBase context)
+        {
+            Object session = context.Session[Constants.KEY_SESSION_ADMIN_USERNAME];
+            if (session != null && !String.IsNullOrEmpty(session.ToString()))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool checkIsMemberLoggingIn(HttpContextBase context)
+        {
+            Object session = context.Session[Constants.KEY_SESSION_MEMBER_USERNAME];
+            if (session != null && !String.IsNullOrEmpty(session.ToString()))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public void logoutAdmin(BaseAdminController context)
+        {
+            context.Session[Constants.KEY_SESSION_ADMIN_USERNAME] = null;
+        }
+        
+        public void logoutMember(BaseController context)
+        {
+            context.Session[Constants.KEY_SESSION_MEMBER_USERNAME] = null;
+        }
+
         public void clearShoppingCard(BaseController context)
         {
             context.Session[Constants.KEY_SESSION_SHOPPING_CARD] = new List<Models.tbl_order_detail>();
