@@ -193,6 +193,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataAjax.cs" />
+    <Compile Include="Models\DataClasses.cs">
+      <DependentUpon>DataClasses.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

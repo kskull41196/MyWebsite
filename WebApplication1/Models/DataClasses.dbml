@@ -120,24 +120,6 @@
       <Association Name="tbl_size_tbl_item_size" Member="tbl_size" ThisKey="id_size" OtherKey="id" Type="tbl_size" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_member" Member="tbl_members">
-    <Type Name="tbl_member">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="username" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="phone" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="email" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="address" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="birthday" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="gender" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="tbl_member_tbl_order" Member="tbl_orders" ThisKey="id" OtherKey="id_customer" Type="tbl_order" />
-    </Type>
-  </Table>
   <Table Name="dbo.tbl_news" Member="tbl_news">
     <Type Name="tbl_new">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -256,6 +238,23 @@
       <Column Name="skype" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="phone" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
       <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_member" Member="tbl_members">
+    <Type Name="tbl_member">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="birthday" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="gender" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tbl_member_tbl_order" Member="tbl_orders" ThisKey="id" OtherKey="id_customer" Type="tbl_order" />
     </Type>
   </Table>
 </Database>

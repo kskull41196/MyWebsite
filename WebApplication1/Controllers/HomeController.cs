@@ -188,16 +188,12 @@ namespace WebApplication1.Controllers
             var phone = form["phone"];
             var passwordconfirm = form["passwordconfirm"];
             var address = form["address"];
-            var username = form["username"];
-            var birthday = form["birthday"];
             ViewData["email"] = email;
             ViewData["password"] = password;
             ViewData["fullname"] = fullname;
             ViewData["phone"] = phone;
             ViewData["passwordconfirm"] = passwordconfirm;
             ViewData["address"] = address;
-            ViewData["username"] = username;
-            ViewData["birthday"] = birthday;
             ViewData["gender"] = Gender;
 
 
@@ -207,21 +203,19 @@ namespace WebApplication1.Controllers
             }
             else if (password.ToString().Length < 6)
             {
-                ViewBag.ErrorMessage = "Mật khẩu phải nhiều hơn 6 ký tự";
+                ViewBag.ErrorMessage = "Mật khẩu phải nhiều hơn 5 ký tự";
             }
             else if (!password.ToString().Equals(passwordconfirm.ToString()))
             {
                 ViewBag.ErrorMessage = "Mật khẩu xác nhận không trùng khớp";
             }
-            else if (String.IsNullOrEmpty(email.ToString()) || !Regex.IsMatch(email.ToString(), @"^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
+            else if (String.IsNullOrEmpty(email.ToString()) || !Regex.IsMatch(email.ToString(), "^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
             {
                 ViewBag.ErrorMessage = "Email không đúng định dạng";
             }
             else if (String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password)
                && String.IsNullOrEmpty(fullname) && !String.IsNullOrEmpty(phone)
-               && String.IsNullOrEmpty(passwordconfirm) && !String.IsNullOrEmpty(address)
-               && String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(birthday)
-               && String.IsNullOrEmpty(Gender))
+               && String.IsNullOrEmpty(passwordconfirm) && !String.IsNullOrEmpty(address) && String.IsNullOrEmpty(Gender))
             {
                 ViewBag.ErrorMessage = "Vui lòng nhập tất cả thông tin";
             }
@@ -232,9 +226,10 @@ namespace WebApplication1.Controllers
 
             if (!isError)
             {
-                DateTime dtBirthDay = DateTime.Parse(birthday);
+                DateTime dtBirthDay = DateTime.Now;
                 Constants.Gender enumGender = (Constants.Gender)Int16.Parse(Gender);
-                if (DataHelper.getInstance().signUp(data, email, password, fullname, phone, address, username, dtBirthDay, enumGender))
+
+                if (DataHelper.getInstance().signUp(data, email, password, fullname, phone, address, dtBirthDay, enumGender))
                 {
                     DataHelper.getInstance().loginMember(data, email, password);
                     return RedirectToAction("CompleteSignUp");
@@ -243,9 +238,8 @@ namespace WebApplication1.Controllers
                 {
                     ViewBag.ErrorMessage = "Tài khoản đã tồn tại";
                 }
-
             }
-            
+
             return View(URLHelper.URL_HOME_SIGNUP);
         }
 

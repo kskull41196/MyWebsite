@@ -1,43 +1,72 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Login";
+    Layout = "";
 }
-
-
-
-<h2> Đây là trang Login Admin </h2>
-
-
-
-<h3 style="color:red">@ViewBag.ErrorMessage</h3>
-
-
-<form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-sm-3 control-label">
-            Tên đăng nhập
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="text" name="username" class="form-control" value="" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MyWebsite Administrator</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="~/assets/Admin/plugins/oneui-fw/css/bootstrap.min-1.4.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/Admin/plugins/oneui-fw/css/oneui.min-1.5.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/Admin/plugins/fancybox/source/jquery.fancybox.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/Admin/stylesheet/css.css" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="content overflow-hidden">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+                <div class="block block-themed animated fadeIn">
+                    <div class="block-header bg-primary">
+                        <h3 class="block-title">ĐĂNG NHẬP</h3>
+                    </div>
+                    <div class="block-content block-content-full block-content-narrow">
+                        <h1 class="h2 font-w600 push-30-t push-5">MyWebsite</h1>
+                        <p>Xin chào bạn, vui lòng đăng nhập ở đây.</p>
+                        <p class="help-block animated fadeInDown" style="color: #D26A5C;">@ViewBag.ErrorMessage</p>
+                        <form class="js-validation-login form-horizontal push-30-t push-50" method="post" enctype="multipart/form-data" novalidate="novalidate">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material form-material-primary floating open">
+                                        <input id="login-username" class="form-control" type="text" name="username">
+                                        <label for="login-username">Tên đăng nhập</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material form-material-primary floating open">
+                                        <input id="login-password" class="form-control" type="password" name="password">
+                                        <label for="login-password">Mật khẩu</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <button class="btn btn-block btn-primary btn-login" name="btnLogin" type="submit">
+                                        <i class="si si-login pull-right"></i>
+                                        Đăng nhập
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <label class="col-sm-3 control-label">
-            Mật khẩu
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="password" name="password" class="form-control" value="" />
-        </div>
-        <br />
-        <br />
-        <br />
-        <button type="submit" name="btnLogin" class="btn btn-default">Đăng nhập</button>
     </div>
-</form>
+    <div class="push-10-t text-center animated fadeInUp">
+        <small class="text-muted font-w600">
+            2016 © MyWebsite
+        </small>
+    </div>
+    <script type="text/javascript" src="templates/js/oneui.min-1.1.js"></script>
+    <script type="text/javascript" src="templates/js/base_pages_login.js"></script>
+    <script type="text/javascript" src="templates/js/jquery.validate.min.js"></script>
+
+</body>
+</html>

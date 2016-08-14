@@ -28,19 +28,6 @@
         <br />
 
         <label class="col-sm-3 control-label">
-            Username
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="text" name="username" class="form-control" value="@ViewData["username"]" />
-        </div>
-        <br />
-        <br />
-        <br />
-
-        <label class="col-sm-3 control-label">
             Email
         </label>
         <br />
@@ -101,7 +88,7 @@
             @if(ViewData["gender"] != null && !String.IsNullOrEmpty(ViewData["gender"].ToString()))
             {
                 @Html.DropDownList("Gender",
-                EnumHelper.GetSelectList(typeof(WebApplication1.Controllers.Constants.Gender), (WebApplication1.Controllers.Constants.Gender)ViewData["gender"]),
+                EnumHelper.GetSelectList(typeof(WebApplication1.Controllers.Constants.Gender), (WebApplication1.Controllers.Constants.Gender)Int32.Parse(ViewData["gender"].ToString())),
                 "Chọn giới tính",
                 new { @class = "form-control" })
             }
