@@ -16,6 +16,7 @@ namespace WebApplication1.Controllers
             base.Initialize(requestContext);
             ViewData[Constants.KEY_VIEWDATA_LIST_MODULE] = getAllSupportedModules();
             ViewData[Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT] = getItemsAmountInShoppingCard(requestContext.HttpContext);
+            ViewData[Constants.KEY_VIEWDATA_IS_LOGIN] = DataHelper.getInstance().checkIsMemberLoggingIn(HttpContext);
         }
 
         private List<tbl_module> getAllSupportedModules()

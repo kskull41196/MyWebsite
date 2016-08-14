@@ -2,150 +2,97 @@
     ViewBag.Title = "SignUp";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
-
-
-
-<h2> Đây là trang đăng ký</h2>
-
-
-
-<h3 style="color:red">@ViewBag.ErrorMessage</h3>
-
-
-<form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-sm-3 control-label">
-            Họ tên khách hàng
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="text" name="fullname" class="form-control" value="@ViewData["fullname"]" />
-        </div>
-        <br />
-        <br />
-        <br />
-
-        <label class="col-sm-3 control-label">
-            Email
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="text" name="email" class="form-control" value="@ViewData["email"]" />
-        </div>
-        <br />
-        <br />
-        <br />
-        <label class="col-sm-3 control-label">
-            Địa chỉ
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="text" name="address" class="form-control" value="@ViewData["address"]" />
-        </div>
-        <br />
-        <br />
-        <br />
-        <label class="col-sm-3 control-label">
-            Điện thọai
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="text" name="phone" class="form-control" value="@ViewData["phone"]" />
-        </div>
-        <br />
-        <br />
-        <br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <label class="col-sm-3 control-label">
-            Giới tính
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            @if(ViewData["gender"] != null && !String.IsNullOrEmpty(ViewData["gender"].ToString()))
-            {
-                @Html.DropDownList("Gender",
-                EnumHelper.GetSelectList(typeof(WebApplication1.Controllers.Constants.Gender), (WebApplication1.Controllers.Constants.Gender)Int32.Parse(ViewData["gender"].ToString())),
-                "Chọn giới tính",
-                new { @class = "form-control" })
-            }
-            else
-            {
-                @Html.DropDownList("Gender",
-                EnumHelper.GetSelectList(typeof(WebApplication1.Controllers.Constants.Gender)),
-                "Chọn giới tính",
-                new { @class = "form-control" })
-            }
-        </div>
-        <br />
-        <br />
-        <br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <label class="col-sm-3 control-label">
-            Mật khẩu
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="password" name="password" class="form-control" value="@ViewData["password"]" />
-        </div>
-        <br />
-        <br />
-        <br />
-        <label class="col-sm-3 control-label">
-            Nhập lại mật khẩu
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="password" name="passwordconfirm" class="form-control" value="@ViewData["passwordconfirm"]" />
-        </div>
-        <br />
-        <br />
-        <br />
-        <button type="submit" name="btnsignup" class="btn btn-default">Đăng ký</button>
+<div class="frame_product_mau_gh">
+    <div class="menu-heading-pro">
+        <h2 class="title_f_p_m_gh_pro">
+            Đăng ký
+        </h2>
     </div>
-</form>
+    <div class="main_f_p_m_gh">
+        <div class="form clearfix" style="padding-top: 15px; padding-bottom: 30px;">
+            <form action="" method="post" enctype="multipart/form-data" class="">
+                <fieldset id="info-account">
+                    <label class="label-fieldset label-data">Thông tin tài khoản</label>
+                    <div class="form-group clearfix margin-bottom-10 required">
+                        <label class="control-label line-height-34 text-right col-md-3 col-sm-3" for="input-username">Email</label>
+                        <div class="form-ipt col-md-9 col-sm-9">
+                            <input type="email" name="email" class="form-control" value="@ViewData["email"]" required="" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix margin-bottom-10 required">
+                        <label class="control-label line-height-34 text-right col-md-3 col-sm-3" for="input-password">Mật khẩu</label>
+                        <div class="form-ipt col-md-9 col-sm-9">
+                            <input type="password" name="password" class="form-control" value="@ViewData["password"]" required="" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix margin-bottom-10 required">
+                        <label class="control-label line-height-34 text-right col-md-3 col-sm-3" for="input-confirm">Nhập lại mật khẩu</label>
+                        <div class="form-ipt col-md-9 col-sm-9">
+                            <input type="password" name="passwordconfirm" class="form-control" value="@ViewData["passwordconfirm"]" required="" />
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset id="info-user">
+                    <label class="label-user label-data">Thông tin cá nhân</label>
+                    <div class="form-group clearfix margin-bottom-10 required">
+                        <label class="control-label line-height-34 text-right col-md-3 col-sm-3" for="input-username">Họ tên</label>
+                        <div class="form-ipt col-md-9 col-sm-9">
+                            <input type="text" name="fullname" class="form-control" value="@ViewData["fullname"]" required="" />
+                        </div>
+                    </div>
+                    <div class="form-group clearfix margin-bottom-10 required">
+                        <label class="control-label line-height-34 text-right col-md-3 col-sm-3" for="input-username">Địa chỉ</label>
+                        <div class="form-ipt col-md-9 col-sm-9">
+                            <input type="text" name="address" value="@ViewData["address"]" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix margin-bottom-10 required">
+                        <label class="control-label line-height-34 text-right col-md-3 col-sm-3" for="input-username">Điện thoại</label>
+                        <div class="form-ipt col-md-9 col-sm-9">
+                            <input type="text" name="phone" value="@ViewData["phone"]"class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix margin-bottom-10 required">
+                        <label class="control-label line-height-34 text-right col-md-3 col-sm-3" for="input-username">Giới tính</label>
+                        <div class="form-ipt col-md-9 col-sm-9">
+                            @if (ViewData["gender"] != null && !String.IsNullOrEmpty(ViewData["gender"].ToString()))
+                            {
+                                @Html.DropDownList("Gender",
+                                EnumHelper.GetSelectList(typeof(WebApplication1.Controllers.Constants.Gender), (WebApplication1.Controllers.Constants.Gender)Int32.Parse(ViewData["gender"].ToString())),
+                                "Chọn giới tính",
+                                new { @class = "form-control" })
+                                            }
+                                            else
+                                            {
+                                                @Html.DropDownList("Gender",
+                                EnumHelper.GetSelectList(typeof(WebApplication1.Controllers.Constants.Gender)),
+                                "Chọn giới tính",
+                                new { @class = "form-control" })
+                            }
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="buttons">
+                    <label class="control-label line-height-34 text-right col-md-3 col-sm-3" for="input-confirm">&nbsp;</label>
+                    <div class="col-md-9 col-sm-9 text-left">
+                        <input type="submit" name="btnsignup" value="Đăng ký" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    .line-height-34 {
+        line-height: 34px;
+    }
+    .margin-bottom-10 {
+        margin-bottom: 10px;
+    }
+    .label-data {
+        display: block;
+        font-size: 19px;
+        padding: 5px 10px;
+        background: #eee;
+    }
+</style>

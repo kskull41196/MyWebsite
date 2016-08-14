@@ -74,6 +74,7 @@ namespace WebApplication1.Controllers
             return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
 
+        [HttpGet]
         public ActionResult PayShoppingCard()
         {
             //If is logging in = false -> redirect to login page
@@ -93,13 +94,10 @@ namespace WebApplication1.Controllers
         public ActionResult ShoppingCard()
         {
             long totalCost = 0;
-            List<tbl_order_detail> shoppingCard = DataHelper.getInstance().getShoppingCardInSession(this);
-            foreach (tbl_order_detail record in shoppingCard.ToList())
+            List<DataHelper.ShoppingCardItemModel> shoppingCard = DataHelper.getInstance().getShoppingCardItemModelsInSession(this);
+            foreach (DataHelper.ShoppingCardItemModel record in shoppingCard.ToList())
             {
-                if (record.price.HasValue && record.quantity.HasValue)
-                {
-                    totalCost += record.price.Value * record.quantity.Value;
-                }
+                totalCost += record.total;
             }
 
             ViewData[Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST] = totalCost;

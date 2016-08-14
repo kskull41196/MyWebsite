@@ -13,6 +13,7 @@ namespace WebApplication1.Controllers
         public const String KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST = "keyviewdatashoppingcardallitemscost";
         public const String KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT = "keyviewdatashoppingcarditemsamount";
         public const String KEY_VIEWDATA_LIST_MODULE = "keyviewdatalistmodule";
+        public const String KEY_VIEWDATA_IS_LOGIN = "ismemberlogin";
 
         public const String KEY_SESSION_SHOPPING_CARD = "keysessionshoppingcard";
         public const String KEY_SESSION_ADMIN_USERNAME = "keyadminusername";

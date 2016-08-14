@@ -3,43 +3,31 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
-
-
-
-<h2> Đây là trang Login Member </h2>
-
-
-
-<h3 style="color:red">@ViewBag.ErrorMessage</h3>
-
-
-<form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-sm-3 control-label">
-            Email
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="text" name="email" class="form-control" value="" />
-        </div>
-        <br />
-        <br />
-        <br />
-        <label class="col-sm-3 control-label">
-            Mật khẩu
-        </label>
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-6">
-            <input type="password" name="password" class="form-control" value="" />
-        </div>
-        <br />
-        <br />
-        <br />
-        <button type="submit" name="btnLogin" class="btn btn-default">Đăng nhập</button>
-        <button type="button" onclick="location.href='@Url.Action("SignUp", "Home")'" class="btn btn-primary btn-sm pull-left"><i class="fa fa-plus-circle"></i>Đăng ký</button>
+<div class="login-wrap space-base">
+    <h2 class="title_f_p_m_gh_pro">Đăng nhập</h2>
+    <div class="block-content">
+        <form id="signinForm" method="POST" class="form-horizontal" action="">
+            <fieldset>
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" for="email">Email</label>
+                        <div class="col-md-9 col-sm-9">
+                            <input type="email" name="email" class="form-control" value="" required="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" for="password">Mật khẩu</label>
+                        <div class="col-md-9 col-sm-9">
+                            <input type="password" name="password" class="form-control" value="" required="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6">
+                            <button type="submit" name="btnLogin" class="btn btn-primary">Đăng nhập</button><br />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
-</form>
+</div>

@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/mycss.css" rel="stylesheet" type="text/css" />
@@ -78,23 +79,41 @@
                     <li>
                         @if (ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT].ToString().Equals("0"))
                         {
-                            <a href="">Giỏ hàng: 0</a>
+                            <a><i class="fa fa-cart-arrow-down fa-1-5-x"></i>: 0</a>
                         }
                         else
                         {
-                            @Html.ActionLink("Giỏ hàng: " + @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT], "ShoppingCard", "Home")
+                            <a href="@Url.Action("ShoppingCard", "Home")">
+                                <i class="fa fa-cart-arrow-down fa-1-5-x"></i>: @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT]
+                            </a>
                         }
                     </li>
+                    @if ((bool)ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_IS_LOGIN])
+                    {
+                        <li>
+                            <a href="@Url.Action("SignUp", "Home")">
+                                Xin chào, @Session[WebApplication1.Controllers.Constants.KEY_SESSION_MEMBER_USERNAME]!
+                            </a>
+                        </li>
+                        <li>
+                            <a href="logout">
+                                Thoát
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
                     <li>
-                        <a href="">
-                            <img src="~/assets/images/en-flag.png" />
+                        <a href="@Url.Action("SignUp", "Home")">
+                            Đăng ký
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <img src="~/assets/images/vn-flag.png" />
+                        <a href="@Url.Action("Login", "Home")">
+                            Đăng nhập
                         </a>
                     </li>
+                    }
                 </ul>
                 <!--<ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>

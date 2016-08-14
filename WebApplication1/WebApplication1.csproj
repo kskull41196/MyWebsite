@@ -598,6 +598,7 @@
     <Content Include="assets\Admin\stylesheet\jquery.fancybox-1.3.4.css" />
     <Content Include="assets\Admin\stylesheet\oneui.min.css" />
     <Content Include="assets\Admin\stylesheet\reset.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\images\background.jpg" />
     <Content Include="assets\images\banner.png" />
     <Content Include="assets\images\en-flag.png" />
@@ -718,6 +719,21 @@
     </Content>
     <Content Include="Content\Zoom\jquery.fancybox.cssbk" />
     <Content Include="assets\plugins\owl-carousel\Thumbs.db" />
+    <Content Include="assets\fonts\BHG8ZtTfO0yYnp02--QxqltXRa8TVwTICgirnJhmVJw.woff2" />
+    <Content Include="assets\fonts\Gkr63O-aJXf4Mv4t7cBUchJtnKITppOI_IvcXXDNrsc.woff2" />
+    <Content Include="assets\fonts\opensansregular.eot" />
+    <Content Include="assets\fonts\opensansregular.ttf" />
+    <Content Include="assets\fonts\opensansregular.woff" />
+    <Content Include="assets\fonts\Roboto-Bold.ttf" />
+    <Content Include="assets\fonts\Roboto-Regular.ttf" />
+    <Content Include="assets\fonts\RobotoCondensed-Bold.ttf" />
+    <Content Include="assets\fonts\texgyreadventor-regular.otf" />
+    <Content Include="assets\fonts\VNF-Oswald Regular.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -3,37 +3,127 @@
     ViewBag.Title = "ShoppingCard";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
-<div class="product_all">
-    <h2 class="title_f_p_m_gh_pro">
-        <span>Thanh Toán</span>
-    </h2><!-- End .title_f_p_m_gh -->
+<div class="frame_product_mau_gh order">
+    <div class="title_f_p_m_gh_pro">
+        <span>Đặt hàng</span>
+    </div>
+    <div class="main_f_p_m_gh table-responsive checkout-table">
+        <form method="post" action="/dat-hang">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="text-center">&nbsp;</td>
+                        <td class="text-center">Tên sản phẩm</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Đơn giá</td>
+                        <td class="text-center">Tổng</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            <a href="kem-duong-trang-da-mat-146.html">
+                                <img class="img-thumbnail" src="images/item/13570287_1781799642052478_608269088_o-146.jpg" alt="Kem dưỡng trắng da mặt">
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="kem-duong-trang-da-mat-146.html">Kem dưỡng trắng da mặt</a>
+                        </td>
+                        <td class="text-center">
+                            <div class="input-group btn-block">
+                                <input type="hidden" name="idtin1" value="146" id="idtin1">
+                                <input type="text" name="qty1" min="0" max="25" id="qty1" size="6" value="1" class="slsp form-control text-center" disabled="">
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            340,000 VND
+                        </td>
+                        <td class="text-center">
+                            340,000 VND
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="text-right" colspan="4">
+                            <strong>Tổng tiền : </strong>
+                        </td>
+                        <td class="text-left">
+                            <input type="hidden" name="InputTotalHd" value="340000">
+                            340,000 VND
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <br>
+            <div class="info-order no-fl mg-auto">
+                <div class="info_user">
+                    <div class="text-center h3">Thông tin giao hàng</div>
+                    <hr>
+                    <div class="content-info-user">
+                        <mark class="cust_mark">Những ô có dấu <span class="imark">*</span> là bắt buộc phải nhập/chọn</mark>
+                        <br><br>
+                        <div class="form-group">
+                            <label for="InputName">Họ và tên <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" name="InputName" class="form-control" id="InputName" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPhone">Điện thoại <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input type="text" class="form-control" name="InputPhone" id="InputPhone" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputEmail">Email <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon">&#64;</span>
+                                <input type="email" class="form-control" name="InputEmail" id="InputEmailFirst" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAddress">Địa chỉ <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                <input type="text" name="InputAddress" class="form-control" id="InputAddress" value="">
+                            </div>
+                        </div>
+                        <input type="submit" name="order" id="submit" value="Đặt hàng" class="btn btn-primary pull-right">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<style type="text/css">
+    .no-fl {
+        float: none;
+    }
 
-    <form method="post" name="frmForm" enctype="multipart/form-data" class="form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-3 control-label">
-                Email
-            </label>
-            <br />
-            <br />
-            <br />
-            <div class="col-sm-6">
-                <input type="text" name="email" class="form-control" value="" />
-            </div>
-            <br />
-            <br />
-            <br />
-            <label class="col-sm-3 control-label">
-                Mật khẩu
-            </label>
-            <br />
-            <br />
-            <br />
-            <div class="col-sm-6">
-                <input type="password" name="password" class="form-control" value="" />
-            </div>
-            <br />
-            <br />
-            <br />
-            <button type="submit" name="btnLogin" class="btn btn-default">Đăng nhập</button>
-        </div>
-    </form>
+    .mg-auto {
+        margin: auto;
+    }
+
+    .table-responsive.checkout-table {
+        padding-bottom: 30px;
+    }
+
+    .table tr td input.slsp {
+        display: inline-block;
+        width: auto;
+        border-radius: 0px;
+    }
+
+    .info-order {
+        width: 500px;
+    }
+
+        .info-order .h3 {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+</style>
