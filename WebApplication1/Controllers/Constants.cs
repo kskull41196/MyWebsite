@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
         }
         public enum AccountStatus
         {
-            ACTIVE, INACTIVE
+            INACTIVE, ACTIVE
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "CompleteSignUp";
+    ViewBag.Title = "ActivateMemberAccount";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
 
 
 
-<h2> Vui lòng kiểm tra mail và kích hoạt tài khoản</h2>
+<h2 style="color:red"> @ViewBag.Message</h2>
 
 <button type="button" onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i>Quay lại trang chủ</button>
 

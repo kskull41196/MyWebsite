@@ -948,6 +948,7 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\CompleteSignUp.cshtml" />
     <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\ActivateMemberAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

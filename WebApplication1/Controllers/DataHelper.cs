@@ -24,6 +24,12 @@ namespace WebApplication1.Controllers
             return result;
         }
 
+        public Models.tbl_member getMemberAccountByEmail(Models.DataClassesDataContext data, string email)
+        {
+            Models.tbl_member result = data.tbl_members.Where(n => n.email.Equals(email)).Single();
+            return result;
+        }
+
         public Models.tbl_new getNewsById(Models.DataClassesDataContext data, int id)
         {
             Models.tbl_new result = data.tbl_news.Where(n => n.id == id).Single();
@@ -120,6 +126,19 @@ namespace WebApplication1.Controllers
             return checkThisMemberAccountExist(data, email, password);
         }
 
+        public bool activateMemberAccount(BaseController context, string email)
+        {
+            Models.tbl_member memberAccount = getMemberAccountByEmail(context.data, email);
+            if (memberAccount.status != (int)Constants.AccountStatus.ACTIVE)
+            {
+                memberAccount.status = (int)Constants.AccountStatus.ACTIVE;
+                context.updateModel(memberAccount);
+                context.data.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
+
         public bool signUp(Models.DataClassesDataContext data, string email, string password
             , string fullname, string phone, string address
             , DateTime birthday, Constants.Gender gender)
@@ -137,9 +156,12 @@ namespace WebApplication1.Controllers
                 account.status = (byte)Constants.AccountStatus.INACTIVE;
                 account.birthday = birthday;
                 account.gender = (byte)gender;
-                
+
                 data.tbl_members.InsertOnSubmit(account);
                 data.SubmitChanges();
+
+                //Send email to activate account
+                EmailHelper.getInstance().sendActivatingMail(data, email);
                 return true;
             }
             return false;
@@ -170,7 +192,7 @@ namespace WebApplication1.Controllers
         {
             context.Session[Constants.KEY_SESSION_ADMIN_USERNAME] = null;
         }
-        
+
         public void logoutMember(BaseController context)
         {
             context.Session[Constants.KEY_SESSION_MEMBER_USERNAME] = null;
@@ -228,14 +250,15 @@ namespace WebApplication1.Controllers
         {
             List<Models.tbl_order_detail> listOrderDetails = getShoppingCardInSessionByHttpContext(context.HttpContext);
             List<ShoppingCardItemModel> result = new List<ShoppingCardItemModel>();
-            foreach(var orderDetail in listOrderDetails){
+            foreach (var orderDetail in listOrderDetails)
+            {
                 Models.tbl_item item = instance.getProductById(context.data, orderDetail.id_product.Value);
                 ShoppingCardItemModel model = new ShoppingCardItemModel();
                 model.id = orderDetail.id_product.Value;
                 model.name = item.name;
                 model.image = item.image;
                 model.quantity = orderDetail.quantity.Value;
-                model.price = item.price.HasValue?item.price.Value:0;
+                model.price = item.price.HasValue ? item.price.Value : 0;
                 model.total = model.price * model.quantity;
                 result.Add(model);
             }
@@ -261,7 +284,8 @@ namespace WebApplication1.Controllers
         }
 
 
-        public class ShoppingCardItemModel {
+        public class ShoppingCardItemModel
+        {
             public String name, image;
             public int id, quantity;
             public long price, total;

@@ -32,6 +32,26 @@ namespace WebApplication1.Controllers
             }
         }
 
+        private string getBaseUrl()
+        {
+            var request = HttpContext.Current.Request;
+            var appUrl = HttpRuntime.AppDomainAppVirtualPath;
+
+            if (appUrl != "/")
+                appUrl = "/" + appUrl;
+
+            var baseUrl = string.Format("{0}://{1}{2}", request.Url.Scheme, request.Url.Authority, appUrl);
+
+            return baseUrl;
+        }
+
+        public void sendActivatingMail(Models.DataClassesDataContext data, string sendToEmail)
+        {
+            sendMail(data, ADMIN_GMAIL_EMAIL, ADMIN_GMAIL_EMAIL_PASSWORD, sendToEmail, "Activate Account",
+                 "Click this URL to activate your account: " +
+                getBaseUrl() + "Home/ActivateMemberAccount?email=" + sendToEmail);
+        }
+
         public void sendMail(Models.DataClassesDataContext data, string sendFromEmail, string sendFromPassword, string sendToEmail, string subject, string messageBody)
         {
             MailMessage mail = new MailMessage();

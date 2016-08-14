@@ -11,6 +11,12 @@ namespace WebApplication1.Controllers
     {
         public DataClassesDataContext data = new DataClassesDataContext();
 
+        //TODO, this class help the other classes having accessibility to use method UpdateMode of Controller 
+        public void updateModel(Object model)
+        {
+            UpdateModel(model);
+        }
+
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             base.Initialize(requestContext);

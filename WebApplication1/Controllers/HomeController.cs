@@ -120,6 +120,19 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ActivateMemberAccount(string email)
+        {
+            if (DataHelper.getInstance().activateMemberAccount(this, email))
+            {
+                ViewBag.Message = "Kích hoạt tài khoản thành công!";
+            }
+            else
+            {
+                ViewBag.Message = "Không còn có thể kích hoạt tài khoản này nữa.";
+            }
+            return View(URLHelper.URL_HOME_ACTIVATE_MEMBER_ACCOUNT);
+        }
+
         [HttpPost]
         public ActionResult ShoppingCard(FormCollection form)
         {
