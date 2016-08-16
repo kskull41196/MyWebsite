@@ -8,7 +8,7 @@
         <span>Đặt hàng</span>
     </div>
     <div class="main_f_p_m_gh table-responsive checkout-table">
-        <form method="post" action="/dat-hang">
+        <form method="post" action="">
             <table class="table">
                 <thead>
                     <tr>
@@ -45,6 +45,14 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <td class="text-left">
+                            <input type="submit" name="buttonChangeCurrency" id="submit" value="USD" class="btn btn-primary pull-left">
+                        </td>
+
+                        <td class="text-left">
+                            <input type="submit" name="buttonChangeCurrency" id="submit" value="VND" class="btn btn-primary pull-left">
+                        </td>
+
                         <td class="text-right" colspan="4">
                             <strong>Tổng tiền : </strong>
                         </td>
@@ -91,7 +99,7 @@
                                 <input type="text" name="InputAddress" class="form-control" id="InputAddress" value="">
                             </div>
                         </div>
-                        <input type="submit" name="order" id="submit" value="Đặt hàng" class="btn btn-primary pull-right">
+                        <input type="submit" name="buttonPay" id="submit" value="Đặt hàng" class="btn btn-primary pull-right">
                     </div>
                 </div>
             </div>

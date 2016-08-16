@@ -32,5 +32,15 @@ namespace WebApplication1.Properties {
                 return ((string)(this["WebApplication1_net_webservicex_www_GlobalWeather"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.webservicex.net/CurrencyConvertor.asmx")]
+        public string WebApplication1_net_webservicex_www1_CurrencyConvertor {
+            get {
+                return ((string)(this["WebApplication1_net_webservicex_www1_CurrencyConvertor"]));
+            }
+        }
     }
 }

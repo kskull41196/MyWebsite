@@ -5,5 +5,8 @@
     <Setting Name="WebApplication1_net_webservicex_www_GlobalWeather" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://www.webservicex.net/globalweather.asmx</Value>
     </Setting>
+    <Setting Name="WebApplication1_net_webservicex_www1_CurrencyConvertor" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.webservicex.net/CurrencyConvertor.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

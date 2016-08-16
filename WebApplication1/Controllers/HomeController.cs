@@ -74,8 +74,9 @@ namespace WebApplication1.Controllers
             return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
 
+
         [HttpGet]
-        public ActionResult PayShoppingCard()
+        public ActionResult PayShoppingCard(bool isCalculatingByUSD)
         {
             //If is logging in = false -> redirect to login page
             if (!DataHelper.AccountHelper.getInstance().checkIsMemberLoggingIn(HttpContext))
@@ -83,12 +84,50 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Login");
             }
 
-            return View(URLHelper.URL_HOME_PAY_SHOPPING_CARD);
+
+
+            long totalCost = 0;
+            List<DataHelper.ShoppingCardItemModel> shoppingCard = DataHelper.ShoppingCardHelper.getInstance().getShoppingCardItemModelsInSession(this);
+            foreach (DataHelper.ShoppingCardItemModel record in shoppingCard.ToList())
+            {
+                totalCost += record.total;
+            }
+            if (isCalculatingByUSD)
+            {
+                net.webservicex.www1.CurrencyConvertor curencyConvertor = new net.webservicex.www1.CurrencyConvertor();
+                double rate = curencyConvertor.ConversionRate(net.webservicex.www1.Currency.USD, net.webservicex.www1.Currency.VND);
+                totalCost = (long)(totalCost * rate == -1 ? DataHelper.GeneralHelper.getInstance().getDefaultUsdRate() : rate);
+            }
+
+            ViewData[Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST] = totalCost;
+            return View(URLHelper.URL_HOME_PAY_SHOPPING_CARD, shoppingCard);
         }
 
-        public ActionResult Contact()
+        [HttpGet]
+        public ActionResult PayShoppingCard()
         {
-            return View();
+            return PayShoppingCard(false);
+        }
+
+        [HttpPost]
+        public ActionResult PayShoppingCard(string buttonChangeCurrency, string buttonPay)
+        {
+            if (String.IsNullOrEmpty(buttonPay))
+            {
+                bool isCalculatingByUSD = buttonChangeCurrency.Equals("USD");
+                return RedirectToAction("PayShoppingCard", isCalculatingByUSD);
+            }else
+            {
+                //Save all information to database tbl_order and tbl_order_detail
+
+
+                return RedirectToAction("PayShoppingCardSuccessfully");
+            }
+        }
+
+        public ActionResult PayShoppingCardSuccessfully()
+        {
+            return View(URLHelper.URL_HOME_PAY_SHOPPING_CARD_SUCCESSFULLY);
         }
 
         public ActionResult ShoppingCard()
@@ -267,7 +306,7 @@ namespace WebApplication1.Controllers
         {
             return View(URLHelper.URL_HOME_COMPLETE_SIGNUP);
         }
-        
+
         [HttpPost]
         public ActionResult ForgotPassword(FormCollection form)
         {

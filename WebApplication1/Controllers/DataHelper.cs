@@ -44,6 +44,11 @@ namespace WebApplication1.Controllers
             {
                 return data.tbl_supports.ToList();
             }
+
+            public double getDefaultUsdRate()
+            {
+                return 22260000;
+            }
         }
 
         public class AccountHelper
