@@ -100,13 +100,15 @@ namespace WebApplication1.Controllers
                 totalCost += record.total;
             }
 
+            string currentMemberEmail = DataHelper.AccountHelper.getInstance().getLoggingInMemberEmail(HttpContext);
             ViewData[Constants.KEY_VIEWDATA_CURENCY] = isCalculatingByUSD ? "USD" : "VNĐ";
             ViewData[Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST] = totalCost;
+            ViewData[Constants.KEY_VIEWDATA_MEMBER_ACCOUNT] = DataHelper.AccountHelper.getInstance().getMemberAccountByEmail(data, currentMemberEmail);
             return View(URLHelper.URL_HOME_PAY_SHOPPING_CARD, shoppingCard);
         }
         
         [HttpPost]
-        public ActionResult PayShoppingCard(string buttonChangeCurrency, string buttonPay)
+        public ActionResult PayShoppingCard(FormCollection form, string buttonChangeCurrency, string buttonPay)
         {
             if (String.IsNullOrEmpty(buttonPay))
             {
@@ -115,7 +117,7 @@ namespace WebApplication1.Controllers
             }else
             {
                 //Save all information to database tbl_order and tbl_order_detail
-
+                var email = form["email"];
 
                 return RedirectToAction("PayShoppingCardSuccessfully");
             }

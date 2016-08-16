@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "ShoppingCard";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+    WebApplication1.Models.tbl_member currentMember = (WebApplication1.Models.tbl_member)ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_MEMBER_ACCOUNT];
 }
 <div class="frame_product_mau_gh order">
     <div class="title_f_p_m_gh_pro">
@@ -100,28 +101,28 @@
                             <label for="InputName">Họ và tên <span class="imark">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" name="InputName" class="form-control" id="InputName" value="">
+                                <input type="text" name="InputName" class="form-control" id="InputName" value="@currentMember.name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="InputPhone">Điện thoại <span class="imark">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                <input type="text" class="form-control" name="InputPhone" id="InputPhone" value="">
+                                <input type="text" class="form-control" name="InputPhone" id="InputPhone" value="@currentMember.phone">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="InputEmail">Email <span class="imark">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon">&#64;</span>
-                                <input type="email" class="form-control" name="InputEmail" id="InputEmailFirst" value="">
+                                <input type="email" class="form-control" name="InputEmail" id="InputEmailFirst" value="@currentMember.email">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="InputAddress">Địa chỉ <span class="imark">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" name="InputAddress" class="form-control" id="InputAddress" value="">
+                                <input type="text" name="InputAddress" class="form-control" id="InputAddress" value="@currentMember.address">
                             </div>
                         </div>
                         <input type="submit" name="buttonPay" id="submit" value="Đặt hàng" class="btn btn-primary pull-right">

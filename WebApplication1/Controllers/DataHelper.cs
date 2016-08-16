@@ -139,6 +139,7 @@ namespace WebApplication1.Controllers
                     account.status = (byte)Constants.AccountStatus.INACTIVE;
                     account.birthday = birthday;
                     account.gender = (byte)gender;
+                    account.phone = phone;
 
                     data.tbl_members.InsertOnSubmit(account);
                     data.SubmitChanges();
@@ -168,6 +169,16 @@ namespace WebApplication1.Controllers
                     return true;
                 }
                 return false;
+            }
+
+            public string getLoggingInMemberEmail(HttpContextBase context)
+            {
+                Object session = context.Session[Constants.KEY_SESSION_MEMBER_USERNAME];
+                if (session != null && !String.IsNullOrEmpty(session.ToString()))
+                {
+                    return session.ToString();
+                }
+                return "";
             }
 
             public void logoutAdmin(BaseAdminController context)
