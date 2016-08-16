@@ -136,14 +136,14 @@
             <div class="quantity_wanted_p clearfix">
                 <form method="GET" id="form" action="../AddItemToShoppingCard">
                     <div class="js-qty">
-                        <input type="text" name="id"  style="display:none" value="@Model.Item1.id">
+                        <input type="text" name="id" style="display:none" value="@Model.Item1.id">
                         <input type="text" name="price" style="display:none" value="@Model.Item1.price">
                         <button type="button" class="control-quantity control-minus">−</button>
                         <input type="text" name="quantity" size="5" id="qty" class="slsp" style="text-align:center" value="1">
                         <button type="button" class="control-quantity control-add">+</button>
                     </div>
 
-                    <button type="submit" name="addcart" idtin="149" id="addcart" class="btn adtocart")'">
+                    <button type="submit" name="addcart" idtin="149" id="addcart" class="btn adtocart" )'">
                         <i class="fa fa-shopping-cart"></i>
                         <span id="AddToCartText">Thêm vào giỏ</span>
                     </button>
@@ -198,8 +198,39 @@
 <div class="frame_product_mau_gh">
     <div class="title_f_p_m_gh_pro">
         Comment facebook
+
     </div>
     <div class="main_f_p_m_gh">
+
+        <div id="fb-root"></div>
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '547990348720989',
+                    xfbml: true,
+                    version: 'v2.7'
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+
+        <div class="fb-like"
+             data-share="true"
+             data-width="450"
+             data-show-faces="true">
+        </div>
+
+        <div class="fb-comments"
+             data-href="http://localhost:53218/Home/ProductDetail/@Model.Item1.id" data-width="100%" data-numposts="5">
+        </div>
 
     </div>
 </div>
@@ -242,7 +273,7 @@
                                             </div>
                                             <div class="btnChiTiet"><a href="@Url.Action("ProductDetail", "Home", new { id=item.id})"><span>Chi tiết</span></a></div>
                                             <div class="btnMuaHang" idsp="@item.id"><span>Đặt hàng</span></div>
-                                            
+
 
                                             <div class="clearfix"></div>
                                         </div>
