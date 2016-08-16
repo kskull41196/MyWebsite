@@ -148,6 +148,11 @@
                         <span id="AddToCartText">Thêm vào giỏ</span>
                     </button>
                 </form>
+
+
+                @Html.Raw(Model.Item1.online_payment)
+
+
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $("#form").submit(function () {
@@ -237,6 +242,8 @@
                                             </div>
                                             <div class="btnChiTiet"><a href="@Url.Action("ProductDetail", "Home", new { id=item.id})"><span>Chi tiết</span></a></div>
                                             <div class="btnMuaHang" idsp="@item.id"><span>Đặt hàng</span></div>
+                                            
+
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="category-outer-3"></div>

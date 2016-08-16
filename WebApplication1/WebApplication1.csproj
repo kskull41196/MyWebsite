@@ -919,6 +919,7 @@
     <Content Include="Scripts\Zoom\jquery.fancybox.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Home\PayShoppingCardSuccessfully.cshtml" />
+    <Content Include="Views\Home\ItemPaid.cshtml" />
     <None Include="Web References\net.webservicex.www1\CurrencyConvertor.wsdl" />
     <Content Include="Web References\net.webservicex.www1\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

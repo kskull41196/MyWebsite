@@ -73,7 +73,17 @@ namespace WebApplication1.Controllers
             }
             return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
-        
+
+        public ActionResult ItemPaid()
+        {
+            return View(URLHelper.URL_HOME_ITEM_PAID);
+        }
+
+        public ActionResult ItemCancel()
+        {
+            return View(URLHelper.URL_HOME_ITEM_CANCEL);
+        }
+
         [HttpGet]
         public ActionResult PayShoppingCard(Boolean isCalculatingByUSD)
         {

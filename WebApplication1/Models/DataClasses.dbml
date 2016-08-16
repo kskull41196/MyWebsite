@@ -56,33 +56,6 @@
       <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_item" Member="tbl_items">
-    <Type Name="tbl_item">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="parent" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="detail_short" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="detail" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="subject" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="promotion_price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="hot" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="sort" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="view_amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="buy_amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="title" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="keyword" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="tbl_item_tbl_item_color" Member="tbl_item_colors" ThisKey="id" OtherKey="id_product" Type="tbl_item_color" />
-      <Association Name="tbl_item_tbl_item_size" Member="tbl_item_sizes" ThisKey="id" OtherKey="id_product" Type="tbl_item_size" />
-      <Association Name="tbl_item_tbl_order_detail" Member="tbl_order_details" ThisKey="id" OtherKey="id_product" Type="tbl_order_detail" />
-      <Association Name="tbl_item_category_tbl_item" Member="tbl_item_category" ThisKey="parent" OtherKey="id" Type="tbl_item_category" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tbl_item_category" Member="tbl_item_categories">
     <Type Name="tbl_item_category">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -116,8 +89,8 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="id_product" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="id_size" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tbl_item_tbl_item_size" Member="tbl_item" ThisKey="id_product" OtherKey="id" Type="tbl_item" IsForeignKey="true" />
       <Association Name="tbl_size_tbl_item_size" Member="tbl_size" ThisKey="id_size" OtherKey="id" Type="tbl_size" IsForeignKey="true" />
+      <Association Name="tbl_item_tbl_item_size" Member="tbl_item" ThisKey="id_product" OtherKey="id" Type="tbl_item" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_news" Member="tbl_news">
@@ -167,8 +140,8 @@
       <Column Name="id_product" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Association Name="tbl_item_tbl_order_detail" Member="tbl_item" ThisKey="id_product" OtherKey="id" Type="tbl_item" IsForeignKey="true" />
       <Association Name="tbl_order_tbl_order_detail" Member="tbl_order" ThisKey="id_order" OtherKey="id" Type="tbl_order" IsForeignKey="true" />
+      <Association Name="tbl_item_tbl_order_detail" Member="tbl_item" ThisKey="id_product" OtherKey="id" Type="tbl_item" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_producer" Member="tbl_producers">
@@ -256,6 +229,35 @@
       <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="tbl_order_tbl_order_detail" Member="tbl_order_details" ThisKey="id" OtherKey="id_order" Type="tbl_order_detail" />
       <Association Name="tbl_member_tbl_order" Member="tbl_member" ThisKey="id_customer" OtherKey="id" Type="tbl_member" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_item" Member="tbl_items">
+    <Type Name="tbl_item">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="parent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="detail_short" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="detail" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="subject" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="online_payment" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="promotion_price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="link" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="hot" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="sort" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="view_amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="buy_amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="keyword" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="tbl_item_tbl_item_color" Member="tbl_item_colors" ThisKey="id" OtherKey="id_product" Type="tbl_item_color" />
+      <Association Name="tbl_item_tbl_item_size" Member="tbl_item_sizes" ThisKey="id" OtherKey="id_product" Type="tbl_item_size" />
+      <Association Name="tbl_item_tbl_order_detail" Member="tbl_order_details" ThisKey="id" OtherKey="id_product" Type="tbl_order_detail" />
+      <Association Name="tbl_item_category_tbl_item" Member="tbl_item_category" ThisKey="parent" OtherKey="id" Type="tbl_item_category" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
