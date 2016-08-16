@@ -148,6 +148,11 @@ namespace WebApplication1.Controllers
             return View(URLHelper.URL_HOME_PAY_SHOPPING_CARD_SUCCESSFULLY);
         }
 
+        public ActionResult Contact()
+        {
+            return View(URLHelper.URL_HOME_CONTACT);
+        }
+
         public ActionResult ShoppingCard()
         {
             long totalCost = 0;
