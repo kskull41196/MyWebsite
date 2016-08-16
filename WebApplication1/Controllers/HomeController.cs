@@ -117,21 +117,15 @@ namespace WebApplication1.Controllers
             }else
             {
                 //Save all information to database tbl_order and tbl_order_detail
-                var emailSender = form["InputEmail"];
-                var nameSender = form["InputName"];
-                var addressSender = form["InputAddress"];
-                var phoneSender = form["InputPhone"];
                 var emailReceiver = form["InputEmailReceiver"];
                 var nameReceiver = form["InputNameReceiver"];
                 var addressReceiver = form["InputAddressReceiver"];
                 var phoneReceiver = form["InputPhoneReceiver"];
                 var note = form["InputNote"];
-                var totalCost = form["InputTotalCost"];
                 var curency = form["InputCurency"];
-                DataHelper.ShoppingCardHelper.getInstance().saveOrder(this, emailSender,
-                    nameSender, addressSender, phoneSender,
+                DataHelper.ShoppingCardHelper.getInstance().saveOrder(this, 
                     emailReceiver, nameReceiver, phoneReceiver, addressReceiver,
-                    note, totalCost, curency);
+                    note, curency);
                 
                 return RedirectToAction("PayShoppingCardSuccessfully");
             }

@@ -47,7 +47,7 @@ namespace WebApplication1.Controllers
 
             public double getDefaultUsdRate()
             {
-                return 22260000;
+                return 22260;
             }
         }
 
@@ -81,12 +81,17 @@ namespace WebApplication1.Controllers
 
             public bool checkThisMemberAccountExist(Models.DataClassesDataContext data, string email, string password)
             {
+                return checkThisMemberAccountExist(data, email, password, false);
+            }
+
+            public bool checkThisMemberAccountExist(Models.DataClassesDataContext data, string email, string password, bool checkActive)
+            {
                 var result = data.tbl_members.Where(a => a.email.Equals(email) && a.password == password);
-                if (result.Count() > 0)
+                if (result.Count() <= 0 || (checkActive && result.Single().status != (int)Constants.AccountStatus.ACTIVE))
                 {
-                    return true;
+                    return false;
                 }
-                return false;
+                return true;
             }
 
             public string getPasswordOfMemberAccount(Models.DataClassesDataContext data, string email)
@@ -106,7 +111,7 @@ namespace WebApplication1.Controllers
 
             public bool loginMember(Models.DataClassesDataContext data, string email, string password)
             {
-                return checkThisMemberAccountExist(data, email, password);
+                return checkThisMemberAccountExist(data, email, password, true);
             }
 
             public bool activateMemberAccount(BaseController context, string email)
@@ -126,7 +131,7 @@ namespace WebApplication1.Controllers
                 , string fullname, string phone, string address
                 , DateTime birthday, Constants.Gender gender)
             {
-                bool doesAccountToAddExist = false;
+                bool doesAccountToAddExist = checkThisMemberAccountExist(data, email, password);
                 if (!doesAccountToAddExist)
                 {
                     Models.tbl_member account = new Models.tbl_member();
@@ -309,22 +314,48 @@ namespace WebApplication1.Controllers
                 }
             }
 
-            public void saveOrder(BaseController context, string emailSender,
-    string nameSender, string addressSender, string phoneSender,
+            public void saveOrder(BaseController context,
     string emailReceiver, string nameReceiver, string phoneReceiver, string addressReceiver,
-    string note, string totalCost, string curency)
+    string note, string curency)
             {
-                //Save order
-                Models.tbl_order order = new Models.tbl_order();
-                context.data.tbl_orders.InsertOnSubmit(order);
+                //Get member account by session email
+                string emailSender = AccountHelper.getInstance().getLoggingInMemberEmail(context.HttpContext);
+                Models.tbl_member member = AccountHelper.getInstance().getMemberAccountByEmail(context.data, emailSender);
 
-                //Save order_details
-                for (int i = 0; i < 3; i++)
+                //Get shoppingCard in Sesion
+                List<Models.tbl_order_detail> listShoppingCard = getShoppingCardInSession(context);
+                int totalAmount = 0;
+                foreach (Models.tbl_order_detail record in listShoppingCard.ToList())
                 {
-                    Models.tbl_order_detail orderDetail = new Models.tbl_order_detail();
-                    context.data.tbl_order_details.InsertOnSubmit(orderDetail);
+                    totalAmount += record.quantity.Value;
                 }
 
+                //Save order
+                Models.tbl_order order = new Models.tbl_order();
+                order.id_customer = member.id;
+                order.total_amount = totalAmount;
+                order.last_modified = DateTime.Now;
+                order.date_added = DateTime.Now;
+                order.email_receiver = emailReceiver;
+                order.email_customer = emailSender;
+                order.name_receiver = nameReceiver;
+                order.name_customer = member.name;
+                order.phone_receiver = phoneReceiver;
+                order.phone_customer = member.phone;
+                order.address_receiver = addressReceiver;
+                order.address_customer = member.address;
+                order.note = note;
+                order.curency = (byte)(curency.Equals("USD") ? 1 : 0);
+                order.status = (int)Constants.OrderStatus.UNPAID;
+                context.data.tbl_orders.InsertOnSubmit(order);
+                context.data.SubmitChanges(); //Submit change here to get the id of inserted record.
+
+                //Save order_details
+                foreach (Models.tbl_order_detail record in listShoppingCard.ToList())
+                {
+                    record.id_order = order.id;
+                    context.data.tbl_order_details.InsertOnSubmit(record);
+                }
                 context.data.SubmitChanges();
             }
 

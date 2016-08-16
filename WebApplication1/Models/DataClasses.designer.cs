@@ -63,9 +63,6 @@ namespace WebApplication1.Models
     partial void Inserttbl_news_category(tbl_news_category instance);
     partial void Updatetbl_news_category(tbl_news_category instance);
     partial void Deletetbl_news_category(tbl_news_category instance);
-    partial void Inserttbl_order(tbl_order instance);
-    partial void Updatetbl_order(tbl_order instance);
-    partial void Deletetbl_order(tbl_order instance);
     partial void Inserttbl_order_detail(tbl_order_detail instance);
     partial void Updatetbl_order_detail(tbl_order_detail instance);
     partial void Deletetbl_order_detail(tbl_order_detail instance);
@@ -84,6 +81,9 @@ namespace WebApplication1.Models
     partial void Inserttbl_member(tbl_member instance);
     partial void Updatetbl_member(tbl_member instance);
     partial void Deletetbl_member(tbl_member instance);
+    partial void Inserttbl_order(tbl_order instance);
+    partial void Updatetbl_order(tbl_order instance);
+    partial void Deletetbl_order(tbl_order instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -204,14 +204,6 @@ namespace WebApplication1.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<tbl_order> tbl_orders
-		{
-			get
-			{
-				return this.GetTable<tbl_order>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tbl_order_detail> tbl_order_details
 		{
 			get
@@ -257,6 +249,14 @@ namespace WebApplication1.Models
 			get
 			{
 				return this.GetTable<tbl_member>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_order> tbl_orders
+		{
+			get
+			{
+				return this.GetTable<tbl_order>();
 			}
 		}
 	}
@@ -3593,473 +3593,6 @@ namespace WebApplication1.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_order")]
-	public partial class tbl_order : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private System.Nullable<int> _id_customer;
-		
-		private string _name_customer;
-		
-		private string _email_customer;
-		
-		private string _address_customer;
-		
-		private string _phone_customer;
-		
-		private string _name_receiver;
-		
-		private string _email_receiver;
-		
-		private string _address_receiver;
-		
-		private string _phone_receiver;
-		
-		private System.Nullable<long> _total_amount;
-		
-		private string _note;
-		
-		private System.Nullable<byte> _status;
-		
-		private System.Nullable<System.DateTime> _date_added;
-		
-		private System.Nullable<System.DateTime> _last_modified;
-		
-		private EntitySet<tbl_order_detail> _tbl_order_details;
-		
-		private EntityRef<tbl_member> _tbl_member;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void Onid_customerChanging(System.Nullable<int> value);
-    partial void Onid_customerChanged();
-    partial void Onname_customerChanging(string value);
-    partial void Onname_customerChanged();
-    partial void Onemail_customerChanging(string value);
-    partial void Onemail_customerChanged();
-    partial void Onaddress_customerChanging(string value);
-    partial void Onaddress_customerChanged();
-    partial void Onphone_customerChanging(string value);
-    partial void Onphone_customerChanged();
-    partial void Onname_receiverChanging(string value);
-    partial void Onname_receiverChanged();
-    partial void Onemail_receiverChanging(string value);
-    partial void Onemail_receiverChanged();
-    partial void Onaddress_receiverChanging(string value);
-    partial void Onaddress_receiverChanged();
-    partial void Onphone_receiverChanging(string value);
-    partial void Onphone_receiverChanged();
-    partial void Ontotal_amountChanging(System.Nullable<long> value);
-    partial void Ontotal_amountChanged();
-    partial void OnnoteChanging(string value);
-    partial void OnnoteChanged();
-    partial void OnstatusChanging(System.Nullable<byte> value);
-    partial void OnstatusChanged();
-    partial void Ondate_addedChanging(System.Nullable<System.DateTime> value);
-    partial void Ondate_addedChanged();
-    partial void Onlast_modifiedChanging(System.Nullable<System.DateTime> value);
-    partial void Onlast_modifiedChanged();
-    #endregion
-		
-		public tbl_order()
-		{
-			this._tbl_order_details = new EntitySet<tbl_order_detail>(new Action<tbl_order_detail>(this.attach_tbl_order_details), new Action<tbl_order_detail>(this.detach_tbl_order_details));
-			this._tbl_member = default(EntityRef<tbl_member>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_customer", DbType="Int")]
-		public System.Nullable<int> id_customer
-		{
-			get
-			{
-				return this._id_customer;
-			}
-			set
-			{
-				if ((this._id_customer != value))
-				{
-					if (this._tbl_member.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_customerChanging(value);
-					this.SendPropertyChanging();
-					this._id_customer = value;
-					this.SendPropertyChanged("id_customer");
-					this.Onid_customerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_customer", DbType="VarChar(255)")]
-		public string name_customer
-		{
-			get
-			{
-				return this._name_customer;
-			}
-			set
-			{
-				if ((this._name_customer != value))
-				{
-					this.Onname_customerChanging(value);
-					this.SendPropertyChanging();
-					this._name_customer = value;
-					this.SendPropertyChanged("name_customer");
-					this.Onname_customerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email_customer", DbType="VarChar(255)")]
-		public string email_customer
-		{
-			get
-			{
-				return this._email_customer;
-			}
-			set
-			{
-				if ((this._email_customer != value))
-				{
-					this.Onemail_customerChanging(value);
-					this.SendPropertyChanging();
-					this._email_customer = value;
-					this.SendPropertyChanged("email_customer");
-					this.Onemail_customerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address_customer", DbType="VarChar(255)")]
-		public string address_customer
-		{
-			get
-			{
-				return this._address_customer;
-			}
-			set
-			{
-				if ((this._address_customer != value))
-				{
-					this.Onaddress_customerChanging(value);
-					this.SendPropertyChanging();
-					this._address_customer = value;
-					this.SendPropertyChanged("address_customer");
-					this.Onaddress_customerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone_customer", DbType="VarChar(255)")]
-		public string phone_customer
-		{
-			get
-			{
-				return this._phone_customer;
-			}
-			set
-			{
-				if ((this._phone_customer != value))
-				{
-					this.Onphone_customerChanging(value);
-					this.SendPropertyChanging();
-					this._phone_customer = value;
-					this.SendPropertyChanged("phone_customer");
-					this.Onphone_customerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_receiver", DbType="VarChar(255)")]
-		public string name_receiver
-		{
-			get
-			{
-				return this._name_receiver;
-			}
-			set
-			{
-				if ((this._name_receiver != value))
-				{
-					this.Onname_receiverChanging(value);
-					this.SendPropertyChanging();
-					this._name_receiver = value;
-					this.SendPropertyChanged("name_receiver");
-					this.Onname_receiverChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email_receiver", DbType="VarChar(255)")]
-		public string email_receiver
-		{
-			get
-			{
-				return this._email_receiver;
-			}
-			set
-			{
-				if ((this._email_receiver != value))
-				{
-					this.Onemail_receiverChanging(value);
-					this.SendPropertyChanging();
-					this._email_receiver = value;
-					this.SendPropertyChanged("email_receiver");
-					this.Onemail_receiverChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address_receiver", DbType="VarChar(255)")]
-		public string address_receiver
-		{
-			get
-			{
-				return this._address_receiver;
-			}
-			set
-			{
-				if ((this._address_receiver != value))
-				{
-					this.Onaddress_receiverChanging(value);
-					this.SendPropertyChanging();
-					this._address_receiver = value;
-					this.SendPropertyChanged("address_receiver");
-					this.Onaddress_receiverChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone_receiver", DbType="VarChar(255)")]
-		public string phone_receiver
-		{
-			get
-			{
-				return this._phone_receiver;
-			}
-			set
-			{
-				if ((this._phone_receiver != value))
-				{
-					this.Onphone_receiverChanging(value);
-					this.SendPropertyChanging();
-					this._phone_receiver = value;
-					this.SendPropertyChanged("phone_receiver");
-					this.Onphone_receiverChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_amount", DbType="BigInt")]
-		public System.Nullable<long> total_amount
-		{
-			get
-			{
-				return this._total_amount;
-			}
-			set
-			{
-				if ((this._total_amount != value))
-				{
-					this.Ontotal_amountChanging(value);
-					this.SendPropertyChanging();
-					this._total_amount = value;
-					this.SendPropertyChanged("total_amount");
-					this.Ontotal_amountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		public string note
-		{
-			get
-			{
-				return this._note;
-			}
-			set
-			{
-				if ((this._note != value))
-				{
-					this.OnnoteChanging(value);
-					this.SendPropertyChanging();
-					this._note = value;
-					this.SendPropertyChanged("note");
-					this.OnnoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="TinyInt")]
-		public System.Nullable<byte> status
-		{
-			get
-			{
-				return this._status;
-			}
-			set
-			{
-				if ((this._status != value))
-				{
-					this.OnstatusChanging(value);
-					this.SendPropertyChanging();
-					this._status = value;
-					this.SendPropertyChanged("status");
-					this.OnstatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_added", DbType="DateTime")]
-		public System.Nullable<System.DateTime> date_added
-		{
-			get
-			{
-				return this._date_added;
-			}
-			set
-			{
-				if ((this._date_added != value))
-				{
-					this.Ondate_addedChanging(value);
-					this.SendPropertyChanging();
-					this._date_added = value;
-					this.SendPropertyChanged("date_added");
-					this.Ondate_addedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_modified", DbType="DateTime")]
-		public System.Nullable<System.DateTime> last_modified
-		{
-			get
-			{
-				return this._last_modified;
-			}
-			set
-			{
-				if ((this._last_modified != value))
-				{
-					this.Onlast_modifiedChanging(value);
-					this.SendPropertyChanging();
-					this._last_modified = value;
-					this.SendPropertyChanged("last_modified");
-					this.Onlast_modifiedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_order_tbl_order_detail", Storage="_tbl_order_details", ThisKey="id", OtherKey="id_order")]
-		public EntitySet<tbl_order_detail> tbl_order_details
-		{
-			get
-			{
-				return this._tbl_order_details;
-			}
-			set
-			{
-				this._tbl_order_details.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_member_tbl_order", Storage="_tbl_member", ThisKey="id_customer", OtherKey="id", IsForeignKey=true)]
-		public tbl_member tbl_member
-		{
-			get
-			{
-				return this._tbl_member.Entity;
-			}
-			set
-			{
-				tbl_member previousValue = this._tbl_member.Entity;
-				if (((previousValue != value) 
-							|| (this._tbl_member.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbl_member.Entity = null;
-						previousValue.tbl_orders.Remove(this);
-					}
-					this._tbl_member.Entity = value;
-					if ((value != null))
-					{
-						value.tbl_orders.Add(this);
-						this._id_customer = value.id;
-					}
-					else
-					{
-						this._id_customer = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tbl_member");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tbl_order_details(tbl_order_detail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_order = this;
-		}
-		
-		private void detach_tbl_order_details(tbl_order_detail entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbl_order = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_order_detail")]
 	public partial class tbl_order_detail : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5571,6 +5104,497 @@ namespace WebApplication1.Models
 		{
 			this.SendPropertyChanging();
 			entity.tbl_member = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_order")]
+	public partial class tbl_order : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _id_customer;
+		
+		private string _name_customer;
+		
+		private string _email_customer;
+		
+		private string _address_customer;
+		
+		private string _phone_customer;
+		
+		private string _name_receiver;
+		
+		private string _email_receiver;
+		
+		private string _address_receiver;
+		
+		private string _phone_receiver;
+		
+		private System.Nullable<long> _total_amount;
+		
+		private string _note;
+		
+		private System.Nullable<byte> _status;
+		
+		private System.Nullable<byte> _curency;
+		
+		private System.Nullable<System.DateTime> _date_added;
+		
+		private System.Nullable<System.DateTime> _last_modified;
+		
+		private EntitySet<tbl_order_detail> _tbl_order_details;
+		
+		private EntityRef<tbl_member> _tbl_member;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onid_customerChanging(System.Nullable<int> value);
+    partial void Onid_customerChanged();
+    partial void Onname_customerChanging(string value);
+    partial void Onname_customerChanged();
+    partial void Onemail_customerChanging(string value);
+    partial void Onemail_customerChanged();
+    partial void Onaddress_customerChanging(string value);
+    partial void Onaddress_customerChanged();
+    partial void Onphone_customerChanging(string value);
+    partial void Onphone_customerChanged();
+    partial void Onname_receiverChanging(string value);
+    partial void Onname_receiverChanged();
+    partial void Onemail_receiverChanging(string value);
+    partial void Onemail_receiverChanged();
+    partial void Onaddress_receiverChanging(string value);
+    partial void Onaddress_receiverChanged();
+    partial void Onphone_receiverChanging(string value);
+    partial void Onphone_receiverChanged();
+    partial void Ontotal_amountChanging(System.Nullable<long> value);
+    partial void Ontotal_amountChanged();
+    partial void OnnoteChanging(string value);
+    partial void OnnoteChanged();
+    partial void OnstatusChanging(System.Nullable<byte> value);
+    partial void OnstatusChanged();
+    partial void OncurencyChanging(System.Nullable<byte> value);
+    partial void OncurencyChanged();
+    partial void Ondate_addedChanging(System.Nullable<System.DateTime> value);
+    partial void Ondate_addedChanged();
+    partial void Onlast_modifiedChanging(System.Nullable<System.DateTime> value);
+    partial void Onlast_modifiedChanged();
+    #endregion
+		
+		public tbl_order()
+		{
+			this._tbl_order_details = new EntitySet<tbl_order_detail>(new Action<tbl_order_detail>(this.attach_tbl_order_details), new Action<tbl_order_detail>(this.detach_tbl_order_details));
+			this._tbl_member = default(EntityRef<tbl_member>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_customer", DbType="Int")]
+		public System.Nullable<int> id_customer
+		{
+			get
+			{
+				return this._id_customer;
+			}
+			set
+			{
+				if ((this._id_customer != value))
+				{
+					if (this._tbl_member.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_customerChanging(value);
+					this.SendPropertyChanging();
+					this._id_customer = value;
+					this.SendPropertyChanged("id_customer");
+					this.Onid_customerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_customer", DbType="VarChar(255)")]
+		public string name_customer
+		{
+			get
+			{
+				return this._name_customer;
+			}
+			set
+			{
+				if ((this._name_customer != value))
+				{
+					this.Onname_customerChanging(value);
+					this.SendPropertyChanging();
+					this._name_customer = value;
+					this.SendPropertyChanged("name_customer");
+					this.Onname_customerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email_customer", DbType="VarChar(255)")]
+		public string email_customer
+		{
+			get
+			{
+				return this._email_customer;
+			}
+			set
+			{
+				if ((this._email_customer != value))
+				{
+					this.Onemail_customerChanging(value);
+					this.SendPropertyChanging();
+					this._email_customer = value;
+					this.SendPropertyChanged("email_customer");
+					this.Onemail_customerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address_customer", DbType="VarChar(255)")]
+		public string address_customer
+		{
+			get
+			{
+				return this._address_customer;
+			}
+			set
+			{
+				if ((this._address_customer != value))
+				{
+					this.Onaddress_customerChanging(value);
+					this.SendPropertyChanging();
+					this._address_customer = value;
+					this.SendPropertyChanged("address_customer");
+					this.Onaddress_customerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone_customer", DbType="VarChar(255)")]
+		public string phone_customer
+		{
+			get
+			{
+				return this._phone_customer;
+			}
+			set
+			{
+				if ((this._phone_customer != value))
+				{
+					this.Onphone_customerChanging(value);
+					this.SendPropertyChanging();
+					this._phone_customer = value;
+					this.SendPropertyChanged("phone_customer");
+					this.Onphone_customerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_receiver", DbType="VarChar(255)")]
+		public string name_receiver
+		{
+			get
+			{
+				return this._name_receiver;
+			}
+			set
+			{
+				if ((this._name_receiver != value))
+				{
+					this.Onname_receiverChanging(value);
+					this.SendPropertyChanging();
+					this._name_receiver = value;
+					this.SendPropertyChanged("name_receiver");
+					this.Onname_receiverChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email_receiver", DbType="VarChar(255)")]
+		public string email_receiver
+		{
+			get
+			{
+				return this._email_receiver;
+			}
+			set
+			{
+				if ((this._email_receiver != value))
+				{
+					this.Onemail_receiverChanging(value);
+					this.SendPropertyChanging();
+					this._email_receiver = value;
+					this.SendPropertyChanged("email_receiver");
+					this.Onemail_receiverChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address_receiver", DbType="VarChar(255)")]
+		public string address_receiver
+		{
+			get
+			{
+				return this._address_receiver;
+			}
+			set
+			{
+				if ((this._address_receiver != value))
+				{
+					this.Onaddress_receiverChanging(value);
+					this.SendPropertyChanging();
+					this._address_receiver = value;
+					this.SendPropertyChanged("address_receiver");
+					this.Onaddress_receiverChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phone_receiver", DbType="VarChar(255)")]
+		public string phone_receiver
+		{
+			get
+			{
+				return this._phone_receiver;
+			}
+			set
+			{
+				if ((this._phone_receiver != value))
+				{
+					this.Onphone_receiverChanging(value);
+					this.SendPropertyChanging();
+					this._phone_receiver = value;
+					this.SendPropertyChanged("phone_receiver");
+					this.Onphone_receiverChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_amount", DbType="BigInt")]
+		public System.Nullable<long> total_amount
+		{
+			get
+			{
+				return this._total_amount;
+			}
+			set
+			{
+				if ((this._total_amount != value))
+				{
+					this.Ontotal_amountChanging(value);
+					this.SendPropertyChanging();
+					this._total_amount = value;
+					this.SendPropertyChanged("total_amount");
+					this.Ontotal_amountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		public string note
+		{
+			get
+			{
+				return this._note;
+			}
+			set
+			{
+				if ((this._note != value))
+				{
+					this.OnnoteChanging(value);
+					this.SendPropertyChanging();
+					this._note = value;
+					this.SendPropertyChanged("note");
+					this.OnnoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="TinyInt")]
+		public System.Nullable<byte> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_curency", DbType="TinyInt")]
+		public System.Nullable<byte> curency
+		{
+			get
+			{
+				return this._curency;
+			}
+			set
+			{
+				if ((this._curency != value))
+				{
+					this.OncurencyChanging(value);
+					this.SendPropertyChanging();
+					this._curency = value;
+					this.SendPropertyChanged("curency");
+					this.OncurencyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_added", DbType="DateTime")]
+		public System.Nullable<System.DateTime> date_added
+		{
+			get
+			{
+				return this._date_added;
+			}
+			set
+			{
+				if ((this._date_added != value))
+				{
+					this.Ondate_addedChanging(value);
+					this.SendPropertyChanging();
+					this._date_added = value;
+					this.SendPropertyChanged("date_added");
+					this.Ondate_addedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_modified", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_modified
+		{
+			get
+			{
+				return this._last_modified;
+			}
+			set
+			{
+				if ((this._last_modified != value))
+				{
+					this.Onlast_modifiedChanging(value);
+					this.SendPropertyChanging();
+					this._last_modified = value;
+					this.SendPropertyChanged("last_modified");
+					this.Onlast_modifiedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_order_tbl_order_detail", Storage="_tbl_order_details", ThisKey="id", OtherKey="id_order")]
+		public EntitySet<tbl_order_detail> tbl_order_details
+		{
+			get
+			{
+				return this._tbl_order_details;
+			}
+			set
+			{
+				this._tbl_order_details.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_member_tbl_order", Storage="_tbl_member", ThisKey="id_customer", OtherKey="id", IsForeignKey=true)]
+		public tbl_member tbl_member
+		{
+			get
+			{
+				return this._tbl_member.Entity;
+			}
+			set
+			{
+				tbl_member previousValue = this._tbl_member.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_member.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_member.Entity = null;
+						previousValue.tbl_orders.Remove(this);
+					}
+					this._tbl_member.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_orders.Add(this);
+						this._id_customer = value.id;
+					}
+					else
+					{
+						this._id_customer = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tbl_member");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tbl_order_details(tbl_order_detail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_order = this;
+		}
+		
+		private void detach_tbl_order_details(tbl_order_detail entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_order = null;
 		}
 	}
 }

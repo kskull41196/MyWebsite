@@ -26,9 +26,15 @@ namespace WebApplication1.Controllers
         {
             MALE, FEMALE, BOTH
         }
+
         public enum AccountStatus
         {
             INACTIVE, ACTIVE
+        }
+        
+        public enum OrderStatus
+        {
+            PAID, UNPAID
         }
     }
 }

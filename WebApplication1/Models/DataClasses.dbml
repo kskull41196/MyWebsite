@@ -160,27 +160,6 @@
       <Association Name="tbl_news_category_tbl_new" Member="tbl_news" ThisKey="id" OtherKey="parent" Type="tbl_new" />
     </Type>
   </Table>
-  <Table Name="dbo.tbl_order" Member="tbl_orders">
-    <Type Name="tbl_order">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="id_customer" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="name_customer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="email_customer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="address_customer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="phone_customer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="name_receiver" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="email_receiver" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="address_receiver" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="phone_receiver" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="total_amount" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="note" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="tbl_order_tbl_order_detail" Member="tbl_order_details" ThisKey="id" OtherKey="id_order" Type="tbl_order_detail" />
-      <Association Name="tbl_member_tbl_order" Member="tbl_member" ThisKey="id_customer" OtherKey="id" Type="tbl_member" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.tbl_order_detail" Member="tbl_order_details">
     <Type Name="tbl_order_detail">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -255,6 +234,28 @@
       <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="tbl_member_tbl_order" Member="tbl_orders" ThisKey="id" OtherKey="id_customer" Type="tbl_order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_order" Member="tbl_orders">
+    <Type Name="tbl_order">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_customer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name_customer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="email_customer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="address_customer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="phone_customer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="name_receiver" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="email_receiver" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="address_receiver" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="phone_receiver" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="total_amount" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="curency" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="date_added" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_modified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tbl_order_tbl_order_detail" Member="tbl_order_details" ThisKey="id" OtherKey="id_order" Type="tbl_order_detail" />
+      <Association Name="tbl_member_tbl_order" Member="tbl_member" ThisKey="id_customer" OtherKey="id" Type="tbl_member" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
