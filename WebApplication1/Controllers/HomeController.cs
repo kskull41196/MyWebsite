@@ -124,6 +124,8 @@ namespace WebApplication1.Controllers
         {
             if (DataHelper.AccountHelper.getInstance().activateMemberAccount(this, email))
             {
+                string password = DataHelper.AccountHelper.getInstance().getPasswordOfMemberAccount(data, email);
+                DataHelper.AccountHelper.getInstance().loginMember(data, email, password);
                 ViewBag.Message = "Kích hoạt tài khoản thành công!";
             }
             else
@@ -289,6 +291,12 @@ namespace WebApplication1.Controllers
         public ActionResult ForgotPassword()
         {
             return View(URLHelper.URL_HOME_FORGOT_PASSWORD);
+        }
+
+        public ActionResult Logout()
+        {
+            DataHelper.AccountHelper.getInstance().logoutMember(this);
+            return RedirectToAction("Index");
         }
     }
 }
