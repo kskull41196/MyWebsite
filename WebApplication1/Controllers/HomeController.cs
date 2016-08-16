@@ -84,7 +84,7 @@ namespace WebApplication1.Controllers
             }
 
             double rate = 1;
-            long totalCost = 0;
+            double totalCost = 0;
             if (isCalculatingByUSD)
             {
                 net.webservicex.www1.CurrencyConvertor curencyConvertor = new net.webservicex.www1.CurrencyConvertor();
@@ -117,8 +117,22 @@ namespace WebApplication1.Controllers
             }else
             {
                 //Save all information to database tbl_order and tbl_order_detail
-                var email = form["email"];
-
+                var emailSender = form["InputEmail"];
+                var nameSender = form["InputName"];
+                var addressSender = form["InputAddress"];
+                var phoneSender = form["InputPhone"];
+                var emailReceiver = form["InputEmailReceiver"];
+                var nameReceiver = form["InputNameReceiver"];
+                var addressReceiver = form["InputAddressReceiver"];
+                var phoneReceiver = form["InputPhoneReceiver"];
+                var note = form["InputNote"];
+                var totalCost = form["InputTotalCost"];
+                var curency = form["InputCurency"];
+                DataHelper.ShoppingCardHelper.getInstance().saveOrder(this, emailSender,
+                    nameSender, addressSender, phoneSender,
+                    emailReceiver, nameReceiver, phoneReceiver, addressReceiver,
+                    note, totalCost, curency);
+                
                 return RedirectToAction("PayShoppingCardSuccessfully");
             }
         }

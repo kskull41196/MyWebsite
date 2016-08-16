@@ -309,6 +309,25 @@ namespace WebApplication1.Controllers
                 }
             }
 
+            public void saveOrder(BaseController context, string emailSender,
+    string nameSender, string addressSender, string phoneSender,
+    string emailReceiver, string nameReceiver, string phoneReceiver, string addressReceiver,
+    string note, string totalCost, string curency)
+            {
+                //Save order
+                Models.tbl_order order = new Models.tbl_order();
+                context.data.tbl_orders.InsertOnSubmit(order);
+
+                //Save order_details
+                for (int i = 0; i < 3; i++)
+                {
+                    Models.tbl_order_detail orderDetail = new Models.tbl_order_detail();
+                    context.data.tbl_order_details.InsertOnSubmit(orderDetail);
+                }
+
+                context.data.SubmitChanges();
+            }
+
             public void updateShoppingCard(BaseController context, List<Models.tbl_order_detail> shoppingCard)
             {
                 context.Session[Constants.KEY_SESSION_SHOPPING_CARD] = shoppingCard;

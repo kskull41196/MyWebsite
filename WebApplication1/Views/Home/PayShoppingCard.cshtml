@@ -66,7 +66,8 @@
                             <strong>Tổng tiền : </strong>
                         </td>
                         <td class="text-left">
-                            <input type="hidden" name="InputTotalHd" value="340000">
+                            <input type="hidden" name="InputTotalCost" value="@ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST]">
+                            <input type="hidden" name="InputCurency" value="@ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_CURENCY]">
                             @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST] @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_CURENCY]
                         </td>
                     </tr>
@@ -98,31 +99,76 @@
                         <mark class="cust_mark">Những ô có dấu <span class="imark">*</span> là bắt buộc phải nhập/chọn</mark>
                         <br><br>
                         <div class="form-group">
-                            <label for="InputName">Họ và tên <span class="imark">*</span></label>
+                            <label for="InputName">Họ và tên người gửi <span class="imark">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" name="InputName" class="form-control" id="InputName" value="@currentMember.name">
+                                <input type="text" disabled="true" name="InputName" class="form-control" id="InputName" value="@currentMember.name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="InputPhone">Điện thoại <span class="imark">*</span></label>
+                            <label for="InputPhone">Điện thoại người gửi <span class="imark">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                <input type="text" class="form-control" name="InputPhone" id="InputPhone" value="@currentMember.phone">
+                                <input type="text" disabled="true" class="form-control" name="InputPhone" id="InputPhone" value="@currentMember.phone">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="InputEmail">Email <span class="imark">*</span></label>
+                            <label for="InputEmail">Email người gửi <span class="imark">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon">&#64;</span>
-                                <input type="email" class="form-control" name="InputEmail" id="InputEmailFirst" value="@currentMember.email">
+                                <input type="email" disabled="true" class="form-control" name="InputEmail" id="InputEmail" value="@currentMember.email">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="InputAddress">Địa chỉ <span class="imark">*</span></label>
+                            <label for="InputAddress">Địa chỉ người gửi <span class="imark">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" name="InputAddress" class="form-control" id="InputAddress" value="@currentMember.address">
+                                <input type="text" disabled="true" name="InputAddress" class="form-control" id="InputAddress" value="@currentMember.address">
+                            </div>
+                        </div>
+
+
+                        <br/>
+
+
+                        <div class="form-group">
+                            <label for="InputName">Họ và tên người nhận <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" name="InputNameReceiver" class="form-control" id="InputNameReceiver" value="@currentMember.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPhone">Điện thoại người nhận <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input type="text" class="form-control" name="InputPhoneReceiver" id="InputPhoneReceiver" value="@currentMember.phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputEmail">Email người nhận <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon">&#64;</span>
+                                <input type="email" class="form-control" name="InputEmailReceiver" id="InputEmailReceiver" value="@currentMember.email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputAddress">Địa chỉ người nhận <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                <input type="text" name="InputAddressReceiver" class="form-control" id="InputAddressReceiver" value="@currentMember.address">
+                            </div>
+                        </div>
+
+
+
+                        <br>
+
+                        <div class="form-group">
+                            <label for="InputAddress">Ghi chú <span class="imark">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                <input type="text" name="InputNote" class="form-control" id="InputNote" value="">
                             </div>
                         </div>
                         <input type="submit" name="buttonPay" id="submit" value="Đặt hàng" class="btn btn-primary pull-right">
