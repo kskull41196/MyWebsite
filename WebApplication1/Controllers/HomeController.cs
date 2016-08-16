@@ -126,7 +126,9 @@ namespace WebApplication1.Controllers
                 DataHelper.ShoppingCardHelper.getInstance().saveOrder(this, 
                     emailReceiver, nameReceiver, phoneReceiver, addressReceiver,
                     note, curency);
-                
+
+                //Clear shopping card session
+                DataHelper.ShoppingCardHelper.getInstance().clearShoppingCard(this);
                 return RedirectToAction("PayShoppingCardSuccessfully");
             }
         }
