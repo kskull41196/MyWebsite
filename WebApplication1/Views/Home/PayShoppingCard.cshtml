@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Models.tbl_order_detail>
+﻿@model IEnumerable<WebApplication1.Controllers.DataHelper.ShoppingCardItemModel>
 @{
     ViewBag.Title = "ShoppingCard";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
@@ -20,29 +20,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">
-                            <a href="kem-duong-trang-da-mat-146.html">
-                                <img class="img-thumbnail" src="images/item/13570287_1781799642052478_608269088_o-146.jpg" alt="Kem dưỡng trắng da mặt">
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            <a href="kem-duong-trang-da-mat-146.html">Kem dưỡng trắng da mặt</a>
-                        </td>
-                        <td class="text-center">
-                            <div class="input-group btn-block">
-                                <input type="hidden" name="idtin1" value="146" id="idtin1">
-                                <input type="text" name="qty1" min="0" max="25" id="qty1" size="6" value="1" class="slsp form-control text-center" disabled="">
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            340,000 VND
-                        </td>
-                        <td class="text-center">
-                            340,000 VND
-                        </td>
-                    </tr>
+                    @foreach (WebApplication1.Controllers.DataHelper.ShoppingCardItemModel item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <a href='@Url.Action("ProductDetail", "Home", new { @id = @item.id})'>
+                                    <img class="img-thumbnail" src="~/assets/images/@(String.IsNullOrEmpty(item.image) ? "noimage.png" : item.image)" alt="@item.name" width="150">
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href='@Url.Action("ProductDetail", "Home", new { @id = @item.id})'>@item.name</a>
+                            </td>
+                            <td class="text-center">
+                                <div class="input-group btn-block">
+                                    <input type="text" name="qty1" min="0" max="25" id="qty1" size="6" value="@item.quantity" class="slsp form-control text-center" disabled="">
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                @item.price @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_CURENCY]
+
+                            </td>
+                            <td class="text-center">
+                                @item.total @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_CURENCY]
+                            </td>
+                        </tr>
+                    }
                 </tbody>
+
+
+
+
+
                 <tfoot>
                     <tr>
                         <td class="text-left">
@@ -58,11 +66,28 @@
                         </td>
                         <td class="text-left">
                             <input type="hidden" name="InputTotalHd" value="340000">
-                            340,000 VND
+                            @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST] @ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_CURENCY]
                         </td>
                     </tr>
                 </tfoot>
             </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <br>
             <div class="info-order no-fl mg-auto">
                 <div class="info_user">

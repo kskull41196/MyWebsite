@@ -73,10 +73,9 @@ namespace WebApplication1.Controllers
             }
             return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
-
-
+        
         [HttpGet]
-        public ActionResult PayShoppingCard(bool isCalculatingByUSD)
+        public ActionResult PayShoppingCard(Boolean isCalculatingByUSD)
         {
             //If is logging in = false -> redirect to login page
             if (!DataHelper.AccountHelper.getInstance().checkIsMemberLoggingIn(HttpContext))
@@ -84,38 +83,35 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Login");
             }
 
-
-
+            double rate = 1;
             long totalCost = 0;
-            List<DataHelper.ShoppingCardItemModel> shoppingCard = DataHelper.ShoppingCardHelper.getInstance().getShoppingCardItemModelsInSession(this);
-            foreach (DataHelper.ShoppingCardItemModel record in shoppingCard.ToList())
-            {
-                totalCost += record.total;
-            }
             if (isCalculatingByUSD)
             {
                 net.webservicex.www1.CurrencyConvertor curencyConvertor = new net.webservicex.www1.CurrencyConvertor();
-                double rate = curencyConvertor.ConversionRate(net.webservicex.www1.Currency.USD, net.webservicex.www1.Currency.VND);
-                totalCost = (long)(totalCost * rate == -1 ? DataHelper.GeneralHelper.getInstance().getDefaultUsdRate() : rate);
+                rate = curencyConvertor.ConversionRate(net.webservicex.www1.Currency.USD, net.webservicex.www1.Currency.VND);
+            }
+            
+            List<DataHelper.ShoppingCardItemModel> shoppingCard = DataHelper.ShoppingCardHelper.getInstance().getShoppingCardItemModelsInSession(this);
+            foreach (DataHelper.ShoppingCardItemModel record in shoppingCard.ToList())
+            {
+                //Recalculate record with a new curency rate.
+                record.price = (long)(record.price / (rate == -1 ? DataHelper.GeneralHelper.getInstance().getDefaultUsdRate() : rate));
+                record.total = record.price * record.quantity;
+                totalCost += record.total;
             }
 
+            ViewData[Constants.KEY_VIEWDATA_CURENCY] = isCalculatingByUSD ? "USD" : "VNĐ";
             ViewData[Constants.KEY_VIEWDATA_SHOPPING_CARD_ALL_ITEMS_COST] = totalCost;
             return View(URLHelper.URL_HOME_PAY_SHOPPING_CARD, shoppingCard);
         }
-
-        [HttpGet]
-        public ActionResult PayShoppingCard()
-        {
-            return PayShoppingCard(false);
-        }
-
+        
         [HttpPost]
         public ActionResult PayShoppingCard(string buttonChangeCurrency, string buttonPay)
         {
             if (String.IsNullOrEmpty(buttonPay))
             {
                 bool isCalculatingByUSD = buttonChangeCurrency.Equals("USD");
-                return RedirectToAction("PayShoppingCard", isCalculatingByUSD);
+                return PayShoppingCard(isCalculatingByUSD);
             }else
             {
                 //Save all information to database tbl_order and tbl_order_detail

@@ -72,7 +72,7 @@
                             </a>
                             }
                             <a href='@Url.Action("DeleteAllFromShoppingCard", "Home")' class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i>Xóa tất cả</a>
-                            <a href="@Url.Action("PayShoppingCard", "Home")">
+                            <a href="@Url.Action("PayShoppingCard", "Home", new {@isCalculatingByUSD = false})">
                                 <button type="button" class="btn btn-primary">
                                     Thanh toán
                                 </button>
