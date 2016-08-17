@@ -21,12 +21,20 @@ namespace WebApplication1.Controllers.Admin
         }
         private List<tbl_news_category> getNewsCategory(int count, String keyword)
         {
-            var result = data.tbl_news_categories.OrderByDescending(a => a.date_added);
             if (!String.IsNullOrEmpty(keyword))
-                result.Where(a => a.name.Contains(keyword));
-            if (count != -1)
-                result.Take(count);
-            return result.ToList();
+            {
+                var result = data.tbl_news_categories.Where(a => a.name.Contains(keyword)).OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+            else
+            {
+                var result = data.tbl_news_categories.OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
         }
         private tbl_news_category getOneNewsCategory(int id)
         {

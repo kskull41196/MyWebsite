@@ -239,7 +239,7 @@
       <Column Name="detail_short" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="detail" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="subject" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="online_payment" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="online_payment" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="promotion_price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />

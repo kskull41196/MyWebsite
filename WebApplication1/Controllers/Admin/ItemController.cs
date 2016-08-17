@@ -37,21 +37,32 @@ namespace WebApplication1.Controllers.Admin
         {
             return getItem(-1, "");
         }
-        private List<tbl_item> getItem(int count,String keyword)
+        private List<tbl_item> getItem(int count, String keyword)
         {
-            var result= data.tbl_items.OrderByDescending(a => a.date_added);
+
             if (!String.IsNullOrEmpty(keyword))
-                result.Where(a => a.name.Contains(keyword));
-            if(count != -1)
-                result.Take(count);
-            return result.ToList();
+            {
+                var result = data.tbl_items.Where(a => a.name.Contains(keyword)).OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+            else
+            {
+                var result = data.tbl_items.OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+
+
         }
         private tbl_item getOneItem(int id)
         {
             var item = from ic in data.tbl_items
-                               where ic.id == id
-                               select ic;
-            if(item==null)
+                       where ic.id == id
+                       select ic;
+            if (item == null)
             {
                 return new tbl_item();
             }
@@ -66,6 +77,24 @@ namespace WebApplication1.Controllers.Admin
         {
             return itemView();
         }
+
+        public ActionResult ItemSetHotEnable(int id)
+        {
+            tbl_item tic = getOneItem(id);
+            tic.hot = (byte)(tic.hot == 1 ? 0 : 1);
+            UpdateModel(tic);
+            data.SubmitChanges();
+            return RedirectToAction("itemView");
+        }
+        public ActionResult ItemSetStatusEnable(int id)
+        {
+            tbl_item tic = getOneItem(id);
+            tic.status = (byte)(tic.status == 1 ? 0 : 1);
+            UpdateModel(tic);
+            data.SubmitChanges();
+            return RedirectToAction("itemView");
+        }
+
         /*
          * 
          * 
@@ -74,14 +103,14 @@ namespace WebApplication1.Controllers.Admin
         [HttpGet]
         public ActionResult itemView()
         {
-            var listItem = getItem(10);
+            var listItem = getItem(50);
             return View(URLHelper.URL_ADMIN_ITEM, listItem);
         }
         [HttpPost]
         public ActionResult itemView(FormCollection form)
         {
-            var keyword=form["keyword"];
-            var listItem = getItem(10,keyword);
+            var keyword = form["keyword"];
+            var listItem = getItem(10, keyword);
             return View(URLHelper.URL_ADMIN_ITEM, listItem);
         }
         /*
@@ -92,10 +121,10 @@ namespace WebApplication1.Controllers.Admin
         [HttpGet]
         public ActionResult itemCreate()
         {
-            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item,List<tbl_item_category>>(new tbl_item(),getAllItemCategories()));
+            return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item_category>>(new tbl_item(), getAllItemCategories()));
         }
         [HttpPost]
-        public ActionResult itemCreate(FormCollection form,HttpPostedFileBase fileUpload)
+        public ActionResult itemCreate(FormCollection form, HttpPostedFileBase fileUpload)
         {
             tbl_item tic = new tbl_item();
             var name = form["name"];
@@ -116,7 +145,7 @@ namespace WebApplication1.Controllers.Admin
             }
             else
             {
-                tic.parent=Int32.Parse(form["parent"]);
+                tic.parent = Int32.Parse(form["parent"]);
             }
             tic.name = name;
             if (!String.IsNullOrEmpty(sort))
@@ -127,11 +156,12 @@ namespace WebApplication1.Controllers.Admin
             tic.description = description;
             tic.keyword = keyword;
             tic.status = 1;
+            tic.hot = 1;
             tic.date_added = DateTime.Now;
             tic.last_modified = DateTime.Now;
             if (fileUpload != null)
             {
-                var fileName =  Path.GetFileName(DateTime.Now.Millisecond+fileUpload.FileName);
+                var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                 var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "item/"), fileName);
                 if (!System.IO.File.Exists(path))
                 {
@@ -161,12 +191,12 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item_category>>(getOneItem(Int32.Parse(id)), getAllItemCategories()));
         }
         [HttpPost]
-        public ActionResult itemEdit(FormCollection form,HttpPostedFileBase fileUpload)
+        public ActionResult itemEdit(FormCollection form, HttpPostedFileBase fileUpload)
         {
             var id = form["id"];
             if (id == null)
             {
-                return itemCreate(form,fileUpload);
+                return itemCreate(form, fileUpload);
             }
             else
             {

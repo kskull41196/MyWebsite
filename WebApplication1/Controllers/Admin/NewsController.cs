@@ -39,13 +39,39 @@ namespace WebApplication1.Controllers.Admin
         }
         private List<tbl_new> getNews(int count, String keyword)
         {
-            var result = data.tbl_news.OrderByDescending(a => a.date_added);
             if (!String.IsNullOrEmpty(keyword))
-                result.Where(a => a.name.Contains(keyword));
-            if (count != -1)
-                result.Take(count);
-            return result.ToList();
+            {
+                var result = data.tbl_news.Where(a => a.name.Contains(keyword)).OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+            else
+            {
+                var result = data.tbl_news.OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
         }
+
+        public ActionResult NewsSetHotEnable(int id)
+        {
+            tbl_new tic = getOneNews(id);
+            tic.hot = (byte)(tic.hot == 1 ? 0 : 1);
+            UpdateModel(tic);
+            data.SubmitChanges();
+            return RedirectToAction("newsView");
+        }
+        public ActionResult NewsSetStatusEnable(int id)
+        {
+            tbl_new tic = getOneNews(id);
+            tic.status = (byte)(tic.status == 1 ? 0 : 1);
+            UpdateModel(tic);
+            data.SubmitChanges();
+            return RedirectToAction("newsView");
+        }
+
         private tbl_new getOneNews(int id)
         {
             var news = from ic in data.tbl_news

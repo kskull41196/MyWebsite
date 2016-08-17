@@ -36,5 +36,10 @@ namespace WebApplication1.Controllers
         {
             PAID, UNPAID
         }
+
+        public enum ItemStatus
+        {
+            NORMAL, HOT 
+        }
     }
 }

@@ -20,12 +20,20 @@ namespace WebApplication1.Controllers.Admin
         }
         private List<tbl_module> getModule(int count, String keyword)
         {
-            var result = data.tbl_modules.OrderByDescending(a => a.date_added);
             if (!String.IsNullOrEmpty(keyword))
-                result.Where(a => a.name_visible.Contains(keyword) || a.name_partial.Contains(keyword));
-            if (count != -1)
-                result.Take(count);
-            return result.ToList();
+            {
+                var result = data.tbl_modules.Where(a => a.name_visible.Contains(keyword)).OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+            else
+            {
+                var result = data.tbl_modules.OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
         }
         private tbl_module getOneModule(int id)
         {

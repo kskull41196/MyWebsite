@@ -5216,7 +5216,7 @@ namespace WebApplication1.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_online_payment", DbType="VarChar(255)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_online_payment", DbType="NText", UpdateCheck=UpdateCheck.Never)]
 		public string online_payment
 		{
 			get

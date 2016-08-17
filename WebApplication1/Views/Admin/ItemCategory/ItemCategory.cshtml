@@ -63,8 +63,7 @@
                                 <td style="width: 50px;" class="text-center">ID</td>
                                 <td style="width: 150px;" class="text-center">Hình đại diện</td>
                                 <td class="text-left">Tên danh mục</td>
-                                <td style="width: 100px;" class="text-center">Nổi bật</td>
-                                <td style="width: 100px;" class="text-center">Ẩn/Hiện</td>
+                             
                                 <td style="width: 100px;" class="text-right">Tùy chọn</td>
                             </tr>
                         </thead>
@@ -85,18 +84,13 @@
                                         }
                                         else
                                         {
-                                        <img src="~/assets/images/@itemCategory.image" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                        <img src="~/assets/images/item_category/@itemCategory.image" border="0" class="img-thumbnail" style="max-width: 50px;">
                                         }
                                     </td>
                                     <td class="text-left name-to-confirm">
                                         @itemCategory.name
                                     </td>
-                                    <td class="text-center">
-                                        <div class="star tool @((itemCategory.hot==1)?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_item_category" title="Nổi bật" value="@itemCategory.id"></div>
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="check tool @((itemCategory.status==1)?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item_category" title="Ẩn hiện" value="@itemCategory.id"></div>
-                                    </td>
+                                  
                                     <td class="text-right">
                                         <a href='@Url.Action("itemCategoryEdit", "ItemCategory", new { id = @itemCategory.id})' class="btn btn-xs btn-pencil btn-primary" title="Sửa">
                                             <i class="fa fa-pencil"></i>

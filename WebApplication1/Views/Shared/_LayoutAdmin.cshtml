@@ -32,7 +32,7 @@
                         <ul class="nav-main">
                             <!-- home -->
                             <li>
-                                <a href="">
+                                <a href="@Url.Action("Index","Admin")">
                                     <i class="si si-home"></i>
                                     <span class="sidebar-mini-hide">Trang chủ</span>
                                 </a>
@@ -119,26 +119,10 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-header">Profile</li>
+                            <li class="dropdown-header">Tùy chọn</li>
                             <li>
-                                <a href="" title="">
-                                    <i class="si si-user pull-right"></i>
-                                    Thông tin cá nhân
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Action</li>
-                            <li>
-                                <a href="" title="">
-                                    <i class="si si-lock pull-right"></i>
-                                    Đổi mật khẩu
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" title="">
-                                    <i class="si si-logout pull-right"></i>
                                     @Html.ActionLink("Thoát", "Logout", "Admin")
-                                </a>
+                                
                             </li>
                         </ul>
                     </div>

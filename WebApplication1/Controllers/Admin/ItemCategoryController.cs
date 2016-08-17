@@ -21,12 +21,20 @@ namespace WebApplication1.Controllers.Admin
         }
         private List<tbl_item_category> getItemCategory(int count,String keyword)
         {
-            var result= data.tbl_item_categories.OrderByDescending(a => a.date_added);
             if (!String.IsNullOrEmpty(keyword))
-                result.Where(a => a.name.Contains(keyword));
-            if(count != -1)
-                result.Take(count);
-            return result.ToList();
+            {
+                var result = data.tbl_item_categories.Where(a => a.name.Contains(keyword)).OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+            else
+            {
+                var result = data.tbl_item_categories.OrderByDescending(a => a.date_added);
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
         }
         private tbl_item_category getOneItemCategory(int id)
         {

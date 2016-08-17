@@ -3,7 +3,6 @@
     ViewBag.Title = "Item";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 <div class="content bg-gray-lighter">
     <div class="row items-push">
         <div class="col-sm-7">
@@ -27,7 +26,7 @@
         </div>
         <div class="block-content">
             <div class="block-content-top" style="margin-bottom: 20px;">
-                <form method="POST" action="" name="frmForm" enctype="multipart/form-data">
+                <form method="POST" name="frmForm" enctype="multipart/form-data">
                     <div class="dataTable_filter">
                         <div class="row">
                             <div class="col-md-6">
@@ -85,7 +84,7 @@
                                         }
                                         else
                                         {
-                                        <img src="~/assets/images/@item.image" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                            <img src="~/assets/images/item/@item.image" border="0" class="img-thumbnail" style="max-width: 50px;">
                                         }
                                     </td>
                                     <td class="text-left name-to-confirm">
@@ -93,9 +92,13 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="star tool @(item.hot==1?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_item" title="Nổi bật" value="@item.id"></div>
+                                        <a href='@Url.Action("ItemSetHotEnable", "Item", new { id = @item.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                        </a>
                                     </td>
                                     <td class="text-center">
                                         <div class="check tool @(item.status==1?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@item.id"></div>
+                                        <a href='@Url.Action("ItemSetStatusEnable", "Item", new { id = @item.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                        </a>
                                     </td>
                                     <td class="text-right">
                                         <a href='@Url.Action("itemEdit", "Item", new { id = @item.id})' class="btn btn-xs btn-pencil btn-primary" title="Sửa">

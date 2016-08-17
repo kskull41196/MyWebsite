@@ -11,6 +11,15 @@ namespace WebApplication1.Controllers.Admin
         // GET: Admin
         public ActionResult Index()
         {
+            ViewData["MEMBER_AMOUNT"] = 1;
+            ViewData["ORDER_COMPLETED_AMOUNT"] = 2;
+            ViewData["ORDER_AMOUNT"] = 3;
+            ViewData["NEWS_CATEGORY_AMOUNT"] = 4;
+            ViewData["NEWS_AMOUNT"] = 5;
+            ViewData["ITEM_AMOUNT"] = 6;
+            ViewData["ITEM_CATEGORY_AMOUNT"] = 7;
+
+
             return View();
         }
 

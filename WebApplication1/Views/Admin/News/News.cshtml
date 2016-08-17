@@ -27,7 +27,7 @@
         </div>
         <div class="block-content">
             <div class="block-content-top" style="margin-bottom: 20px;">
-                <form method="POST" action="" name="frmForm" enctype="multipart/form-data">
+                <form method="POST" name="frmForm" enctype="multipart/form-data">
                     <div class="dataTable_filter">
                         <div class="row">
                             <div class="col-md-6">
@@ -85,7 +85,7 @@
                                         }
                                         else
                                         {
-                                            <img src="~/assets/images/@news.image" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                            <img src="~/assets/images/news/@news.image" border="0" class="img-thumbnail" style="max-width: 50px;">
                                         }
                                     </td>
                                     <td class="text-left name-to-confirm">
@@ -93,9 +93,13 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="star tool @((news.hot==1)?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_news" title="Nổi bật" value="@news.id"></div>
-                                    </td>
+                                        <a href='@Url.Action("NewsSetHotEnable", "News", new { id = @news.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                        </a>
+                                     </td>
                                     <td class="text-center">
                                         <div class="check tool @((news.status==1)?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_news" title="Ẩn hiện" value="@news.id"></div>
+                                        <a href='@Url.Action("NewsSetHotEnable", "News", new { id = @news.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                        </a>
                                     </td>
                                     <td class="text-right">
                                         <a href='@Url.Action("newsEdit", "News", new { id = @news.id })' class="btn btn-xs btn-pencil btn-primary" title="Sửa">
