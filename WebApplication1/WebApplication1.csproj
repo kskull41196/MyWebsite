@@ -174,6 +174,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admin\AjaxController.cs" />
     <Compile Include="Controllers\Admin\BaseAdminController.cs" />
+    <Compile Include="Controllers\Admin\OrderController.cs" />
     <Compile Include="Controllers\Admin\ItemController.cs" />
     <Compile Include="Controllers\Admin\NewsController.cs" />
     <Compile Include="Controllers\Admin\NewsCategoryController.cs" />
@@ -925,6 +926,8 @@
     <Content Include="Views\PartialViews\Module\PartialNewsCategories.cshtml" />
     <Content Include="Views\Home\NewsByCategory.cshtml" />
     <Content Include="Views\Home\ProductsByCategory.cshtml" />
+    <Content Include="Views\Admin\Order\Order.cshtml" />
+    <Content Include="Views\Admin\Order\OrderDetail.cshtml" />
     <None Include="Web References\net.webservicex.www1\CurrencyConvertor.wsdl" />
     <Content Include="Web References\net.webservicex.www1\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

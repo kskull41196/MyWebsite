@@ -1,0 +1,130 @@
+﻿@model IEnumerable<WebApplication1.Models.tbl_order>
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content bg-gray-lighter">
+    <div class="row items-push">
+        <div class="col-sm-7">
+            <h1 class="page-heading">Đơn hàng <small>Danh sách đơn hàng</small></h1>
+        </div>
+        <div class="col-sm-5 text-right hidden-xs">
+            <ol class="breadcrumb push-10-t">
+                <li>
+                    @Html.ActionLink("Quản trị", "Index", "Admin")
+                </li>
+                <li>Danh sách đơn hàng</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="content" style="min-height: 530px;">
+    <div class="block">
+        <div class="block-header bg-gray-lighter">
+            <span class="block-title">Danh sách</span>
+        </div>
+        <div class="block-content">
+            <div class="block-content-top" style="margin-bottom: 20px;">
+                <form method="POST" name="frmForm" enctype="multipart/form-data">
+                    <div class="dataTable_filter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input name="keyword" type="text" class="form-control" id="tukhoa" placeholder="Tìm kiếm email khách hàng..." style="display: inline-block; width: auto; margin-right: 5px;">
+                                <button type="submit" name="search" class="btn btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @if (ViewBag.AlertSuccess != null)
+            {
+                <div class="alert alert-success">@ViewBag.AlertSuccess</div>
+            }
+            else if (ViewBag.AlertError != null)
+            {
+                <div class="alert alert-warning">@ViewBag.AlertError</div>
+            }
+            <form method="POST" action="#" name="frmForm" enctype="multipart/form-data">
+                <input type="hidden" name="page" value="">
+                <input type="hidden" name="act" value="item">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover btl-list-bbli bg-white">
+                        <thead>
+                            <tr>
+                                <td style="width: 1px;" class="text-center">
+                                    <input type="checkbox" name="chk[]" class="tai_c" id="chkall" value="">
+                                </td>
+                                <td style="width: 50px;" class="text-center">ID</td>
+                                <td style="width: 150px;" class="text-center">Tên khách hàng</td>
+                                <td class="text-left">Tổng số lượng</td>
+                                <td style="width: 100px;" class="text-center">Thời gian</td>
+                                <td style="width: 100px;" class="text-center">Đã thanh toán</td>
+                                <td style="width: 100px;" class="text-right">Tùy chọn</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="checkbox" name="chk[]" class="tai_c" value="@order.id">
+                                    </td>
+                                    <td class="text-center">
+                                        @order.id
+                                    </td>
+                                    <td class="text-left name-to-confirm">
+                                        @order.name_customer
+                                    </td>
+                                    <td class="text-left name-to-confirm">
+                                        @order.total_amount
+                                    </td>
+                                    <td class="text-left name-to-confirm">
+                                        @order.date_added
+                                    </td>
+                                    <td class="text-left name-to-confirm">
+                                        @if (order.status != 1)
+                                        {
+                                            @Html.Raw("Đã thanh toán");
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("Chưa thanh toán");
+                                        }
+                                        <a href='@Url.Action("OrderSetStatusEnable", "Order", new { id = @order.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                        </a>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href='@Url.Action("OrderDetail", "Order", new { id = @order.id })' class="btn btn-xs btn-pencil btn-primary" title="Chi tiết">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a href='@Url.Action("OrderDelete", "Order", new { id = @order.id })' class="btn btn-xs btn-remove btn-danger" title="Xóa">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-center">
+                                    <button type="submit" name="btnDel" class="btn btn-danger btn-xs" onclick="return confirm('Bạn có chắc chắn muốn xóa ?');">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                                <td colspan="7"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <nav class="text-center">
+            <ul class="pagination"></ul>
+        </nav><!-- End pagination -->
+    </div>
+</div>
