@@ -922,6 +922,9 @@
     <Content Include="Views\Home\ItemPaid.cshtml" />
     <Content Include="Views\Home\ItemCancel.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\PartialViews\Module\PartialNewsCategories.cshtml" />
+    <Content Include="Views\Home\NewsByCategory.cshtml" />
+    <Content Include="Views\Home\ProductsByCategory.cshtml" />
     <None Include="Web References\net.webservicex.www1\CurrencyConvertor.wsdl" />
     <Content Include="Web References\net.webservicex.www1\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

@@ -81,20 +81,20 @@ namespace WebApplication1.Controllers
          * 
          */
         public ActionResult menuItemCategories(){
-            var menuItemCategories = from tic in data.tbl_item_categories where tic.status == 1 && tic.parent == 0 select tic;
+            var menuItemCategories = from tic in data.tbl_item_categories where tic.parent == 0 select tic;
             return PartialView(URLHelper.URL_HOME_PARTIAL_ITEM_CATEGORIES,menuItemCategories);
         }
         public ActionResult menuNewsCategories()
         {
-            var menuNewsCategories = from tnc in data.tbl_item_categories where tnc.status == 1 && tnc.parent == 0 select tnc;
-            return PartialView(menuNewsCategories);
+            var menuNewsCategories = from tnc in data.tbl_news_categories where tnc.parent == 0 select tnc;
+            return PartialView(URLHelper.URL_HOME_PARTIAL_NEWS_CATEGORIES, menuNewsCategories);
         }
         public ActionResult topProductView()
         {
             var topProductView = from ti in data.tbl_items where ti.status == 1 orderby ti.view_amount descending select ti;
             List<tbl_item> listProductView = topProductView.ToList();
             if (listProductView == null) listProductView = new List<tbl_item>();
-            return PartialView(topProductView);
+            return PartialView(URLHelper.URL_HOME_PARTIAL_TOP_PRODUCT, topProductView);
         }
 
         public ActionResult SupportOnline()

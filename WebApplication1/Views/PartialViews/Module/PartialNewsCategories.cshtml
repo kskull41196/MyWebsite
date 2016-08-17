@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebApplication1.Models.tbl_news_category>
+<div class="frame-box">
+    <div class="title-box">
+        Danh mục tin tức
+    </div>
+    <div class="main-box">
+        <ul class="ul-box">
+            @foreach (var newsCategory in Model)
+            {
+                <li>
+                    <a href="@Url.Action("NewsByCategory","Home",new{@categoryid=newsCategory.id})" title=""><i class="fa fa-angle-right"></i>@newsCategory.name</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

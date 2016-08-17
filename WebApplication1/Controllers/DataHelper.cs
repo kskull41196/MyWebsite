@@ -221,6 +221,11 @@ namespace WebApplication1.Controllers
 
             }
 
+            public List<Models.tbl_item> getListProductsByCategory(Models.DataClassesDataContext data, int parent)
+            {
+                return data.tbl_items.OrderByDescending(a => a.date_added).Where(n => n.parent == parent).ToList();
+            }
+
             public List<Models.tbl_item> getListOtherProductsByCategory(Models.DataClassesDataContext data, int id, int parent)
             {
                 return data.tbl_items.OrderByDescending(a => a.date_added).Where(n => n.parent == parent && n.id != id).ToList();
@@ -282,6 +287,11 @@ namespace WebApplication1.Controllers
             public List<Models.tbl_new> getListOtherNewsByCategory(Models.DataClassesDataContext data, int id, int parent)
             {
                 return data.tbl_news.OrderByDescending(a => a.date_added).Where(n => n.parent == parent && n.id != id).ToList();
+            }
+            
+            public List<Models.tbl_new> getListNewsByCategory(Models.DataClassesDataContext data, int parent)
+            {
+                return data.tbl_news.OrderByDescending(a => a.date_added).Where(n => n.parent == parent).ToList();
             }
         }
 

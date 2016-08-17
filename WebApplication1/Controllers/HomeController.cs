@@ -21,6 +21,16 @@ namespace WebApplication1.Controllers
             return View(URLHelper.URL_HOME_ALL_PRODUCTS, DataHelper.ProductHelper.getInstance().getListAllProducts(data));
         }
 
+        public ActionResult ItemsByCategory(int categoryid)
+        {
+            return View(URLHelper.URL_HOME_PRODUCTS_BY_CATEGORY, DataHelper.ProductHelper.getInstance().getListProductsByCategory(data, categoryid));
+        }
+        
+        public ActionResult NewsByCategory(int categoryid)
+        {
+            return View(URLHelper.URL_HOME_NEWS_BY_CATEGORY, DataHelper.NewsHelper.getInstance().getListNewsByCategory(data, categoryid));
+        }
+
         public ActionResult News()
         {
             ViewBag.Message = "Tin Tức";
@@ -65,6 +75,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult ProductDetail(int id)
         {
+            ViewBag.CurrentURL = EmailHelper.getInstance().getBaseUrl() + "Home/ProductDetail/" + id;
             tbl_item itemToShowDetail = DataHelper.ProductHelper.getInstance().getProductById(data, id);
             List<tbl_item> listItemWithTheSameCategory = null;
             if (itemToShowDetail != null && itemToShowDetail.parent.HasValue)

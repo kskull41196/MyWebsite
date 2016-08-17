@@ -1,1 +1,16 @@
-﻿Module Top Product View
+﻿@model IEnumerable<WebApplication1.Models.tbl_item>
+<div class="frame-box">
+    <div class="title-box">
+        Sản phẩm bán chạy
+    </div>
+    <div class="main-box">
+        <ul class="ul-box">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="@Url.Action("ProductDetail","Home",new{id=item.id})" title=""><i class="fa fa-angle-right"></i>@item.name</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

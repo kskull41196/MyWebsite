@@ -22,7 +22,7 @@ namespace WebApplication1.Controllers
             return instance;
         }
         
-        private string getBaseUrl()
+        public string getBaseUrl()
         {
             var request = HttpContext.Current.Request;
             var appUrl = HttpRuntime.AppDomainAppVirtualPath;

@@ -8,7 +8,7 @@
             @foreach (var itemCategory in Model)
             {
                 <li>
-                    <a href="@Url.Action("Home","Items",new{id=itemCategory.id})" title=""><i class="fa fa-angle-right"></i>@itemCategory.name</a>
+                    <a href="@Url.Action("ItemsByCategory","Home",new{@categoryid=itemCategory.id})" title=""><i class="fa fa-angle-right"></i>@itemCategory.name</a>
                 </li>
             }
         </ul>

@@ -12,6 +12,8 @@ namespace WebApplication1.Controllers
 
         //Home URL
         public const String URL_HOME_ALL_PRODUCTS = "~/Views/Home/AllProducts.cshtml";
+        public const String URL_HOME_PRODUCTS_BY_CATEGORY = "~/Views/Home/ProductsByCategory.cshtml";
+        public const String URL_HOME_NEWS_BY_CATEGORY = "~/Views/Home/NewsByCategory.cshtml";
         public const String URL_HOME_PRODUCT_DETAIL = "~/Views/Home/ProductDetail.cshtml";
         public const String URL_HOME_PAY_SHOPPING_CARD = "~/Views/Home/PayShoppingCard.cshtml";
         public const String URL_HOME_PAY_SHOPPING_CARD_SUCCESSFULLY = "~/Views/Home/PayShoppingCardSuccessfully.cshtml";
@@ -46,6 +48,8 @@ namespace WebApplication1.Controllers
         //Partial Views' URLs
         public const String URL_HOME_PARTIAL_SUPPORT_ONLINE = "~/Views/PartialViews/Module/PartialOnlineSupport.cshtml";
         public const String URL_HOME_PARTIAL_ITEM_CATEGORIES = "~/Views/PartialViews/Module/PartialItemCategories.cshtml";
+        public const String URL_HOME_PARTIAL_NEWS_CATEGORIES = "~/Views/PartialViews/Module/PartialNewsCategories.cshtml";
+        public const String URL_HOME_PARTIAL_TOP_PRODUCT = "~/Views/PartialViews/Module/PartialTopProductView.cshtml";
         public const String URL_HOME_PARTIAL_PRODUCT_HOT = "~/Views/PartialViews/Home/PartialHotProduct.cshtml";
     }
 }
