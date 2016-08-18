@@ -494,7 +494,7 @@ namespace WebApplication1.Controllers
                     model.quantity = orderDetail.quantity.Value;
                     model.price = item.price.HasValue ? item.price.Value : 0;
                     model.total = model.price * model.quantity;
-                    model.orderid = orderDetail.id_order.Value;
+                    model.orderid = orderDetail.id_order.HasValue ? orderDetail.id_order.Value : 0;
                     model.modelid = orderDetail.id;
                     result.Add(model);
                 }

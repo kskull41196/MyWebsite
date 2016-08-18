@@ -125,7 +125,11 @@ namespace WebApplication1.Controllers.Admin
             tic.status = 1;
             tic.date_added = DateTime.Now;
             tic.last_modified = DateTime.Now;
-            if (fileUpload != null)
+            if (form["chkClearImg"] != null)
+            {
+                tic.image = "";
+            }
+            else if (fileUpload != null)
             {
                 var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                 var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "item_category/"), fileName);
@@ -198,7 +202,11 @@ namespace WebApplication1.Controllers.Admin
                 tic.status = 1;
                 tic.date_added = DateTime.Now;
                 tic.last_modified = DateTime.Now;
-                if (fileUpload != null)
+                if (form["chkClearImg"] != null)
+                {
+                    tic.image = "";
+                }
+                else if (fileUpload != null)
                 {
                     var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                     var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "item_category/"), fileName);

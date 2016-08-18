@@ -139,13 +139,19 @@ namespace WebApplication1.Controllers.Admin
             var title = form["title"];
             var description = form["description"];
             var keyword = form["keyword"];
+            var price = form["price"];
+            var price2 = form["price2"];
+            var online_payment = form["online_payment"];
+            var detail = form["detail"];
+            var detail_short = form["detail_short"];
+            
             bool err = false;
             if (String.IsNullOrEmpty(name))
             {
                 err = true;
-                ViewData["Error"] += "Vui lòng nhập tên danh mục!\n";
+                ViewData["Error"] += "Vui lòng nhập tên sản phẩm!\n";
             }
-            if (String.IsNullOrEmpty(form["parent"]))
+            if (form["parent"].ToString().Equals("0"))
             {
                 err = true;
                 ViewData["Error"] += "Vui lòng chọn danh mục!\n";
@@ -163,10 +169,25 @@ namespace WebApplication1.Controllers.Admin
             tic.description = description;
             tic.keyword = keyword;
             tic.status = 1;
-            tic.hot = 1;
+            tic.hot = (int)Constants.ItemStatus.NORMAL;
             tic.date_added = DateTime.Now;
             tic.last_modified = DateTime.Now;
-            if (fileUpload != null)
+            if (!String.IsNullOrEmpty(price))
+                tic.price = Int32.Parse(price);
+            else
+                tic.price = 0;
+            if (!String.IsNullOrEmpty(price2))
+                tic.promotion_price = Int32.Parse(price2);
+            else
+                tic.promotion_price = 0;
+            tic.online_payment = online_payment;
+            tic.detail = detail;
+            tic.detail_short = detail_short;
+            if (form["chkClearImg"] != null)
+            {
+                tic.image = "";
+            }
+            else if (fileUpload != null)
             {
                 var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                 var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "item/"), fileName);
@@ -213,11 +234,16 @@ namespace WebApplication1.Controllers.Admin
                 var title = form["title"];
                 var description = form["description"];
                 var keyword = form["keyword"];
+                var price = form["price"];
+                var price2 = form["price2"];
+                var online_payment = form["online_payment"];
+                var detail = form["detail"];
+                var detail_short = form["detail_short"];
                 bool err = false;
                 if (String.IsNullOrEmpty(name))
                 {
                     err = true;
-                    ViewData["Error"] += "Vui lòng nhập tên danh mục!\n";
+                    ViewData["Error"] += "Vui lòng nhập tên sản phẩm!\n";
                 }
                 if (String.IsNullOrEmpty(form["parent"]))
                 {
@@ -239,7 +265,21 @@ namespace WebApplication1.Controllers.Admin
                 tic.status = 1;
                 tic.date_added = DateTime.Now;
                 tic.last_modified = DateTime.Now;
-                if (fileUpload != null)
+                if (!String.IsNullOrEmpty(price))
+                    tic.price = Int32.Parse(price);
+                else
+                    tic.price = 0;
+                if (!String.IsNullOrEmpty(price2))
+                    tic.promotion_price = Int32.Parse(price2);
+                else
+                    tic.promotion_price = 0;
+                tic.online_payment = online_payment;
+                tic.detail = detail;
+                tic.detail_short = detail_short;
+                if(form["chkClearImg"] != null)
+                {
+                    tic.image = "";
+                }else if (fileUpload != null)
                 {
                     var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                     var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "item/"), fileName);

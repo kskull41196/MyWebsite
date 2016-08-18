@@ -135,6 +135,9 @@ namespace WebApplication1.Controllers.Admin
             var title = form["title"];
             var description = form["description"];
             var keyword = form["keyword"];
+            var online_payment = form["online_payment"];
+            var detail = form["detail"];
+            var detail_short = form["detail_short"];
             bool err = false;
             if (String.IsNullOrEmpty(name))
             {
@@ -161,7 +164,13 @@ namespace WebApplication1.Controllers.Admin
             tic.status = 1;
             tic.date_added = DateTime.Now;
             tic.last_modified = DateTime.Now;
-            if (fileUpload != null)
+            tic.detail = detail;
+            tic.detail_short = detail_short;
+            if (form["chkClearImg"] != null)
+            {
+                tic.image = "";
+            }
+            else if (fileUpload != null)
             {
                 var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                 var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "news/"), fileName);
@@ -208,6 +217,8 @@ namespace WebApplication1.Controllers.Admin
                 var title = form["title"];
                 var description = form["description"];
                 var keyword = form["keyword"];
+                var detail = form["detail"];
+                var detail_short = form["detail_short"];
                 bool err = false;
                 if (String.IsNullOrEmpty(name))
                 {
@@ -234,7 +245,13 @@ namespace WebApplication1.Controllers.Admin
                 tic.status = 1;
                 tic.date_added = DateTime.Now;
                 tic.last_modified = DateTime.Now;
-                if (fileUpload != null)
+                tic.detail = detail;
+                tic.detail_short = detail_short;
+                if (form["chkClearImg"] != null)
+                {
+                    tic.image = "";
+                }
+                else if (fileUpload != null)
                 {
                     var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                     var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "news/"), fileName);
