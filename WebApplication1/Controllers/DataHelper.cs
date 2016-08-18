@@ -11,7 +11,7 @@ namespace WebApplication1.Controllers
         public class ShoppingCardItemModel
         {
             public String name, image;
-            public int id, quantity;
+            public int id, quantity, orderid, modelid;
             public long price, total;
         }
 
@@ -481,13 +481,12 @@ namespace WebApplication1.Controllers
                 return getShoppingCardInSessionByHttpContext(context.HttpContext);
             }
 
-            public List<ShoppingCardItemModel> getShoppingCardItemModelsInSession(BaseController context)
+            public List<ShoppingCardItemModel> getListShoppingCardItemModelFromListOrderDetails(Models.DataClassesDataContext data, List<Models.tbl_order_detail> listOrderDetails)
             {
-                List<Models.tbl_order_detail> listOrderDetails = getShoppingCardInSessionByHttpContext(context.HttpContext);
                 List<ShoppingCardItemModel> result = new List<ShoppingCardItemModel>();
                 foreach (var orderDetail in listOrderDetails)
                 {
-                    Models.tbl_item item = ProductHelper.getInstance().getProductById(context.data, orderDetail.id_product.Value);
+                    Models.tbl_item item = ProductHelper.getInstance().getProductById(data, orderDetail.id_product.Value);
                     ShoppingCardItemModel model = new ShoppingCardItemModel();
                     model.id = orderDetail.id_product.Value;
                     model.name = item.name;
@@ -495,10 +494,18 @@ namespace WebApplication1.Controllers
                     model.quantity = orderDetail.quantity.Value;
                     model.price = item.price.HasValue ? item.price.Value : 0;
                     model.total = model.price * model.quantity;
+                    model.orderid = orderDetail.id_order.Value;
+                    model.modelid = orderDetail.id;
                     result.Add(model);
                 }
 
                 return result;
+            }
+
+            public List<ShoppingCardItemModel> getShoppingCardItemModelsInSession(BaseController context)
+            {
+                List<Models.tbl_order_detail> listOrderDetails = getShoppingCardInSessionByHttpContext(context.HttpContext);
+                return getListShoppingCardItemModelFromListOrderDetails(context.data, listOrderDetails);
             }
 
             public List<Models.tbl_order_detail> getShoppingCardInSessionByHttpContext(HttpContextBase context)

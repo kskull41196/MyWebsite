@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Models.tbl_order_detail>
+﻿@model IEnumerable<WebApplication1.Controllers.DataHelper.ShoppingCardItemModel>
 @{
     ViewBag.Title = "Order";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -25,7 +25,7 @@
             <span class="block-title">Danh sách</span>
         </div>
         <div class="block-content">
-         
+
             @if (ViewBag.AlertSuccess != null)
             {
                 <div class="alert alert-success">@ViewBag.AlertSuccess</div>
@@ -45,6 +45,8 @@
                                     <input type="checkbox" name="chk[]" class="tai_c" id="chkall" value="">
                                 </td>
                                 <td style="width: 50px;" class="text-center">ID sản phẩm</td>
+                                <td style="width: 50px;" class="text-center">Tên sản phẩm</td>
+                                <td style="width: 50px;" class="text-center">Hình sản phẩm</td>
                                 <td style="width: 150px;" class="text-center">Số lượng</td>
                                 <td style="width: 100px;" class="text-center">Đơn giá</td>
                                 <td style="width: 100px;" class="text-right">Tùy chọn</td>
@@ -55,10 +57,24 @@
                             {
                                 <tr>
                                     <td class="text-center">
-                                        <input type="checkbox" name="chk[]" class="tai_c" value="@order.id">
+                                        <input type="checkbox" name="chk[]" class="tai_c" value="@order.modelid">
                                     </td>
                                     <td class="text-center">
-                                        @order.id_product
+                                        @order.id
+                                    </td>
+                                    <td class="text-center">
+
+                                        @if (String.IsNullOrEmpty(order.image))
+                                        {
+                                            <img src="~/assets/images/noimage.png" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/assets/images/item/@order.image" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @order.name
                                     </td>
                                     <td class="text-left name-to-confirm">
                                         @order.quantity
@@ -67,8 +83,8 @@
                                         @order.price
                                     </td>
                                     <td class="text-right">
-                                      
-                                        <a href='@Url.Action("OrderDetailDelete", "Order", new { id = @order.id, @idorder = @order.id_order })' class="btn btn-xs btn-remove btn-danger" title="Xóa">
+
+                                        <a href='@Url.Action("OrderDetailDelete", "Order", new { id = @order.modelid, @idorder = @order.orderid })' class="btn btn-xs btn-remove btn-danger" title="Xóa">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>

@@ -87,7 +87,7 @@ namespace WebApplication1.Controllers.Admin
         public ActionResult OrderDetail(int id)
         {
             var listOrderDetail = getListOrderDetailById(id);
-            return View(URLHelper.URL_ADMIN_ORDER_DETAIL, listOrderDetail);
+            return View(URLHelper.URL_ADMIN_ORDER_DETAIL, DataHelper.ShoppingCardHelper.getInstance().getListShoppingCardItemModelFromListOrderDetails(data, listOrderDetail));
         }
 
         [HttpPost]
