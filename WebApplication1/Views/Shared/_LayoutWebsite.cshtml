@@ -1,9 +1,35 @@
 ﻿<!DOCTYPE html>
 <html xmlns:fb='http://www.facebook.com/2008/fbml'>
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="language" content="vi" />
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="@ViewBag.Keyword" />
+    <meta name="robots" content="noodp,index,follow" />
+    <meta name="revisit-after" content="1 days" />
+    <meta name="copyright" content="Copyright © 2016 by Khôi Nguyên Entertainment" />
+    <meta property="og:title" content="@ViewBag.Title">
+    <meta property="og:image" content="@*lấy hình ảnh từ bài viết (nếu là trang sản phẩm hoặc tin tức) - lấy hình logo của website (nếu là các trang khác)*@" />
+    <meta property="og:type" content="object" />
+    <meta property="og:url" content="http://khoinguyenentertainment.somee.com/" />
+    <meta property="og:description" content="@ViewBag.Description">
+    <!-- Dublin Core-->
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+    <meta name="DC.title" content="@ViewBag.Title" />
+    <meta name="DC.identifier" content="http://khoinguyenentertainment.somee.com/" />
+    <meta name="DC.description" content="@ViewBag.Description" />
+    <meta name="DC.subject" content="@ViewBag.Keyword" />
+    <meta name="DC.language" scheme="UTF-8" content="vi" />
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="VN" />
+    <meta name="geo.placename" content="Ho Chi Minh City" />
+    <meta name="geo.position" content="10.806105;106.63668" />
+    <meta name="ICBM" content="10.806105, 106.63668" />
+
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -24,6 +50,18 @@
 
 </head>
 <body>
+    <script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-82775638-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
     <header>
         <div class="container">
             <div class="row">
