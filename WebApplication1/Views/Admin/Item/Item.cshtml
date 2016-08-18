@@ -91,13 +91,13 @@
                                         @item.name
                                     </td>
                                     <td class="text-center">
-                                        <div class="star tool @(item.hot==1?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_item" title="Nổi bật" value="@item.id"></div>
-                                        <a href='@Url.Action("ItemSetHotEnable", "Item", new { id = @item.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                        <a href='@Url.Action("ItemSetHotEnable", "Item", new { id = @item.id})' title="Reverse">
+                                            <div class="star tool @(item.hot==1?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_item" title="Nổi bật" value="@item.id"></div>
                                         </a>
                                     </td>
                                     <td class="text-center">
-                                        <div class="check tool @(item.status==1?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@item.id"></div>
-                                        <a href='@Url.Action("ItemSetStatusEnable", "Item", new { id = @item.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                        <a href='@Url.Action("ItemSetStatusEnable", "Item", new { id = @item.id})' title="Reverse">
+                                            <div class="check tool @(item.status==1?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@item.id"></div>
                                         </a>
                                     </td>
                                     <td class="text-right">
