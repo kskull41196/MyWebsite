@@ -125,10 +125,10 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")-->
-                 </div>
-        </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <div id="main-container">
         <div class="container">
@@ -172,27 +172,20 @@
                 <div id="footer-right" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <h3 class="title_f"><span> Thống kê</span></h3>
                     <div class="detail_f">
-                        <table class="wrap_total">
-                            <tbody>
-                                <tr>
-                                    <td colspan="2" class="total">
-                                        <span class="vdigit-6">6</span><span class="vdigit-2">2</span><span class="vdigit-0">0</span><span class="vdigit-8">8</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="label online">Số người đang online</td>
-                                    <td class="value">2</td>
-                                </tr>
-                                <tr>
-                                    <td class="label today">Số truy cập hôm nay</td>
-                                    <td class="value">9</td>
-                                </tr>
-                                <tr>
-                                    <td class="label month">Số truy cập tháng này</td>
-                                    <td class="value">506</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
+                        <!-- Histats.com  START  (aync)-->
+                        <script type="text/javascript">
+                            var _Hasync = _Hasync || [];
+                            _Hasync.push(['Histats.start', '1,3556524,4,429,112,75,00011111']);
+                            _Hasync.push(['Histats.fasi', '1']);
+                            _Hasync.push(['Histats.track_hits', '']);
+                            (function () {
+                                var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+                                hs.src = ('//s10.histats.com/js15_as.js');
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+                            })();</script>
+                        <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?3556524&101" alt="" border="0"></a></noscript>
+                        <!-- Histats.com  END  -->
                     </div>
                 </div>
             </div>
@@ -203,6 +196,6 @@
     </div>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script type='text/javascript'>window._sbzq||function(e){e._sbzq=[];var t=e._sbzq;t.push(["_setAccount",8047]);var n=e.location.protocol=="https:"?"https:":"http:";var r=document.createElement("script");r.type="text/javascript";r.async=true;r.src=n+"//static.subiz.com/public/js/loader.js";var i=document.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)}(window);</script>
+    <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 8047]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script>
 </body>
 </html>
