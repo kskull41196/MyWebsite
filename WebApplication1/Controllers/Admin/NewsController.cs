@@ -126,7 +126,7 @@ namespace WebApplication1.Controllers.Admin
         {
             return View(URLHelper.URL_ADMIN_NEWS_M, new Tuple<tbl_new, List<tbl_news_category>>(new tbl_new(), getAllNewsCategories()));
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult newsCreate(FormCollection form, HttpPostedFileBase fileUpload)
         {
             tbl_new tic = new tbl_new();
@@ -144,7 +144,7 @@ namespace WebApplication1.Controllers.Admin
                 err = true;
                 ViewData["Error"] += "Vui lòng nhập tên tin tức!\n";
             }
-            if (String.IsNullOrEmpty(form["parent"]))
+            if (form["parent"].ToString().Equals("0"))
             {
                 err = true;
                 ViewData["Error"] += "Vui lòng chọn danh mục!\n";
@@ -201,7 +201,7 @@ namespace WebApplication1.Controllers.Admin
         {
             return View(URLHelper.URL_ADMIN_NEWS_M, new Tuple<tbl_new, List<tbl_news_category>>(getOneNews(Int32.Parse(id)), getAllNewsCategories()));
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult newsEdit(FormCollection form, HttpPostedFileBase fileUpload)
         {
             var id = form["id"];
@@ -225,7 +225,7 @@ namespace WebApplication1.Controllers.Admin
                     err = true;
                     ViewData["Error"] += "Vui lòng nhập tên danh mục!\n";
                 }
-                if (String.IsNullOrEmpty(form["parent"]))
+                if (form["parent"].ToString().Equals("0"))
                 {
                     err = true;
                     ViewData["Error"] += "Vui lòng chọn danh mục!\n";

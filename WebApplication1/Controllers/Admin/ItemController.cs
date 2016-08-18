@@ -245,7 +245,7 @@ namespace WebApplication1.Controllers.Admin
                     err = true;
                     ViewData["Error"] += "Vui lòng nhập tên sản phẩm!\n";
                 }
-                if (String.IsNullOrEmpty(form["parent"]))
+                if (form["parent"].ToString().Equals("0"))
                 {
                     err = true;
                     ViewData["Error"] += "Vui lòng chọn danh mục!\n";
