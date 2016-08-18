@@ -19,21 +19,29 @@ namespace WebApplication1.Controllers.Admin
         {
             return getSupport(-1, "");
         }
-        private List<tbl_support> getSupport(int count,String keyword)
+        private List<tbl_support> getSupport(int count, String keyword)
         {
-            var result= data.tbl_supports;
+            var result = data.tbl_supports;
             if (!String.IsNullOrEmpty(keyword))
+            {
                 result.Where(a => a.name.Contains(keyword));
-            if(count != -1)
-                result.Take(count);
-            return result.ToList();
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
+            else
+            {
+                if (count != -1)
+                    result.Take(count);
+                return result.ToList();
+            }
         }
         private tbl_support getOneSupport(int id)
         {
             var models = from ic in data.tbl_supports
-                               where ic.id == id
-                               select ic;
-            if(models == null)
+                         where ic.id == id
+                         select ic;
+            if (models == null)
             {
                 return new tbl_support();
             }
@@ -60,10 +68,17 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_SUPPORT, listSupport);
         }
         [HttpPost]
-        public ActionResult supportView(FormCollection form)
+        public ActionResult supportView(FormCollection form, String btnDel)
         {
-            var keyword=form["keyword"];
-            var listSupport = getSupport(10,keyword);
+
+            if (String.IsNullOrEmpty(btnDel))
+            {
+                //Delete all
+                DataHelper.GeneralHelper.getInstance().deleteAllSupporters(data);
+            }
+
+            var keyword = form["keyword"];
+            var listSupport = getSupport(10, keyword);
             return View(URLHelper.URL_ADMIN_SUPPORT, listSupport);
         }
         /*
@@ -77,7 +92,7 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_SUPPORT_M, new tbl_support());
         }
         [HttpPost]
-        public ActionResult supportCreate(FormCollection form,HttpPostedFileBase fileUpload)
+        public ActionResult supportCreate(FormCollection form, HttpPostedFileBase fileUpload)
         {
             tbl_support tic = new tbl_support();
             var name = form["name"];
@@ -96,7 +111,7 @@ namespace WebApplication1.Controllers.Admin
             tic.phone = phone;
             if (fileUpload != null)
             {
-                var fileName =  Path.GetFileName(DateTime.Now.Millisecond+fileUpload.FileName);
+                var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                 var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "support/"), fileName);
                 if (!System.IO.File.Exists(path))
                 {
@@ -126,12 +141,12 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_SUPPORT_M, getOneSupport(Int32.Parse(id)));
         }
         [HttpPost]
-        public ActionResult supportEdit(FormCollection form,HttpPostedFileBase fileUpload)
+        public ActionResult supportEdit(FormCollection form, HttpPostedFileBase fileUpload)
         {
             var id = form["id"];
             if (id == null)
             {
-                return supportCreate(form,fileUpload);
+                return supportCreate(form, fileUpload);
             }
             else
             {

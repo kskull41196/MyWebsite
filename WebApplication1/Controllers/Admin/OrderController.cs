@@ -55,7 +55,7 @@ namespace WebApplication1.Controllers.Admin
             data.SubmitChanges();
             return RedirectToAction("OrderView");
         }
-        private List<tbl_order> getOrder(int count,String keyword)
+        private List<tbl_order> getOrder(int count, String keyword)
         {
             if (!String.IsNullOrEmpty(keyword))
             {
@@ -72,7 +72,7 @@ namespace WebApplication1.Controllers.Admin
                 return result.ToList();
             }
         }
-     
+
         /*
          * 
          * 
@@ -83,8 +83,22 @@ namespace WebApplication1.Controllers.Admin
             return OrderView();
         }
 
+        [HttpGet]
         public ActionResult OrderDetail(int id)
         {
+            var listOrderDetail = getListOrderDetailById(id);
+            return View(URLHelper.URL_ADMIN_ORDER_DETAIL, listOrderDetail);
+        }
+
+        [HttpPost]
+        public ActionResult OrderDetail(int id, String btnDel)
+        {
+            if (String.IsNullOrEmpty(btnDel))
+            {
+                //Delete all
+                DataHelper.ShoppingCardHelper.getInstance().deleteAllOrderDetails(data);
+            }
+
             var listOrderDetail = getListOrderDetailById(id);
             return View(URLHelper.URL_ADMIN_ORDER_DETAIL, listOrderDetail);
         }
@@ -101,13 +115,20 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_ORDER, listOrder);
         }
         [HttpPost]
-        public ActionResult OrderView(FormCollection form)
+        public ActionResult OrderView(FormCollection form, String btnDel)
         {
-            var keyword=form["keyword"];
-            var listOrder = getOrder(10,keyword);
+
+            if (String.IsNullOrEmpty(btnDel))
+            {
+                //Delete all
+                DataHelper.ShoppingCardHelper.getInstance().deleteAllOrders(data);
+
+            }
+            var keyword = form["keyword"];
+            var listOrder = getOrder(10, keyword);
             return View(URLHelper.URL_ADMIN_ORDER, listOrder);
         }
-       
+
         /*
          * 
          * 

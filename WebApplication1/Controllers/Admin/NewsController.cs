@@ -75,8 +75,8 @@ namespace WebApplication1.Controllers.Admin
         private tbl_new getOneNews(int id)
         {
             var news = from ic in data.tbl_news
-                               where ic.id == id
-                               select ic;
+                       where ic.id == id
+                       select ic;
             if (news == null)
             {
                 return new tbl_new();
@@ -104,8 +104,14 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_NEWS, listNews);
         }
         [HttpPost]
-        public ActionResult newsView(FormCollection form)
+        public ActionResult newsView(FormCollection form, String btnDel)
         {
+            if (String.IsNullOrEmpty(btnDel))
+            {
+                //Delete all
+                DataHelper.NewsHelper.getInstance().deleteAllNews(data);
+            }
+
             var keyword = form["keyword"];
             var listNews = getNews(10, keyword);
             return View(URLHelper.URL_ADMIN_NEWS, listNews);

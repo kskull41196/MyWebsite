@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers.Admin
         {
             return getItemCategory(-1, "");
         }
-        private List<tbl_item_category> getItemCategory(int count,String keyword)
+        private List<tbl_item_category> getItemCategory(int count, String keyword)
         {
             if (!String.IsNullOrEmpty(keyword))
             {
@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers.Admin
             var itemCategory = from ic in data.tbl_item_categories
                                where ic.id == id
                                select ic;
-            if(itemCategory==null)
+            if (itemCategory == null)
             {
                 return new tbl_item_category();
             }
@@ -68,10 +68,16 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_ITEM_CATEGORY, listItemCategory);
         }
         [HttpPost]
-        public ActionResult itemCategoryView(FormCollection form)
+        public ActionResult itemCategoryView(FormCollection form, String btnDel)
         {
-            var keyword=form["keyword"];
-            var listItemCategory = getItemCategory(10,keyword);
+            if (String.IsNullOrEmpty(btnDel))
+            {
+                //Delete all
+                DataHelper.ProductHelper.getInstance().deleteAllProductCategory(data);
+            }
+
+            var keyword = form["keyword"];
+            var listItemCategory = getItemCategory(10, keyword);
             return View(URLHelper.URL_ADMIN_ITEM_CATEGORY, listItemCategory);
         }
         /*
@@ -82,10 +88,10 @@ namespace WebApplication1.Controllers.Admin
         [HttpGet]
         public ActionResult itemCategoryCreate()
         {
-            return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, new Tuple<tbl_item_category,List<tbl_item_category>>(new tbl_item_category(),getAllItemCategory()));
+            return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, new Tuple<tbl_item_category, List<tbl_item_category>>(new tbl_item_category(), getAllItemCategory()));
         }
         [HttpPost]
-        public ActionResult itemCategoryCreate(FormCollection form,HttpPostedFileBase fileUpload)
+        public ActionResult itemCategoryCreate(FormCollection form, HttpPostedFileBase fileUpload)
         {
             tbl_item_category tic = new tbl_item_category();
             var name = form["name"];
@@ -106,7 +112,7 @@ namespace WebApplication1.Controllers.Admin
             }
             else
             {
-                tic.parent=Int32.Parse(form["parent"]);
+                tic.parent = Int32.Parse(form["parent"]);
             }
             tic.name = name;
             if (!String.IsNullOrEmpty(sort))
@@ -121,7 +127,7 @@ namespace WebApplication1.Controllers.Admin
             tic.last_modified = DateTime.Now;
             if (fileUpload != null)
             {
-                var fileName =  Path.GetFileName(DateTime.Now.Millisecond+fileUpload.FileName);
+                var fileName = Path.GetFileName(DateTime.Now.Millisecond + fileUpload.FileName);
                 var path = Path.Combine(Server.MapPath(URLHelper.URL_IMAGE_PATH + "item_category/"), fileName);
                 if (!System.IO.File.Exists(path))
                 {
@@ -151,12 +157,12 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_ITEM_CATEGORY_M, new Tuple<tbl_item_category, List<tbl_item_category>>(getOneItemCategory(Int32.Parse(id)), getAllItemCategory()));
         }
         [HttpPost]
-        public ActionResult itemCategoryEdit(FormCollection form,HttpPostedFileBase fileUpload)
+        public ActionResult itemCategoryEdit(FormCollection form, HttpPostedFileBase fileUpload)
         {
             var id = form["id"];
             if (id == null)
             {
-                return itemCategoryCreate(form,fileUpload);
+                return itemCategoryCreate(form, fileUpload);
             }
             else
             {

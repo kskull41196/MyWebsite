@@ -78,7 +78,7 @@ namespace WebApplication1.Controllers
         public int getNewsCategoryId()
         {
             var menuNewsCategories = from tic in data.tbl_news_categories where tic.name.Equals(Constants.NEWS_CATEGORY_NAME_NEWS) select tic;
-            return menuNewsCategories.Single().id;
+            return menuNewsCategories.Any() ? menuNewsCategories.Single().id : -1;
         }
 
         public int getPolicyCategoryId()

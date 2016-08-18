@@ -107,8 +107,15 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_ITEM, listItem);
         }
         [HttpPost]
-        public ActionResult itemView(FormCollection form)
+        public ActionResult itemView(FormCollection form, String btnDel)
         {
+
+            if (String.IsNullOrEmpty(btnDel))
+            {
+                //Delete all
+                DataHelper.ProductHelper.getInstance().deleteAllProduct(data);
+            }
+
             var keyword = form["keyword"];
             var listItem = getItem(10, keyword);
             return View(URLHelper.URL_ADMIN_ITEM, listItem);

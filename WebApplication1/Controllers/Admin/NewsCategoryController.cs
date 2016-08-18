@@ -68,8 +68,14 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_NEWS_CATEGORY, listNewsCategory);
         }
         [HttpPost]
-        public ActionResult newsCategoryView(FormCollection form)
+        public ActionResult newsCategoryView(FormCollection form, String btnDel)
         {
+            if (String.IsNullOrEmpty(btnDel))
+            {
+                //Delete all
+                DataHelper.NewsHelper.getInstance().deleteAllNewsCategory(data);
+            }
+
             var keyword = form["keyword"];
             var listNewsCategory = getNewsCategory(10, keyword);
             return View(URLHelper.URL_ADMIN_NEWS_CATEGORY, listNewsCategory);

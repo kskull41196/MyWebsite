@@ -27,6 +27,12 @@ namespace WebApplication1.Controllers
                 }
                 return instance;
             }
+            
+            public void deleteAllSupporters(Models.DataClassesDataContext data)
+            {
+                data.tbl_supports.DeleteAllOnSubmit(data.tbl_supports);
+                data.SubmitChanges();
+            }
 
             public List<Models.tbl_module> getAllSupportedModules(Models.DataClassesDataContext data)
             {
@@ -213,7 +219,19 @@ namespace WebApplication1.Controllers
                 }
                 return instance;
             }
-            
+
+            public void deleteAllProductCategory(Models.DataClassesDataContext data)
+            {
+                data.tbl_item_categories.DeleteAllOnSubmit(data.tbl_item_categories);
+                data.SubmitChanges();
+            }
+
+            public void deleteAllProduct(Models.DataClassesDataContext data)
+            {
+                data.tbl_items.DeleteAllOnSubmit(data.tbl_items);
+                data.SubmitChanges();
+            }
+
             public int getProductsAmount(Models.DataClassesDataContext data)
             {
                 return data.tbl_items.Count();
@@ -268,6 +286,19 @@ namespace WebApplication1.Controllers
                 return instance;
             }
 
+
+            public void deleteAllNewsCategory(Models.DataClassesDataContext data)
+            {
+                data.tbl_news_categories.DeleteAllOnSubmit(data.tbl_news_categories);
+                data.SubmitChanges();
+            }
+
+            public void deleteAllNews(Models.DataClassesDataContext data)
+            {
+                data.tbl_news.DeleteAllOnSubmit(data.tbl_news);
+                data.SubmitChanges();
+
+            }
             public int getNewsAmount(Models.DataClassesDataContext data)
             {
                 return data.tbl_news.Count();
@@ -314,7 +345,7 @@ namespace WebApplication1.Controllers
             {
                 return data.tbl_news.OrderByDescending(a => a.date_added).Where(n => n.parent == parent && n.id != id).ToList();
             }
-            
+
             public List<Models.tbl_new> getListNewsByCategory(Models.DataClassesDataContext data, int parent)
             {
                 return data.tbl_news.OrderByDescending(a => a.date_added).Where(n => n.parent == parent).ToList();
@@ -349,12 +380,25 @@ namespace WebApplication1.Controllers
                     }
                 }
             }
-            
+
+            public void deleteAllOrderDetails(Models.DataClassesDataContext data)
+            {
+                data.tbl_order_details.DeleteAllOnSubmit(data.tbl_order_details);
+                data.SubmitChanges();
+
+            }
+
+            public void deleteAllOrders(Models.DataClassesDataContext data)
+            {
+                data.tbl_orders.DeleteAllOnSubmit(data.tbl_orders);
+                data.SubmitChanges();
+
+            }
             public int getOrderAmount(Models.DataClassesDataContext data)
             {
                 return data.tbl_orders.Count();
             }
-        
+
             public int getPaidOrderAmount(Models.DataClassesDataContext data)
             {
                 return data.tbl_orders.Where(n => n.status == (int)Constants.OrderStatus.PAID).Count();
