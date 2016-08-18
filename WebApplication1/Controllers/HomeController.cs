@@ -36,7 +36,12 @@ namespace WebApplication1.Controllers
             ViewBag.Message = "Tin Tức";
             return View(URLHelper.URL_HOME_NEWS, DataHelper.NewsHelper.getInstance().getListAllNews(data));
         }
-
+        
+        public ActionResult About()
+        {
+            return View(URLHelper.URL_HOME_ABOUT);
+        }
+        
         public ActionResult Policy()
         {
             ViewBag.Message = "Chính Sách";

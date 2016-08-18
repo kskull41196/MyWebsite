@@ -20,6 +20,7 @@ namespace WebApplication1.Controllers
         public const String URL_HOME_SHOPPING_CARD = "~/Views/Home/ShoppingCard.cshtml";
         public const String URL_HOME_NEWS_DETAIL = "~/Views/Home/NewsDetail.cshtml";
         public const String URL_HOME_NEWS = "~/Views/Home/News.cshtml";
+        public const String URL_HOME_ABOUT = "~/Views/Home/About.cshtml";
         public const String URL_HOME_POLICY = "~/Views/Home/News.cshtml";
         public const String URL_HOME_LOGIN = "~/Views/Home/Login.cshtml";
         public const String URL_HOME_SIGNUP = "~/Views/Home/SignUp.cshtml";

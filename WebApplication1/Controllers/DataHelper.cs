@@ -69,6 +69,11 @@ namespace WebApplication1.Controllers
                 return result;
             }
 
+            public int getMemberAccountAmount(Models.DataClassesDataContext data)
+            {
+                return data.tbl_members.Count();
+            }
+
             public bool checkThisAdminAccountExist(Models.DataClassesDataContext data, string username, string password)
             {
                 var result = data.tbl_admins.Where(a => a.username.Equals(username) && a.password == password);
@@ -208,6 +213,17 @@ namespace WebApplication1.Controllers
                 }
                 return instance;
             }
+            
+            public int getProductsAmount(Models.DataClassesDataContext data)
+            {
+                return data.tbl_items.Count();
+            }
+
+            public int getProductCategoryAmount(Models.DataClassesDataContext data)
+            {
+                return data.tbl_item_categories.Count();
+            }
+
 
             public Models.tbl_item getProductById(Models.DataClassesDataContext data, int id)
             {
@@ -250,6 +266,16 @@ namespace WebApplication1.Controllers
                     instance = new NewsHelper();
                 }
                 return instance;
+            }
+
+            public int getNewsAmount(Models.DataClassesDataContext data)
+            {
+                return data.tbl_news.Count();
+            }
+
+            public int getNewsCategoryAmount(Models.DataClassesDataContext data)
+            {
+                return data.tbl_news_categories.Count();
             }
 
             public Models.tbl_new getNewsById(Models.DataClassesDataContext data, int id)
@@ -322,6 +348,16 @@ namespace WebApplication1.Controllers
                         shoppingCard.Remove(record);
                     }
                 }
+            }
+            
+            public int getOrderAmount(Models.DataClassesDataContext data)
+            {
+                return data.tbl_orders.Count();
+            }
+        
+            public int getPaidOrderAmount(Models.DataClassesDataContext data)
+            {
+                return data.tbl_orders.Where(n => n.status == (int)Constants.OrderStatus.PAID).Count();
             }
 
             public void saveOrder(BaseController context,

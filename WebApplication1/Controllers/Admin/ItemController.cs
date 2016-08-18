@@ -123,7 +123,7 @@ namespace WebApplication1.Controllers.Admin
         {
             return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item_category>>(new tbl_item(), getAllItemCategories()));
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult itemCreate(FormCollection form, HttpPostedFileBase fileUpload)
         {
             tbl_item tic = new tbl_item();
@@ -190,7 +190,7 @@ namespace WebApplication1.Controllers.Admin
         {
             return View(URLHelper.URL_ADMIN_ITEM_M, new Tuple<tbl_item, List<tbl_item_category>>(getOneItem(Int32.Parse(id)), getAllItemCategories()));
         }
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult itemEdit(FormCollection form, HttpPostedFileBase fileUpload)
         {
             var id = form["id"];

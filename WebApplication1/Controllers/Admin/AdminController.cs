@@ -11,14 +11,13 @@ namespace WebApplication1.Controllers.Admin
         // GET: Admin
         public ActionResult Index()
         {
-            ViewData["MEMBER_AMOUNT"] = 1;
-            ViewData["ORDER_COMPLETED_AMOUNT"] = 2;
-            ViewData["ORDER_AMOUNT"] = 3;
-            ViewData["NEWS_CATEGORY_AMOUNT"] = 4;
-            ViewData["NEWS_AMOUNT"] = 5;
-            ViewData["ITEM_AMOUNT"] = 6;
-            ViewData["ITEM_CATEGORY_AMOUNT"] = 7;
-
+            ViewData["MEMBER_AMOUNT"] = DataHelper.AccountHelper.getInstance().getMemberAccountAmount(data);
+            ViewData["ORDER_COMPLETED_AMOUNT"] = DataHelper.ShoppingCardHelper.getInstance().getPaidOrderAmount(data);
+            ViewData["ORDER_AMOUNT"] = DataHelper.ShoppingCardHelper.getInstance().getOrderAmount(data);
+            ViewData["NEWS_CATEGORY_AMOUNT"] = DataHelper.NewsHelper.getInstance().getNewsCategoryAmount(data);
+            ViewData["NEWS_AMOUNT"] = DataHelper.NewsHelper.getInstance().getNewsAmount(data);
+            ViewData["ITEM_AMOUNT"] = DataHelper.ProductHelper.getInstance().getProductsAmount(data);
+            ViewData["ITEM_CATEGORY_AMOUNT"] = DataHelper.ProductHelper.getInstance().getProductCategoryAmount(data);
 
             return View();
         }

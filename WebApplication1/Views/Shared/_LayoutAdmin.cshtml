@@ -13,6 +13,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 <body>
     <div id="page-loader"></div>
@@ -110,13 +112,7 @@
                                 </ul>
 
                             </li>
-                            <!-- shopcon fig -->
-                            <li>
-                                <a href="">
-                                    <i class="si si-settings"></i>
-                                    <span class="sidebar-mini-hide">Cấu hình website</span>
-                                </a>
-                            </li>
+                         
                         </ul><!-- end .nav-main -->
                     </div><!-- end .side-content -->
                 </div><!-- end .sidebar-content -->
@@ -167,7 +163,7 @@
 
             </div>
             <div class="pull-left">
-                Copyright &copy; 2015. Create by <a href="">MyWebsite</a>
+                Copyright &copy; 2016. Create by <a href="">MyWebsite</a>
             </div>
         </footer><!-- end #page-footer -->
     </div>
