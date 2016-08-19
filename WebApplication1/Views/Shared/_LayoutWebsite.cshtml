@@ -222,29 +222,18 @@
     });
     </script>
     
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-
     @if (listSlideImages != null)
     {
-        Html.Raw("bambi tét coi");
-        Html.Raw("<div id='carousel' class='center - block'>");
+        @Html.Raw("<div id='carousel' class='center - block'>");
         for (int i = 0; i < listSlideImages.Count(); i++)
         {
-            WebApplication1.Models.tbl_image item = listSlideImages[i];
-            Html.Raw("< div class='carousel_item center - middle' style='width: 100 % '> < a href = '' > < img class='img-responsive-slider' style='width:100%' src='~/assets/images/slide/" + item.image + "' alt='" + i + "' /></a></div>");
+            WebApplication1.Models.tbl_image item = listSlideImages.ElementAt(i);
+            @Html.Raw("<div class='carousel_item center - middle' style='width: 100 % '> <a href = ''> <img class='img-responsive-slider' style='width:100%' src='assets/images/slide/");
+            @Html.Raw(new HtmlString(item.image));
+            @Html.Raw("' alt='");
+            @Html.Raw(i + "'/></a></div>");
         }
-        Html.Raw("</div>");
+        @Html.Raw("</div>");
     }
 
     <div id="main-container">
