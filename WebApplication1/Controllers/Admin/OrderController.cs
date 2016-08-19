@@ -117,8 +117,7 @@ namespace WebApplication1.Controllers.Admin
         [HttpPost]
         public ActionResult OrderView(FormCollection form, String btnDel)
         {
-
-            if (String.IsNullOrEmpty(btnDel))
+            if (btnDel != null)
             {
                 //Delete all
                 DataHelper.ShoppingCardHelper.getInstance().deleteAllOrders(data);

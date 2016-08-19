@@ -45,6 +45,7 @@ namespace WebApplication1.Controllers
         public const String URL_ADMIN_MODULE_M = "~/Views/Admin/Module/Module_m.cshtml";
         public const String URL_ADMIN_SUPPORT = "~/Views/Admin/Support/Support.cshtml";
         public const String URL_ADMIN_SUPPORT_M = "~/Views/Admin/Support/Support_m.cshtml";
+        public const String URL_ADMIN_MEMBER = "~/Views/Admin/Member/Member.cshtml";
         public const String URL_ADMIN_ORDER = "~/Views/Admin/Order/Order.cshtml";
         public const String URL_ADMIN_ORDER_DETAIL = "~/Views/Admin/Order/OrderDetail.cshtml";
 

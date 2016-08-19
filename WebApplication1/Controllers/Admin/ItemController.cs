@@ -110,7 +110,7 @@ namespace WebApplication1.Controllers.Admin
         public ActionResult itemView(FormCollection form, String btnDel)
         {
 
-            if (String.IsNullOrEmpty(btnDel))
+            if (btnDel != null)
             {
                 //Delete all
                 DataHelper.ProductHelper.getInstance().deleteAllProduct(data);

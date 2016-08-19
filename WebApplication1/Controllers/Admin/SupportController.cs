@@ -70,8 +70,7 @@ namespace WebApplication1.Controllers.Admin
         [HttpPost]
         public ActionResult supportView(FormCollection form, String btnDel)
         {
-
-            if (String.IsNullOrEmpty(btnDel))
+            if (btnDel != null)
             {
                 //Delete all
                 DataHelper.GeneralHelper.getInstance().deleteAllSupporters(data);

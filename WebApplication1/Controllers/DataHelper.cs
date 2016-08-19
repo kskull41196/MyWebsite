@@ -27,10 +27,16 @@ namespace WebApplication1.Controllers
                 }
                 return instance;
             }
-            
+
             public void deleteAllSupporters(Models.DataClassesDataContext data)
             {
                 data.tbl_supports.DeleteAllOnSubmit(data.tbl_supports);
+                data.SubmitChanges();
+            }
+
+            public void deleteAllModules(Models.DataClassesDataContext data)
+            {
+                data.tbl_modules.DeleteAllOnSubmit(data.tbl_modules);
                 data.SubmitChanges();
             }
 
@@ -67,6 +73,14 @@ namespace WebApplication1.Controllers
                     instance = new AccountHelper();
                 }
                 return instance;
+            }
+
+            public void deleteAllMembers(Models.DataClassesDataContext data)
+            {
+                ShoppingCardHelper.getInstance().deleteAllOrderDetails(data);
+
+                data.tbl_members.DeleteAllOnSubmit(data.tbl_members);
+                data.SubmitChanges();
             }
 
             public Models.tbl_member getMemberAccountByEmail(Models.DataClassesDataContext data, string email)
@@ -222,6 +236,8 @@ namespace WebApplication1.Controllers
 
             public void deleteAllProductCategory(Models.DataClassesDataContext data)
             {
+                deleteAllProduct(data);
+
                 data.tbl_item_categories.DeleteAllOnSubmit(data.tbl_item_categories);
                 data.SubmitChanges();
             }
@@ -289,6 +305,8 @@ namespace WebApplication1.Controllers
 
             public void deleteAllNewsCategory(Models.DataClassesDataContext data)
             {
+                deleteAllNews(data);
+
                 data.tbl_news_categories.DeleteAllOnSubmit(data.tbl_news_categories);
                 data.SubmitChanges();
             }
@@ -385,11 +403,12 @@ namespace WebApplication1.Controllers
             {
                 data.tbl_order_details.DeleteAllOnSubmit(data.tbl_order_details);
                 data.SubmitChanges();
-
             }
 
             public void deleteAllOrders(Models.DataClassesDataContext data)
             {
+                deleteAllOrderDetails(data);
+
                 data.tbl_orders.DeleteAllOnSubmit(data.tbl_orders);
                 data.SubmitChanges();
 

@@ -67,8 +67,14 @@ namespace WebApplication1.Controllers.Admin
             return View(URLHelper.URL_ADMIN_MODULE, listModule);
         }
         [HttpPost]
-        public ActionResult moduleView(FormCollection form)
+        public ActionResult moduleView(FormCollection form, String btnDel)
         {
+            if (btnDel != null)
+            {
+                //Delete all
+                DataHelper.GeneralHelper.getInstance().deleteAllModules(data);
+            }
+            
             var keyword = form["keyword"];
             var listModule = getModule(10, keyword);
             return View(URLHelper.URL_ADMIN_MODULE, listModule);

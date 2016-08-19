@@ -106,7 +106,7 @@ namespace WebApplication1.Controllers.Admin
         [HttpPost]
         public ActionResult newsView(FormCollection form, String btnDel)
         {
-            if (String.IsNullOrEmpty(btnDel))
+            if (btnDel != null)
             {
                 //Delete all
                 DataHelper.NewsHelper.getInstance().deleteAllNews(data);

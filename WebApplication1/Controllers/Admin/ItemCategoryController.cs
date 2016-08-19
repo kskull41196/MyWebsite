@@ -70,7 +70,7 @@ namespace WebApplication1.Controllers.Admin
         [HttpPost]
         public ActionResult itemCategoryView(FormCollection form, String btnDel)
         {
-            if (String.IsNullOrEmpty(btnDel))
+            if (btnDel != null)
             {
                 //Delete all
                 DataHelper.ProductHelper.getInstance().deleteAllProductCategory(data);
