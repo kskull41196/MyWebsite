@@ -34,6 +34,12 @@ namespace WebApplication1.Controllers
                 data.SubmitChanges();
             }
 
+            public void deleteAllImages(Models.DataClassesDataContext data)
+            {
+                data.tbl_images.DeleteAllOnSubmit(data.tbl_images);
+                data.SubmitChanges();
+            }
+
             public void deleteAllModules(Models.DataClassesDataContext data)
             {
                 data.tbl_modules.DeleteAllOnSubmit(data.tbl_modules);

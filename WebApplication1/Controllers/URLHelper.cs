@@ -32,6 +32,7 @@ namespace WebApplication1.Controllers
         public const String URL_HOME_CONTACT = "~/Views/Home/Contact.cshtml";
 
         //Admin URL
+        public const String URL_ADMIN_IMAGE = "~/Views/Admin/Image/Image.cshtml";
         public const String URL_ADMIN_ITEM_CATEGORY = "~/Views/Admin/ItemCategory/ItemCategory.cshtml";
         public const String URL_ADMIN_ITEM_CATEGORY_M = "~/Views/Admin/ItemCategory/ItemCategory_m.cshtml";
         public const String URL_ADMIN_ITEM = "~/Views/Admin/Item/Item.cshtml";

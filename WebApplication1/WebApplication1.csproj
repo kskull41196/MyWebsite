@@ -174,6 +174,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admin\AjaxController.cs" />
     <Compile Include="Controllers\Admin\BaseAdminController.cs" />
+    <Compile Include="Controllers\Admin\SlideController.cs" />
     <Compile Include="Controllers\Admin\MemberController.cs" />
     <Compile Include="Controllers\Admin\OrderController.cs" />
     <Compile Include="Controllers\Admin\ItemController.cs" />
@@ -623,6 +624,7 @@
     <Content Include="assets\images\background.jpg" />
     <Content Include="assets\images\banner.png" />
     <Content Include="assets\images\en-flag.png" />
+    <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\noimage.png" />
     <Content Include="assets\images\Phone.png" />
     <Content Include="assets\images\skype.png" />
@@ -956,10 +958,11 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutWebsite.cshtml" />
     <Content Include="Views\Admin\ItemCategory\ItemCategory.cshtml" />
-    <Content Include="Views\Admin\ItemCategory\ItemCategory_m.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ItemCategory\ItemCategory_m.cshtml" />	
     <Content Include="Views\Admin\NewsCategory\NewsCategory.cshtml" />
-    <Content Include="Views\Admin\NewsCategory\NewsCategory_m.cshtml" />
+    <Content Include="Views\Admin\NewsCategory\NewsCategory_m.cshtml" />	
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Image\Image.cshtml" />
     <Content Include="Views\Admin\Item\Item.cshtml" />
     <Content Include="Views\Admin\Item\Item_m.cshtml" />
     <Content Include="Views\Admin\News\News.cshtml" />
@@ -1001,6 +1004,7 @@
     <Folder Include="assets\images\item_category\" />
     <Folder Include="assets\images\news\" />
     <Folder Include="assets\images\news_category\" />
+    <Folder Include="assets\images\slide\" />
     <Folder Include="assets\images\support\" />
     <Folder Include="assets\support\" />
     <Folder Include="Views\Ajax\" />

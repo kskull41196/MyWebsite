@@ -1,0 +1,123 @@
+﻿@model IEnumerable<WebApplication1.Models.tbl_image>
+@{
+    ViewBag.Title = "Image";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+
+<div class="content bg-gray-lighter">
+    <div class="row items-push">
+        <div class="col-sm-7">
+            <h1 class="page-heading">Tin tức <small>Danh mục Hình ảnh</small></h1>
+        </div>
+        <div class="col-sm-5 text-right hidden-xs">
+            <ol class="breadcrumb push-10-t">
+                <li>
+                    @Html.ActionLink("Quản trị", "Index", "Admin")
+                </li>
+                <li>Danh sách hình trang chủ</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="content" style="min-height: 530px;">
+    <div class="block">
+        <div class="block-header bg-gray-lighter">
+            <span class="block-title">Danh sách</span>
+        </div>
+        <div class="block-content">
+            <div class="block-content-top" style="margin-bottom: 20px;">
+                <form method="POST" name="frmForm" enctype="multipart/form-data">
+                    <div class="dataTable_filter">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="btn btn-primary btn-file btn-image-">
+                                    <i class="glyphicon glyphicon-folder-open">
+                                        Browse ...
+                                    </i>
+                                    <input name="fileupload" type="file" class="" id="txtImage" onchange="readURL(this);" style="width: 100%; height: 100%;" /><br />
+
+                                </div>
+                                <button type="submit" name="btnSubmit" class="btn btn-primary btn-file btn-image-">
+                                    Lưu hình ảnh
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @if (ViewBag.AlertSuccess != null)
+            {
+                <div class="alert alert-success">@ViewBag.AlertSuccess</div>
+            }
+            else if (ViewBag.AlertError != null)
+            {
+                <div class="alert alert-warning">@ViewBag.AlertError</div>
+            }
+            <form method="POST" action="#" name="frmForm" enctype="multipart/form-data">
+                <input type="hidden" name="page" value="">
+                <input type="hidden" name="act" value="item_category">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover btl-list-bbli bg-white">
+                        <thead>
+                            <tr>
+                                <td style="width: 1px;" class="text-center">
+                                    <input type="checkbox" name="chk[]" class="tai_c" id="chkall" value="">
+                                </td>
+                                <td style="width: 50px;" class="text-center">ID</td>
+                                <td style="width: 150px;" class="text-center">Hình</td>
+                                <td style="width: 100px;" class="text-right">Tùy chọn</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var newsCategory in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="checkbox" name="chk[]" class="tai_c" value="@newsCategory.id">
+                                    </td>
+                                    <td class="text-center">
+                                        @newsCategory.id
+                                    </td>
+                                    <td class="text-center">
+                                        @if (String.IsNullOrEmpty(newsCategory.image))
+                                        {
+                                            <img src="~/assets/images/noimage.png" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/assets/images/slide/@newsCategory.image" border="0" class="img-thumbnail" style="max-width: 50px;">
+                                        }
+                                    </td>
+                                    <td class="text-right">
+                                        <a href='@Url.Action("imageDelete", "Slide", new { id = @newsCategory.id })' class="btn btn-xs btn-remove btn-danger" title="Xóa">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-center">
+                                    <button type="submit" name="btnDel" class="btn btn-danger btn-xs" onclick="return confirm('Bạn có chắc chắn muốn xóa ?');">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                                <td colspan="7"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <nav class="text-center">
+            <ul class="pagination"></ul>
+        </nav><!-- End pagination -->
+    </div>
+</div>
