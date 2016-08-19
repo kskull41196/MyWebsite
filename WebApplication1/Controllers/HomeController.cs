@@ -56,6 +56,14 @@ namespace WebApplication1.Controllers
             {
                 listNewsWithTheSameCategory = DataHelper.NewsHelper.getInstance().getListOtherNewsByCategory(data, newsToShowDetail.id, newsToShowDetail.parent.Value);
             }
+
+
+            //SEO tags
+            ViewBag.Description = newsToShowDetail.description;
+            ViewBag.Keyword = newsToShowDetail.keyword;
+            ViewBag.Title = newsToShowDetail.title;
+            ViewBag.Image = "~/assets/images/news/" + newsToShowDetail.image;
+
             return View(URLHelper.URL_HOME_NEWS_DETAIL, new Tuple<tbl_new, List<tbl_new>>(newsToShowDetail, listNewsWithTheSameCategory));
         }
 
@@ -87,6 +95,13 @@ namespace WebApplication1.Controllers
             {
                 listItemWithTheSameCategory = DataHelper.ProductHelper.getInstance().getListOtherProductsByCategory(data, itemToShowDetail.id, itemToShowDetail.parent.Value);
             }
+
+            //SEO tags
+            ViewBag.Description = itemToShowDetail.description;
+            ViewBag.Keyword = itemToShowDetail.keyword;
+            ViewBag.Title = itemToShowDetail.title;
+            ViewBag.Image = "~/assets/images/item/" + itemToShowDetail.image;
+           
             return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
 

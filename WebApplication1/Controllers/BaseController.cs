@@ -23,6 +23,13 @@ namespace WebApplication1.Controllers
             ViewData[Constants.KEY_VIEWDATA_LIST_MODULE] = DataHelper.GeneralHelper.getInstance().getAllSupportedModules(data);
             ViewData[Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT] = DataHelper.ShoppingCardHelper.getInstance().getItemsAmountInShoppingCard(requestContext.HttpContext);
             ViewData[Constants.KEY_VIEWDATA_IS_LOGIN] = DataHelper.AccountHelper.getInstance().checkIsMemberLoggingIn(HttpContext);
+
+
+            //SEO tags
+            ViewBag.Description = "mỹ phẩm tại công ty Khôi nguyên là những mặt hàng giá rẽ tại quận Bình Thạnh";
+            ViewBag.Keyword = "mỹ phẩm giá rẽ quận Bình Thạnh, mỹ phẩm giá rẽ, mỹ phẩm";
+            ViewBag.Title = "Mỹ phẩm giá rẽ quận Bình Thạnh";
+            ViewBag.Image = "~/assets/images/banner.png";
         }
     }
 }
