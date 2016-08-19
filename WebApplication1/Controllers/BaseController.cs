@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
             ViewBag.Description = "mỹ phẩm tại công ty Khôi nguyên là những mặt hàng giá rẽ tại quận Bình Thạnh";
             ViewBag.Keyword = "mỹ phẩm giá rẽ quận Bình Thạnh, mỹ phẩm giá rẽ, mỹ phẩm";
             ViewBag.Title = "Mỹ phẩm giá rẽ quận Bình Thạnh";
-            ViewBag.Image = "~/assets/images/banner.png";
+            ViewBag.Image = "~/assets/images/logo.png";
         }
     }
 }
