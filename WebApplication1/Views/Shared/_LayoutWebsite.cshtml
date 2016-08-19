@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    List<WebApplication1.Models.tbl_image> listSlideImages = ((List<WebApplication1.Models.tbl_image>)ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_LIST_SLIDE_IMAGES]);
+}
+
+<!DOCTYPE html>
 <html xmlns:fb='http://www.facebook.com/2008/fbml'>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -67,15 +71,15 @@
 </head>
 <body>
     <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-82775638-1', 'auto');
-    ga('send', 'pageview');
+        ga('create', 'UA-82775638-1', 'auto');
+        ga('send', 'pageview');
 
     </script>
     <header>
@@ -173,6 +177,7 @@
                         </li>
                     }
                 </ul>
+                </ul>
                 <!--<ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -182,70 +187,129 @@
             </div>
         </div>
     </div>
+
     </div>
-    </div>
+
+
+
+
+    <!-- Skitter Styles -->
+    <link href="http://myphamccwhite.com/skin/temp1/templates/owl-carousel/owl.carousel.css" type="text/css" media="all" rel="stylesheet" />
+
+    <link href="http://myphamccwhite.com/skin/temp1/templates/owl-carousel/owl.theme.css" type="text/css" media="all" rel="stylesheet" />
+    <link href="http://myphamccwhite.com/skin/temp1/templates/owl-carousel/owl.transitions.css" type="text/css" media="all" rel="stylesheet" />
+    <!-- Skitter JS -->
+    <script type="text/javascript" language="javascript" src="http://myphamccwhite.com/skin/temp1/templates/owl-carousel/owl.carousel.js"></script>
+
+    <!-- Init Skitter -->
+    <script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+    $('#carousel').owlCarousel({
+    autoplayTimeout: 4000,
+    autoplayHoverPause: true,
+    animateOut: 'fadeOut',
+    items: 1,
+    itemsDesktop: [1199, 1],
+    itemsDesktopSmall: [979, 1],
+    itemsTablet: [768, 1],
+    itemsMobile: [479, 1],
+    pagination: false,
+    navigation: false,
+    autoPlay: true,
+    transitionStyle: "fade",
+    });
+    //center_middle($('#carousel .carousel_item'));
+    });
+    </script>
+    
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+    @if (listSlideImages != null)
+    {
+        Html.Raw("bambi tét coi");
+        Html.Raw("<div id='carousel' class='center - block'>");
+        for (int i = 0; i < listSlideImages.Count(); i++)
+        {
+            WebApplication1.Models.tbl_image item = listSlideImages[i];
+            Html.Raw("< div class='carousel_item center - middle' style='width: 100 % '> < a href = '' > < img class='img-responsive-slider' style='width:100%' src='~/assets/images/slide/" + item.image + "' alt='" + i + "' /></a></div>");
+        }
+        Html.Raw("</div>");
+    }
+
     <div id="main-container">
-        <div class="container">
-            <div class="row">
-                <div id="left-container" class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    @{
-                        var listModules = (List<WebApplication1.Models.tbl_module>)ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_LIST_MODULE];
+    <div class="container">
+    <div class="row">
+    <div id="left-container" class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    @{
+        var listModules = (List<WebApplication1.Models.tbl_module>)ViewData[WebApplication1.Controllers.Constants.KEY_VIEWDATA_LIST_MODULE];
 
-                        @*Start of a partial view*@
-                    foreach (WebApplication1.Models.tbl_module module in listModules)
-                    {
-                        @Html.Action(module.name_partial, "PartialView");
-                    }
-                    @*End of a partial view*@
-                    }
-                </div>
+        @*Start of a partial view*@
+    foreach (WebApplication1.Models.tbl_module module in listModules)
+    {
+        @Html.Action(module.name_partial, "PartialView");
+    }
+    @*End of a partial view*@
+    }
+    </div>
 
-                <div id="center-container" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                    @RenderBody()
-                </div>
-            </div>
-        </div>
+    <div id="center-container" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    @RenderBody()
+    </div>
+    </div>
+    </div>
     </div>
     <footer>
-        <div id="footer_mau_gh">
-            <div class="container">
-                <div class="row">
-                    <div id="footer-left" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <h3 class="title_f"><span> Thông tin</span></h3>
-                        <div class="detail_f">
-                            <h3><img alt="" src="~/assets/images/logo.png" style="float:left; height:65px; margin-right:10px; width:100px"><span style="font-size:28px"><strong>Công Ty TNHH TM - DV Mỹ Phẩm CC.WHITE</strong></span></h3>
-                            <h3>
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Địa chỉ:&nbsp;427 lô J, cư xá Thanh Đa, P.27, Q.Bình Thạnh, TP.HCM<br>
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hotline : 01225 69 71 81<br />
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Email: trananhkhoi46@gmail.com&nbsp;</h3>
-                            <p>&nbsp;</p>
-                        </div>
-                    </div>
-                    <div id="footer-right" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <h3 class="title_f"><span> Thống kê</span></h3>
-                        <div class="detail_f text-center">
-                            <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
-                            <!-- Histats.com  START  (aync)-->
-                            <script type="text/javascript">
-                                var _Hasync = _Hasync || [];
-                                _Hasync.push(['Histats.start', '1,3556524,4,429,112,75,00011111']);
-                                _Hasync.push(['Histats.fasi', '1']);
-                                _Hasync.push(['Histats.track_hits', '']);
-                                (function () {
-                                    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-                                    hs.src = ('//s10.histats.com/js15_as.js');
-                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-                                })();</script>
-                            <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?3556524&101" alt="" border="0"></a></noscript>
-                            <!-- Histats.com  END  -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="footer_mau_gh">
+    <div class="container">
+    <div class="row">
+    <div id="footer-left" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+    <h3 class="title_f"><span> Thông tin</span></h3>
+    <div class="detail_f">
+    <h3><img alt="" src="~/assets/images/logo.png" style="float:left; height:65px; margin-right:10px; width:100px"><span style="font-size:28px"><strong>Công Ty TNHH TM - DV Mỹ Phẩm CC.WHITE</strong></span></h3>
+    <h3>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Địa chỉ:&nbsp;427 lô J, cư xá Thanh Đa, P.27, Q.Bình Thạnh, TP.HCM<br>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Hotline : 01225 69 71 81<br />
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Email: trananhkhoi46@gmail.com&nbsp;
+    </h3>
+    <p>&nbsp;</p>
+    </div>
+    </div>
+    <div id="footer-right" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <h3 class="title_f"><span> Thống kê</span></h3>
+    <div class="detail_f text-center">
+    <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
+    <!-- Histats.com  START  (aync)-->
+    <script type="text/javascript">
+    var _Hasync = _Hasync || [];
+    _Hasync.push(['Histats.start', '1,3556524,4,429,112,75,00011111']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function () {
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();</script>
+    <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?3556524&101" alt="" border="0"></a></noscript>
+    <!-- Histats.com  END  -->
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </footer>
     <div id="copyright" class="text-center">
-        &copy; @DateTime.Now.Year - Bản quyền thuộc về: <a href="">MyWebsite</a>
+    &copy; @DateTime.Now.Year - Bản quyền thuộc về: <a href="">MyWebsite</a>
     </div>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

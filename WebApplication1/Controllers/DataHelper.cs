@@ -52,6 +52,12 @@ namespace WebApplication1.Controllers
                 return result.ToList();
             }
 
+            public List<Models.tbl_image> getAllSlideImages(Models.DataClassesDataContext data)
+            {
+                var result = data.tbl_images;
+                return result.ToList();
+            }
+
             public List<Models.tbl_module> getHomeModule(Models.DataClassesDataContext data)
             {
                 var result = data.tbl_modules.Where(a => a.type == 2).OrderByDescending(a => a.date_added);

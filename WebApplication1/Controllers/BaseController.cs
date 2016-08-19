@@ -20,6 +20,7 @@ namespace WebApplication1.Controllers
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             base.Initialize(requestContext);
+            ViewData[Constants.KEY_VIEWDATA_LIST_SLIDE_IMAGES] = DataHelper.GeneralHelper.getInstance().getAllSlideImages(data);
             ViewData[Constants.KEY_VIEWDATA_LIST_MODULE] = DataHelper.GeneralHelper.getInstance().getAllSupportedModules(data);
             ViewData[Constants.KEY_VIEWDATA_SHOPPING_CARD_ITEMS_AMOUNT] = DataHelper.ShoppingCardHelper.getInstance().getItemsAmountInShoppingCard(requestContext.HttpContext);
             ViewData[Constants.KEY_VIEWDATA_IS_LOGIN] = DataHelper.AccountHelper.getInstance().checkIsMemberLoggingIn(HttpContext);
