@@ -145,9 +145,9 @@
                 @Model.Item1.description
             </div>
             <div class="clearfix">
-                <div class="price">@Model.Item1.price VND</div>
+                <div class="price" style="color:red; font-weight:300; font-size:24px">@Model.Item1.price VND</div>
             </div>
-            <div class="quantity_wanted_p clearfix">
+              <div class="quantity_wanted_p clearfix">
                 <form method="GET" id="form" action="../AddItemToShoppingCard">
                     <div class="js-qty">
                         <input type="text" name="id" style="display:none" value="@Model.Item1.id">
@@ -203,6 +203,7 @@
         </div>
     </div>
     <div class="product__info_block">
+        <p style="border-bottom:1px solid ; font-weight:bold ; margin: 10px ; padding: 10px">Chi tiết</p>
         <div class="canh_css_frame">
             @Html.Raw(@Model.Item1.detail)
         </div>
