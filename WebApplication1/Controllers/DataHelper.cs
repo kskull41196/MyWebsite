@@ -54,7 +54,7 @@ namespace WebApplication1.Controllers
 
             public List<Models.tbl_image> getAllSlideImages(Models.DataClassesDataContext data)
             {
-                var result = data.tbl_images;
+                var result = data.tbl_images.Where(a => a.status == 1).OrderByDescending(a => a.last_modified);
                 return result.ToList();
             }
 

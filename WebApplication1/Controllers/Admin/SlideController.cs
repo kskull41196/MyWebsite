@@ -42,7 +42,16 @@ namespace WebApplication1.Controllers.Admin
         {
             return imageView();
         }
-
+        
+        public ActionResult imageSetStatusEnable(int id)
+        {
+            tbl_image tic = getOneImage(id);
+            tic.status = (byte)(tic.status == 1 ? 0 : 1);
+            tic.last_modified = DateTime.Now;
+            UpdateModel(tic);
+            data.SubmitChanges();
+            return RedirectToAction("imageView");
+        }
 
         /*
          * 
@@ -75,6 +84,7 @@ namespace WebApplication1.Controllers.Admin
                 }
                 tic.image = fileName;
                 tic.name = fileName;
+                tic.status = 0;
                 data.tbl_images.InsertOnSubmit(tic);
                 data.SubmitChanges();
 
