@@ -65,6 +65,7 @@ namespace WebApplication1.Controllers
             ViewBag.Keyword = newsToShowDetail.keyword;
             ViewBag.Title = newsToShowDetail.title;
             ViewBag.Image = "~/assets/images/news/" + newsToShowDetail.image;
+            ViewBag.CategoryName = DataHelper.NewsHelper.getInstance().getNewsCategoryById(data, newsToShowDetail.parent.Value).name;
 
             return View(URLHelper.URL_HOME_NEWS_DETAIL, new Tuple<tbl_new, List<tbl_new>>(newsToShowDetail, listNewsWithTheSameCategory));
         }
@@ -103,7 +104,8 @@ namespace WebApplication1.Controllers
             ViewBag.Keyword = itemToShowDetail.keyword;
             ViewBag.Title = itemToShowDetail.title;
             ViewBag.Image = "~/assets/images/item/" + itemToShowDetail.image;
-           
+            ViewBag.CategoryName = DataHelper.ProductHelper.getInstance().getProductCategoryById(data, itemToShowDetail.parent.Value).name;
+
             return View(URLHelper.URL_HOME_PRODUCT_DETAIL, new Tuple<tbl_item, List<tbl_item>>(itemToShowDetail, listItemWithTheSameCategory));
         }
 

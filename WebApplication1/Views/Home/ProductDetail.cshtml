@@ -138,7 +138,7 @@
             {
                 <div class="category" itemprop="category">
                     <span>Category: </span>
-                    <a href="@Url.Action("Items", "Home", new { id = Model.Item1.parent })">Category</a>
+                    <a href="@Url.Action("ItemsByCategory", "Home", new { categoryid = Model.Item1.parent })">@ViewBag.CategoryName</a>
                 </div>
             }
             <div class="product-description rte" itemprop="description">
