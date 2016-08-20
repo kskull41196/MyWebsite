@@ -19,7 +19,7 @@
                                     <div class="category-inner">
                                         <div class="category-img">
                                             <a href="@Url.Action("ProductDetail", "Home", new { id = item.id })">
-                                                <img class="img-responsive margin-auto" src="~/assets/images/@(String.IsNullOrEmpty(item.image)?"noimage.png":item.image)" alt="@item.name">
+                                                <img class="img-responsive margin-auto" src="~/assets/images/@(String.IsNullOrEmpty(item.image)?"noimage.png":"item/"+@item.image)" alt="@item.name">
                                             </a>
                                         </div>
                                         <div class="category-name">

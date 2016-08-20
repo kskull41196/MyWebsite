@@ -23,11 +23,13 @@ namespace WebApplication1.Controllers
 
         public ActionResult ItemsByCategory(int categoryid)
         {
+            ViewBag.Message = DataHelper.ProductHelper.getInstance().getProductCategoryById(data, categoryid).name;
             return View(URLHelper.URL_HOME_PRODUCTS_BY_CATEGORY, DataHelper.ProductHelper.getInstance().getListProductsByCategory(data, categoryid));
         }
         
         public ActionResult NewsByCategory(int categoryid)
         {
+            ViewBag.Message = DataHelper.NewsHelper.getInstance().getNewsCategoryById(data, categoryid).name;
             return View(URLHelper.URL_HOME_NEWS_BY_CATEGORY, DataHelper.NewsHelper.getInstance().getListNewsByCategory(data, categoryid));
         }
 

@@ -277,6 +277,12 @@ namespace WebApplication1.Controllers
                 return result;
             }
 
+            public Models.tbl_item_category getProductCategoryById(Models.DataClassesDataContext data, int id)
+            {
+                Models.tbl_item_category result = data.tbl_item_categories.Where(n => n.id == id).Single();
+                return result;
+            }
+
             public List<Models.tbl_item> getListAllProducts(Models.DataClassesDataContext data)
             {
                 return data.tbl_items.OrderByDescending(a => a.date_added).ToList();
@@ -337,6 +343,12 @@ namespace WebApplication1.Controllers
             public int getNewsCategoryAmount(Models.DataClassesDataContext data)
             {
                 return data.tbl_news_categories.Count();
+            }
+
+            public Models.tbl_news_category getNewsCategoryById(Models.DataClassesDataContext data, int id)
+            {
+                Models.tbl_news_category result = data.tbl_news_categories.Where(n => n.id == id).Single();
+                return result;
             }
 
             public Models.tbl_new getNewsById(Models.DataClassesDataContext data, int id)
