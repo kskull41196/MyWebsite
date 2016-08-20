@@ -86,16 +86,9 @@
                                     <td class="text-left name-to-confirm">
                                         @order.date_added
                                     </td>
-                                    <td class="text-left name-to-confirm">
-                                        @if (order.status != 1)
-                                        {
-                                            @Html.Raw("Đã thanh toán");
-                                        }
-                                        else
-                                        {
-                                            @Html.Raw("Chưa thanh toán");
-                                        }
-                                        <a href='@Url.Action("OrderSetStatusEnable", "Order", new { id = @order.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                    <td class="text-center">
+                                        <a href='@Url.Action("OrderSetStatusEnable", "Order", new { id = @order.id})' title="Reverse">
+                                            <div class="check tool @(order.status==1?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@order.id"></div>
                                         </a>
                                     </td>
                                     <td class="text-right">

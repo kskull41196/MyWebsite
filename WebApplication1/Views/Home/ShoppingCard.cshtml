@@ -27,7 +27,7 @@
                     <tr>
                         <td class="text-center">
                             <a href='@Url.Action("ProductDetail", "Home", new { @id = @item.id})'>
-                                <img class="img-thumbnail" src="~/assets/images/@(String.IsNullOrEmpty(item.image) ? "noimage.png" : item.image)" alt="@item.name" width="150">
+                                <img class="img-thumbnail" style="max-width:50px" src="~/assets/images/@(String.IsNullOrEmpty(item.image) ? "noimage.png" :"item/" + @item.image)" alt="@item.name" width="150">
                             </a>
                         </td>
                         <td class="text-center">
@@ -71,7 +71,7 @@
                                 </button>
                             </a>
                             }
-                            <a href='@Url.Action("DeleteAllFromShoppingCard", "Home")' class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i>Xóa tất cả</a>
+                            <a href='@Url.Action("DeleteAllFromShoppingCard", "Home")' class="btn btn-primary"><i class="fa"></i>Xóa tất cả</a>
                             <a href="@Url.Action("PayShoppingCard", "Home", new {@isCalculatingByUSD = false})">
                                 <button type="button" class="btn btn-primary">
                                     Thanh toán

@@ -92,16 +92,16 @@
                                         @news.name
                                     </td>
                                     <td class="text-center">
-                                        <div class="star tool @((news.hot==1)?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_news" title="Nổi bật" value="@news.id"></div>
-                                        <a href='@Url.Action("NewsSetHotEnable", "News", new { id = @news.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
-                                        </a>
-                                     </td>
-                                    <td class="text-center">
-                                        <div class="check tool @((news.status==1)?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_news" title="Ẩn hiện" value="@news.id"></div>
-                                        <a href='@Url.Action("NewsSetHotEnable", "News", new { id = @news.id})' class="btn btn-xs btn-pencil btn-primary" title="Reverse">
+                                        <a href='@Url.Action("NewsSetHotEnable", "Item", new { id = @news.id})' title="Reverse">
+                                            <div class="star tool @(news.hot==1?"active":"")" data-action="toggleStatus" data-field="hot" data-table="tbl_item" title="Nổi bật" value="@news.id"></div>
                                         </a>
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-center">
+                                        <a href='@Url.Action("NewsSetStatusEnable", "Item", new { id = @news.id})' title="Reverse">
+                                            <div class="check tool @(news.status==1?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@news.id"></div>
+                                        </a>
+                                    </td>
+                                     <td class="text-right">
                                         <a href='@Url.Action("newsEdit", "News", new { id = @news.id })' class="btn btn-xs btn-pencil btn-primary" title="Sửa">
                                             <i class="fa fa-pencil"></i>
                                         </a>

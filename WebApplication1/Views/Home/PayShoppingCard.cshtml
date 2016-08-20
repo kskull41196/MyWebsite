@@ -13,7 +13,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td class="text-center">&nbsp;</td>
+                        <td class="text-center">Hình sản phẩm</td>
                         <td class="text-center">Tên sản phẩm</td>
                         <td class="text-center">Số lượng</td>
                         <td class="text-center">Đơn giá</td>
@@ -26,7 +26,7 @@
                         <tr>
                             <td class="text-center">
                                 <a href='@Url.Action("ProductDetail", "Home", new { @id = @item.id})'>
-                                    <img class="img-thumbnail" src="~/assets/images/@(String.IsNullOrEmpty(item.image) ? "noimage.png" : item.image)" alt="@item.name" width="150">
+                                    <img class="img-thumbnail" style="max-width:50px" src="~/assets/images/@(String.IsNullOrEmpty(item.image) ? "noimage.png" :"item/" + @item.image)" alt="@item.name" width="150">
                                 </a>
                             </td>
                             <td class="text-center">
@@ -50,18 +50,12 @@
 
 
 
-
-
                 <tfoot>
                     <tr>
                         <td class="text-left">
                             <input type="submit" name="buttonChangeCurrency" id="submit" value="USD" class="btn btn-primary pull-left">
+                            <input type="submit" style="margin-left:10px" name="buttonChangeCurrency" id="submit" value="VND" class="btn btn-primary pull-left">
                         </td>
-
-                        <td class="text-left">
-                            <input type="submit" name="buttonChangeCurrency" id="submit" value="VND" class="btn btn-primary pull-left">
-                        </td>
-
                         <td class="text-right" colspan="4">
                             <strong>Tổng tiền : </strong>
                         </td>
@@ -128,7 +122,7 @@
                         </div>
 
 
-                        <br/>
+                        <br />
 
 
                         <div class="form-group">

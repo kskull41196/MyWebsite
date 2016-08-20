@@ -95,6 +95,20 @@
         return false;
     });
 </script>
+
+
+
+<h2 class="title_f_p_m_gh_pro">
+    <span>Chi tiết</span>
+</h2>
+
+
+
+
+
+
+
+
 <div class="frame_product_mau_gh">
     <div class="main_f_p_m_gh product_top primary_block clearfix">
         <div class="main-img-prod product-column product-left-column col-md-4 col-sm-6 col-xs-12">
@@ -254,7 +268,7 @@
                                         <div class="category-inner">
                                             <div class="category-img">
                                                 <a href="@Url.Action("ProductDetail", "Home", new { id = item.id })">
-                                                    <img class="img-responsive margin-auto" src="~/assets/images/@(String.IsNullOrEmpty(item.image)?"noimage.png":"item/@item.image")" alt="@item.name">
+                                                    <img class="img-responsive margin-auto" src="~/assets/images/@(String.IsNullOrEmpty(item.image)?"noimage.png":"item/"+@item.image)" alt="@item.name">
                                                 </a>
                                             </div>
                                             <div class="category-name">
