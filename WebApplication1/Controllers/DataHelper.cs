@@ -46,21 +46,21 @@ namespace WebApplication1.Controllers
                 data.SubmitChanges();
             }
 
-            public List<Models.tbl_module> getAllSupportedModules(Models.DataClassesDataContext data)
+            public List<Models.tbl_module> getAllLeftRightModules(Models.DataClassesDataContext data)
             {
-                var result = data.tbl_modules.Where(a => a.type == 1).OrderByDescending(a => a.date_added);
+                var result = data.tbl_modules.Where(a => a.type == 1 && a.name_visible.Contains("1996")).OrderByDescending(a => a.date_added);
+                return result.ToList();
+            }
+
+            public List<Models.tbl_module> getHomeModule(Models.DataClassesDataContext data)
+            {
+                var result = data.tbl_modules.Where(a => a.type == 2 && a.name_visible.Contains("1996")).OrderByDescending(a => a.date_added);
                 return result.ToList();
             }
 
             public List<Models.tbl_image> getAllSlideImages(Models.DataClassesDataContext data)
             {
                 var result = data.tbl_images.Where(a => a.status == 1).OrderByDescending(a => a.last_modified);
-                return result.ToList();
-            }
-
-            public List<Models.tbl_module> getHomeModule(Models.DataClassesDataContext data)
-            {
-                var result = data.tbl_modules.Where(a => a.type == 2).OrderByDescending(a => a.date_added);
                 return result.ToList();
             }
 

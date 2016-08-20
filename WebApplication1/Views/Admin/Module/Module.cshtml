@@ -64,6 +64,7 @@
                                 <td class="text-left">Tên module</td>
                                 <td class="text-left">Tên Partial</td>
                                 <td style="width: 100px;" class="text-center">Loại</td>
+                                <td style="width: 100px;" class="text-center">Ẩn/Hiện</td>
                                 <td style="width: 100px;" class="text-right">Tùy chọn</td>
                             </tr>
                         </thead>
@@ -94,6 +95,12 @@
                                         }
 
                                     </td>
+                                    <td class="text-center">
+                                        <a href='@Url.Action("moduleSetStatusEnable", "Module", new { id = @module.id})' title="Reverse">
+                                            <div class="check tool @(module.name_visible.Contains("1996")?"active":"")" data-action="toggleStatus" data-field="status" data-table="tbl_item" title="Ẩn hiện" value="@module.id"></div>
+                                        </a>
+                                    </td>
+
                                     <td class="text-right">
                                         <a href='@Url.Action("moduleEdit", "Module", new { id = @module.id })' class="btn btn-xs btn-pencil btn-primary" title="Sửa">
 

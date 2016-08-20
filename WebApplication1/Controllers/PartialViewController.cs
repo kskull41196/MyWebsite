@@ -9,59 +9,21 @@ namespace WebApplication1.Controllers
 {
     public class PartialViewController : BaseController
     {
-        // method menuMain() get menu all menu main
-        public ActionResult menuMain()
+        /*
+         * 
+         * Load data
+         * 
+         */
+        public int getNewsCategoryId()
         {
-            String menuMain = "<div id=\"mainNav\"><div id=\"cssmenu\"><div id=\"menu-button\">Menu</div><ul><li class=\"\"><a href=\"\">Trang chủ</a></li>";
-            var itemCategoryHot = from tic in data.tbl_item_categories where tic.hot == 1 select tic;
-            foreach(tbl_item_category itemCategory in itemCategoryHot){
-                menuMain += "<li class=\"\"><a href=\"\">"+itemCategory.name+"</a>";
-                menuMainItemCategoryLoop(itemCategory.id);
-                menuMain += "</li>";
-            }
-            var newsCategoryHot = from tnc in data.tbl_news_categories where tnc.hot == 1 select tnc;
-            foreach (tbl_news_category newsCategory in newsCategoryHot)
-            {
-                menuMain += "<li class=\"\"><a href=\"\">" + newsCategory.name + "</a>";
-                menuMainNewsCategoryLoop(newsCategory.id);
-                menuMain += "</li>";
-            }
-            menuMain += "<li class=\"\"><a href=\"\">Liên hệ</a></li>";
-            return PartialView(menuMain);
+            var menuNewsCategories = from tic in data.tbl_news_categories where tic.name.Equals(Constants.NEWS_CATEGORY_NAME_NEWS) select tic;
+            return menuNewsCategories.Any() ? menuNewsCategories.Single().id : -1;
         }
-        // method menuMain(id) get menu main by id
-        public String menuMainItemCategoryLoop(Int32 idParent)
+
+        public int getPolicyCategoryId()
         {
-            String menuMain = "";
-            var menuMainLoop = from tic in data.tbl_item_categories where tic.parent == idParent select tic;
-            if (menuMainLoop.Count() > 0) {
-                menuMain += "<ul>";
-                foreach (tbl_item_category menuChildItemCategory in menuMainLoop)
-                {
-                    menuMain += "<li class=\"\"><a href=\"\">"+menuChildItemCategory.name+"</a>";
-                    menuMainItemCategoryLoop(menuChildItemCategory.id);
-                    menuMain += "</li>";
-                }
-                menuMain += "</ul>";
-            }
-            return menuMain;
-        }
-        public String menuMainNewsCategoryLoop(Int32 idParent)
-        {
-            String menuMain = "";
-            var menuMainLoop = from tnc in data.tbl_news_categories where tnc.parent == idParent select tnc;
-            if (menuMainLoop.Count() > 0)
-            {
-                menuMain += "<ul>";
-                foreach (tbl_news_category menuChildNewsCategory in menuMainLoop)
-                {
-                    menuMain += "<li class=\"\"><a href=\"\">" + menuChildNewsCategory.name + "</a>";
-                    menuMainNewsCategoryLoop(menuChildNewsCategory.id);
-                    menuMain += "</li>";
-                }
-                menuMain += "</ul>";
-            }
-            return menuMain;
+            var menuNewsCategories = from tic in data.tbl_news_categories where tic.name.Equals(Constants.NEWS_CATEGORY_NAME_POLICY) select tic;
+            return menuNewsCategories.Any() ? menuNewsCategories.Single().id : -1;
         }
 
         /*
@@ -73,18 +35,6 @@ namespace WebApplication1.Controllers
         {
             var listProductHot = from ti in data.tbl_items where ti.status == 1 && ti.hot == 1 select ti;
             return PartialView(URLHelper.URL_HOME_PARTIAL_PRODUCT_HOT, listProductHot);
-        }
-
-        public int getNewsCategoryId()
-        {
-            var menuNewsCategories = from tic in data.tbl_news_categories where tic.name.Equals(Constants.NEWS_CATEGORY_NAME_NEWS) select tic;
-            return menuNewsCategories.Any() ? menuNewsCategories.Single().id : -1;
-        }
-
-        public int getPolicyCategoryId()
-        {
-            var menuNewsCategories = from tic in data.tbl_news_categories where tic.name.Equals(Constants.NEWS_CATEGORY_NAME_POLICY) select tic;
-            return menuNewsCategories.Any() ? menuNewsCategories.Single().id : -1;
         }
 
         /*
@@ -121,7 +71,7 @@ namespace WebApplication1.Controllers
             return PartialView(URLHelper.URL_HOME_PARTIAL_TOP_PRODUCT, topProductView);
         }
 
-        public ActionResult SupportOnline()
+        public ActionResult supportOnline()
         {
             List<tbl_support> listSupporters = DataHelper.GeneralHelper.getInstance().getAllSupporters(data);
             if (listSupporters.Count() == 0)

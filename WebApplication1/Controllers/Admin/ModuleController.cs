@@ -38,8 +38,8 @@ namespace WebApplication1.Controllers.Admin
         private tbl_module getOneModule(int id)
         {
             var module = from ic in data.tbl_modules
-                               where ic.id == id
-                               select ic;
+                         where ic.id == id
+                         select ic;
             if (module == null)
             {
                 return new tbl_module();
@@ -55,6 +55,24 @@ namespace WebApplication1.Controllers.Admin
         {
             return moduleView();
         }
+
+        public ActionResult moduleSetStatusEnable(int id)
+        {
+            tbl_module tic = getOneModule(id);
+            if (tic.name_visible.Contains("1996"))
+            {
+                tic.name_visible = tic.name_visible.Replace("1996", "1994");
+            }
+            else if (tic.name_visible.Contains("1994"))
+            {
+                tic.name_visible = tic.name_visible.Replace("1994", "1996");
+            }
+            tic.last_modified = DateTime.Now;
+            UpdateModel(tic);
+            data.SubmitChanges();
+            return RedirectToAction("moduleView");
+        }
+
         /*
          * 
          * 
@@ -74,7 +92,7 @@ namespace WebApplication1.Controllers.Admin
                 //Delete all
                 DataHelper.GeneralHelper.getInstance().deleteAllModules(data);
             }
-            
+
             var keyword = form["keyword"];
             var listModule = getModule(10, keyword);
             return View(URLHelper.URL_ADMIN_MODULE, listModule);
@@ -107,12 +125,12 @@ namespace WebApplication1.Controllers.Admin
                 err = true;
                 ViewData["Error"] += "Vui lòng nhập tên Partial!\n";
             }
-            if (type==null)
+            if (type == null)
                 m.type = 1;
             else
                 m.type = Int32.Parse(type);
             m.name_partial = name_partial;
-            m.name_visible = name_visible;
+            m.name_visible = name_visible + "_1994";
             m.date_added = DateTime.Now;
             m.last_modified = DateTime.Now;
             if (err == false)
@@ -160,6 +178,10 @@ namespace WebApplication1.Controllers.Admin
                 {
                     err = true;
                     ViewData["Error"] += "Vui lòng nhập tên Partial!\n";
+                }
+                if (!name_visible.Contains("_1994") || !name_visible.Contains("_1996"))
+                {
+                    name_visible = name_visible + "_1994";
                 }
                 m.name_visible = name_visible;
                 m.name_partial = name_partial;
