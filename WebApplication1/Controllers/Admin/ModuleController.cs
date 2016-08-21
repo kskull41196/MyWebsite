@@ -190,7 +190,6 @@ namespace WebApplication1.Controllers.Admin
                 else
                     m.type = Int32.Parse(type);
                 m.date_added = DateTime.Now;
-                m.last_modified = DateTime.Now;
                 if (err == false)
                 {
                     UpdateModel(m);
