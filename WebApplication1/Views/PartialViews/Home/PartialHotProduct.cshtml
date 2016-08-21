@@ -19,7 +19,7 @@
                                     <div class="category-inner">
                                         <div class="category-img">
                                             <a href="@Url.Action("ProductDetail", "Home", new { id = item.id })">
-                                                <img class="img-responsive margin-auto" src="~/assets/images/@(String.IsNullOrEmpty(item.image)?"noimage.png":"item/"+@item.image)" alt="@item.name">
+                                                <img class="img-responsive margin-auto" style="max-height:200px" src="~/assets/images/@(String.IsNullOrEmpty(item.image)?"noimage.png":"item/"+@item.image)" alt="@item.name">
                                             </a>
                                         </div>
                                         <div class="category-name">
@@ -33,7 +33,7 @@
                                             </div>
                                         </div>
                                         <div class="detail_short">
-                                            <p>@item.detail_short</p>
+                                            <p>@Html.Raw(@item.detail_short)</p>
                                         </div>
                                         <div class="btnChiTiet"><a href="@Url.Action("ProductDetail", "Home", new { id=item.id})"><span>Chi tiết</span></a></div>
                                         <div class="btnMuaHang" idsp="@item.id"><span>Đặt hàng</span></div>

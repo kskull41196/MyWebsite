@@ -256,6 +256,8 @@ namespace WebApplication1.Controllers
 
             public void deleteAllProduct(Models.DataClassesDataContext data)
             {
+                ShoppingCardHelper.getInstance().deleteAllOrderDetails(data);
+
                 data.tbl_items.DeleteAllOnSubmit(data.tbl_items);
                 data.SubmitChanges();
             }
